@@ -68,79 +68,52 @@
                 <el-button 
                     class="button"
                     type="primary"
-                    @click="saveRecord"
+                    
                 >Save Record</el-button> 
                    
             </div>
             <div class="block link-buttons">
                 
-
-                <!-- <div class="popup" v-show="showRecords">
-                        <span>
-                                Where does it come from?
-                            Contrary to popular belief, Lorem Ipsum is not simply random text. 
-                            It has roots in a piece of classical Latin literature from 45 BC, 
-                            making it over 2000 years old. Richard McClintock, a Latin professor 
-                            at Hampden-Sydney College in Virginia, looked up one of the more obscure 
-                            Latin words, consectetur, from a Lorem Ipsum passage, and going through the 
-                            cites of the word in classical literature, discovered the undoubtable source. 
-                            Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
-                            (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise 
-                            on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, 
-                            "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. 
-                            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced 
-                            in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-
-                            Contrary to popular belief, Lorem Ipsum is not simply random text. 
-                            It has roots in a piece of classical Latin literature from 45 BC, 
-                            making it over 2000 years old. Richard McClintock, a Latin professor 
-                            at Hampden-Sydney College in Virginia, looked up one of the more obscure 
-                            Latin words, consectetur, from a Lorem Ipsum passage, and going through the 
-                            cites of the word in classical literature, discovered the undoubtable source. 
-                            Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
-                            (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise 
-                            on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, 
-                            "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. 
-                            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced 
-                            in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-
-                            Contrary to popular belief, Lorem Ipsum is not simply random text. 
-                            It has roots in a piece of classical Latin literature from 45 BC, 
-                            making it over 2000 years old. Richard McClintock, a Latin professor 
-                            at Hampden-Sydney College in Virginia, looked up one of the more obscure 
-                            Latin words, consectetur, from a Lorem Ipsum passage, and going through the 
-                            cites of the word in classical literature, discovered the undoubtable source. 
-                            Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
-                            (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise 
-                            on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, 
-                            "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. 
-                            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced 
-                            in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-
-                            Contrary to popular belief, Lorem Ipsum is not simply random text. 
-                            It has roots in a piece of classical Latin literature from 45 BC, 
-                            making it over 2000 years old. Richard McClintock, a Latin professor 
-                            at Hampden-Sydney College in Virginia, looked up one of the more obscure 
-                            Latin words, consectetur, from a Lorem Ipsum passage, and going through the 
-                            cites of the word in classical literature, discovered the undoubtable source. 
-                            Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
-                            (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise 
-                            on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, 
-                            "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. 
-                            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced 
-                            in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-                        </span>    
+                <div class="popup-container" v-show="showRecords">
+                    <div class="popup">
+                        <div class="popup-header">
+                            <h3 class="popup-title">Records for User</h3>
+                            <i class="el-icon-close" @click="showRecords = !showRecords"></i>
+                        </div>
+                        <div class="popup-content">
+                            <div class="popup-list" v-for="person in people">
+                                <div class="popup-dates">
+                                    <div class="from-date">
+                                        <label for="from-date">From</label>
+                                        <span id="from-date">{{ person.from }}</span>
+                                    </div>
+                                    <div>
+                                        <label for="until-date">Until</label>
+                                        <span id="until-date"> {{ person.until }}</span>
+                                    </div>
+                                    <el-button class="secondary-button">Delete</el-button>
+                                </div>
+                                <div class="popup-approver">
+                                    <div class="approver">
+                                        <label for="approved-by">Approved BY</label>
+                                        <div id="approved-by">
+                                            <img :src="person.imgUrl">
+                                            <span>{{ person.name }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="commentary">
+                                        <label for="commentary">Commentary</label>
+                                        <span id="commentary"> {{ person.commentary }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
                     </div>
+                </div>
 
-                    <div class="popup" v-show="showTimesheet">
+                <div class="popup-container" v-show="showTimesheet">
+                    <div class="popup" >
                         <span>
                                 Where does it come from?
                             Contrary to popular belief, Lorem Ipsum is not simply random text. 
@@ -203,14 +176,9 @@
                             Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced 
                             in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
                         </span>    
-                    </div>     -->
+                    </div>    
+                </div>
 
-                
-                
-                
-                
-                
-                
                 <el-button 
                     class="secondary-button"
                     @click="showRecords = !showRecords">List Record(s)</el-button>
@@ -219,9 +187,6 @@
                     class="secondary-button"
                     @click = "showTimesheet = !showTimesheet">View Timesheet</el-button>
                     
-                    <!-- <router-link :to="{ path: 'recordsfor'}" class="secondary-button"> List Record(s)</router-link> -->
-                    <!-- <router-link :to="{ path: 'timesheetfor'}" class="secondary-button">View Timesheet</router-link>
-                    <router-view></router-view> -->
             </div>
         </div>
         
@@ -237,6 +202,9 @@
         computed: {
              ...mapState('shared', [
                'pickerOptions'
+            ]),
+            ...mapState('recordsFor', [
+                'people'
             ]),
             datePickerValue: {
             get() {
@@ -327,9 +295,6 @@
             }    
         },
         methods: {
-            close () {
-                this.$emit('close')
-            }
         }
     }
 </script>
@@ -420,20 +385,107 @@ router-link
 .ml-2
     margin-left: 20px
 
+// Modal dialog styles
+
+.popup-container
+    position: absolute
+    left: 0
+    top: 0
+    z-index: 3
+    width: 100%
+    height: 100%
+    background-color: rgba(0,0,0,0.2) // Black w/ opacity
+
 .popup
-    z-index: 2000
+    z-index: 4
     background-color: white
     padding: 30px 22px
     width: 50% 
-    max-height: 40%
+    max-height: 60%
     position: absolute 
     top: 35%  
-    left: 25%
+    left: 20%
     border: 1px solid lightgrey
     border-radius: 3px
-    overflow-y: auto
+    
 
     span
         line-height: normal
+
+.popup-header
+    display: flex
+    flex-flow: row
+    justify-content: space-between
+    margin-bottom: 30px
+
+    h3
+        color: #444444
+        font-weight: 400
+    i
+        font-size: 22px
+        &:hover
+            cursor: pointer
+
+.popup-content
+    padding-right: 10px
+    max-height: 350px
+    overflow-y: auto
+
+.popup-list
+    border-top: 1px solid lightgray
+    padding: 20px 0px 20px 20px
+
+    & > div
+        margin-bottom: 20px
+        min-height: 50px
+
+    label
+        display: inline-block
+        font-size: 12px
+        color: #8D8D8D
+        font-weight: bold
+        margin-bottom: 10px
+
+    span
+        display: block
+        font-size: 12px
+        color: #444444
+.popup-dates
+    & > div
+        display: inline-block
+
+    .from-date
+        width: 39%
+
+    .el-button
+        float: right
+        height: 22px
+        font-size: 11px
+        line-height: unset
+
+.popup-approver
+    & > div
+        display: inline-block
+        vertical-align: top
+
+    .approver
+        width: 39%    
+
+    .commentary
+        width: 53%
+        height: auto
+
+#approved-by
+    display: flex
+    margin-top: 5px
+
+    img
+        width: 32px
+        height: 32px
+        border-radius: 50%
+
+    span
+        padding-top: 2%
+        padding-left: 5%                  
 </style>
 

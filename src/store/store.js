@@ -10,6 +10,7 @@ import editTime from './modules/editTime';
 import nav from './modules/nav';
 import officeTimesheet from './modules/officeTimesheet';
 import workCalendar from './modules/workCalendar'
+import recordsFor from './modules/recordsFor'
  
 Vue.use(Vuex);
 
@@ -24,7 +25,8 @@ export const store = new Vuex.Store({
     editTime, 
     nav,
     officeTimesheet,
-    workCalendar
+    workCalendar,
+    recordsFor
   }
 
 });
