@@ -70,10 +70,9 @@
                     type="primary"
                     
                 >Save Record</el-button> 
-                   
             </div>
             <div class="block link-buttons">
-                
+                <!-- Records for -->        
                 <div class="popup-container" v-show="showRecords">
                     <div class="popup">
                         <div class="popup-header">
@@ -111,71 +110,50 @@
                         </div>    
                     </div>
                 </div>
-
+                <!-- Timesheet for -->
                 <div class="popup-container" v-show="showTimesheet">
-                    <div class="popup" >
-                        <span>
-                                Where does it come from?
-                            Contrary to popular belief, Lorem Ipsum is not simply random text. 
-                            It has roots in a piece of classical Latin literature from 45 BC, 
-                            making it over 2000 years old. Richard McClintock, a Latin professor 
-                            at Hampden-Sydney College in Virginia, looked up one of the more obscure 
-                            Latin words, consectetur, from a Lorem Ipsum passage, and going through the 
-                            cites of the word in classical literature, discovered the undoubtable source. 
-                            Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
-                            (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise 
-                            on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, 
-                            "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. 
-                            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced 
-                            in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-
-                            Contrary to popular belief, Lorem Ipsum is not simply random text. 
-                            It has roots in a piece of classical Latin literature from 45 BC, 
-                            making it over 2000 years old. Richard McClintock, a Latin professor 
-                            at Hampden-Sydney College in Virginia, looked up one of the more obscure 
-                            Latin words, consectetur, from a Lorem Ipsum passage, and going through the 
-                            cites of the word in classical literature, discovered the undoubtable source. 
-                            Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
-                            (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise 
-                            on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, 
-                            "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. 
-                            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced 
-                            in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-
-                            Contrary to popular belief, Lorem Ipsum is not simply random text. 
-                            It has roots in a piece of classical Latin literature from 45 BC, 
-                            making it over 2000 years old. Richard McClintock, a Latin professor 
-                            at Hampden-Sydney College in Virginia, looked up one of the more obscure 
-                            Latin words, consectetur, from a Lorem Ipsum passage, and going through the 
-                            cites of the word in classical literature, discovered the undoubtable source. 
-                            Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
-                            (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise 
-                            on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, 
-                            "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. 
-                            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced 
-                            in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-
-                            Contrary to popular belief, Lorem Ipsum is not simply random text. 
-                            It has roots in a piece of classical Latin literature from 45 BC, 
-                            making it over 2000 years old. Richard McClintock, a Latin professor 
-                            at Hampden-Sydney College in Virginia, looked up one of the more obscure 
-                            Latin words, consectetur, from a Lorem Ipsum passage, and going through the 
-                            cites of the word in classical literature, discovered the undoubtable source. 
-                            Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
-                            (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise 
-                            on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, 
-                            "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. 
-                            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced 
-                            in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-                        </span>    
+                    <div class="popup">
+                        <div class="popup-header">
+                            <h3 class="popup-title">Timesheet for User</h3>
+                            <i class="el-icon-close" @click="showTimesheet = !showTimesheet"></i>
+                        </div class="popup-content">
+                            <el-table
+                                :data="timesheetTable"
+                                style="width: 100%"
+                                :row-class-name="durationRedClass">
+                                    <el-table-column
+                                        label="Date"
+                                        prop="date">
+                                    </el-table-column>
+                                    <el-table-column
+                                        align="center"
+                                        label="Reason">
+                                        <template slot-scope="timesheetTable">
+                                            <div class="">
+                                                <el-tag :type="timesheetTable.row.tagType">{{ timesheetTable.row.tagName }}</el-tag>
+                                            </div>    
+                                        </template>    
+                                    </el-table-column>    
+                                    <el-table-column
+                                        align="center"
+                                        label="Check In"
+                                        prop="checkIn">
+                                    </el-table-column>
+                                    <el-table-column
+                                        align="center"
+                                        label="Check Out"
+                                        prop="checkOut">
+                                    </el-table-column>
+                                    <el-table-column
+                                        align="center"
+                                        label="Duration"
+                                        prop="duration">
+                                    </el-table-column>
+                            </el-table>
+                            <div class="timesheet_total sm">
+                                <span>Total:</span> {{timesheetTotal}}
+                            </div>
+                        </div>    
                     </div>    
                 </div>
 
@@ -205,6 +183,10 @@
             ]),
             ...mapState('recordsFor', [
                 'people'
+            ]),
+            ...mapState('timesheet', [
+                'timesheetTable',
+                'timesheetTotal'
             ]),
             datePickerValue: {
             get() {
@@ -262,14 +244,14 @@
                 }],
                 valueSelectedEmployee: '',
                 reasonOptions: [{
-                    value: 'Select',
-                    label: 'Select'
+                        value: 'Business',
+                        label: 'Business'
                     }, {
-                    value: 'Overtime',
-                    label: 'Overtime'
+                        value: 'Overtime',
+                        label: 'Overtime'
                     }, {
-                    value: 'Business',
-                    label: 'Business'
+                        value: 'On Duty',
+                        label: 'On Duty'
                     }],
                 value: '',
                 approvedByInput: 'Margarita Daskalova',
@@ -295,6 +277,26 @@
             }    
         },
         methods: {
+            durationRedClass({row, rowIndex}) {
+            for (var i = 0; i < this.timesheetTable.length; i++) {
+                if (row.duration > '08:00:00') {
+                    return 'duration-red';
+                }
+            }
+            return '';
+            }
+            
+        },
+        created () {
+            for (var i = 0; i < this.timesheetTable.length; i++) {
+                if (this.timesheetTable[i].tagName === 'on duty') {
+                    this.timesheetTable[i].tagType = 'success';
+                }else if (this.timesheetTable[i].tagName === 'overtime') {
+                    this.timesheetTable[i].tagType = 'danger';
+                }else {
+                    this.timesheetTable[i].tagType = '';
+                }
+            }
         }
     }
 </script>
@@ -394,7 +396,7 @@ router-link
     z-index: 3
     width: 100%
     height: 100%
-    background-color: rgba(0,0,0,0.2) // Black w/ opacity
+    background-color: rgba(0,0,0,0.3) // Black w/ opacity
 
 .popup
     z-index: 4
@@ -416,7 +418,7 @@ router-link
     display: flex
     flex-flow: row
     justify-content: space-between
-    margin-bottom: 30px
+    margin-bottom: 15px
 
     h3
         color: #444444
@@ -486,6 +488,24 @@ router-link
 
     span
         padding-top: 2%
-        padding-left: 5%                  
+        padding-left: 5%
+
+.el-table
+    margin-top: 0
+
+.el-tag
+    padding-top: 1.5%
+    width: 76px
+    height: 22px
+
+.timesheet_total
+  line-height: 3
+  text-align: right
+  padding-right: 7%
+  background-color: #e4e7ea
+  font-weight: 600
+
+  span 
+    padding-right: 1% 
 </style>
 

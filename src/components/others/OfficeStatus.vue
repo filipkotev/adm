@@ -118,7 +118,7 @@ export default {
           this.persons[i].tagType = 'warning';
       }else{
         this.persons[i].tagType = '';
-      }
+      } 
     }
   }
 }

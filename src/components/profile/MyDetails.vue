@@ -176,7 +176,7 @@
     }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 h1
     margin-bottom: 90px
 
@@ -198,7 +198,9 @@ h1
     display: flex
     flex-flow: column
     
-     
+.el-select
+    margin-left: 0
+
 .box1
     width: 60%
     padding: 15px 30px

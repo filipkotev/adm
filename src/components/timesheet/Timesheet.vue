@@ -102,12 +102,13 @@ export default {
 .timesheet_total
   line-height: 3
   text-align: right
-  padding-right: 145px
+  // padding-right: 145px
+  padding-right: 10%
   background-color: #e4e7ea
   font-weight: 600
 
-.timesheet_total span 
-  padding-right: 1%
+  span 
+    padding-right: 1%
 
 .el-table:nth-child(last) 
   text-align: center
