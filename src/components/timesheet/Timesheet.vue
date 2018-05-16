@@ -99,6 +99,7 @@ export default {
 <style lang="sass" scoped> 
 .submitButton
   float: left
+  
 .timesheet_total
   line-height: 3
   text-align: right

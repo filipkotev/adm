@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="">
     <div class="page-title"><h1>Edit Employee Timesheet</h1></div>
-    <div class="select-container">  
+    <div class="select-container">
       <div class="block">
         <h5 class="demonstration">Employee</h5>
         <div style="position: relative">
@@ -17,7 +17,7 @@
                 <span style="margin-left: 40px;">{{item.value}}</span>
               </el-option>
           </el-select>
-        </div>  
+        </div>
       </div>
       <div class="block selectPeriod">
         <h5 class="demonstration">Period</h5>

@@ -25,7 +25,7 @@ Vue.use(VCalendar, {
   weeksTransition: 'slide-v',
 })
 
-Vue.http.options.root = 'https://admission.sofia.ifao.net/'
+Vue.http.options.root = 'https://admission.sofia.ifao.net/' // api/log
 
 const router = new VueRouter({
   routes,

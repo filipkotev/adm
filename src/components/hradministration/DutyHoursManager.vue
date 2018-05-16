@@ -3,6 +3,7 @@
     <div class="page-title"><h1>Employee's Hours Manager</h1></div>
     <div class="wrapper">
         <div class="row-wrapper">
+            <!-- Select Employee -->
             <div class="block">
                 <h5 class="demonstration">Employee</h5>
                 <div style="position: relative">
@@ -20,6 +21,7 @@
                     </el-select>
                 </div>
             </div>
+            <!-- Date Picker -->
             <div class="block selectPeriod">
                 <h5 class="demonstration">Period</h5>
                 <el-date-picker
@@ -35,6 +37,7 @@
                 </el-date-picker>
             </div>
         </div>
+        <!-- Select Reason & Approved by row -->
         <div class="row-wrapper">
             <div class="block">
                 <h5 class="demonstration">Reason</h5>
@@ -52,17 +55,17 @@
                 <el-input v-model="approvedByInput"></el-input>
             </div>
         </div>
+        <!-- Additional commentary -->
         <div class="row-wrapper">
             <div class="block">
                 <h5 class="demonstration">Additional commentary</h5>
                 <el-input placeholder="Your comment..." v-model="commentInput"></el-input>
             </div>
             <div class="block checkbox">
-                <!-- <input type="checkbox" v-model="checked" id="custom-checkbox">
-                <label for="custom-checkbox">Perform time verification</label> -->
                 <el-checkbox v-model="checked">Perform time verification</el-checkbox>
             </div>
         </div>
+        <!-- Buttons Row -->
         <div class="row-wrapper">
             <div class="block">
                 <el-button 
@@ -72,7 +75,7 @@
                 >Save Record</el-button> 
             </div>
             <div class="block link-buttons">
-                <!-- Records for -->        
+                <!-- Records for popup -->        
                 <div class="popup-container" v-show="showRecords">
                     <div class="popup">
                         <div class="popup-header">
@@ -80,7 +83,7 @@
                             <i class="el-icon-close" @click="showRecords = !showRecords"></i>
                         </div>
                         <div class="popup-content">
-                            <div class="popup-list" v-for="person in people">
+                            <div class="popup-list" v-for="(person, index) in people">
                                 <div class="popup-dates">
                                     <div class="from-date">
                                         <label for="from-date">From</label>
@@ -90,7 +93,21 @@
                                         <label for="until-date">Until</label>
                                         <span id="until-date"> {{ person.until }}</span>
                                     </div>
-                                    <el-button class="secondary-button">Delete</el-button>
+                                    <!-- Confirmation popover -->
+                                    <!-- <el-popover
+                                        placement="top-end"
+                                        width="260"
+                                        v-model="visibleConfirmation">
+                                        <p>Are you sure to delete this record?</p>
+                                        <div>
+                                            <el-button size="mini" type="text" @click="hideConfirmation">Cancel</el-button>
+                                            <el-button type="primary" size="mini" @click="deleteRecord(index)">Confirm</el-button>
+                                        </div>
+                                        <el-button slot="reference" class="secondary-button">Delete</el-button>
+                                    </el-popover> -->
+                                    <el-button 
+                                        class="secondary-button"
+                                        @click="deleteRecord(index)">Delete</el-button>
                                 </div>
                                 <div class="popup-approver">
                                     <div class="approver">
@@ -110,7 +127,7 @@
                         </div>    
                     </div>
                 </div>
-                <!-- Timesheet for -->
+                <!-- Timesheet for popup -->
                 <div class="popup-container" v-show="showTimesheet">
                     <div class="popup">
                         <div class="popup-header">
@@ -166,8 +183,7 @@
                     @click = "showTimesheet = !showTimesheet">View Timesheet</el-button>
                     
             </div>
-        </div>
-        
+        </div>    
     </div>  
     
   </div>
@@ -180,9 +196,6 @@
         computed: {
              ...mapState('shared', [
                'pickerOptions'
-            ]),
-            ...mapState('recordsFor', [
-                'people'
             ]),
             ...mapState('timesheet', [
                 'timesheetTable',
@@ -199,8 +212,9 @@
         }, // End of computed properties
         data() {
             return {
+                visibleConfirmation: false,
                 showRecords: false,
-                showTimesheet: false, 
+                showTimesheet: false,
                 options: [{
                     value: 'Ivan Borisov',
                     label: 'Ivan Borisov',
@@ -242,6 +256,47 @@
                     label: 'ILian Ivanov',
                     url: 'https://randomuser.me/api/portraits/men/39.jpg'
                 }],
+                people: [{
+                        name: 'Ivan Ivanov',
+                        imgUrl: 'https://randomuser.me/api/portraits/men/15.jpg',
+                        business: '-',
+                        overtime: '-',
+                        from: '20-Apr-2018, 18:12:00, Friday',
+                        until: '20-Apr-2018, 18:12:00, Friday',
+                        commentary: 'He was on a trip about implementing the platform for credit cards for hotels'
+                    }, {
+                        name: 'Filip Kotev',
+                        imgUrl: 'https://randomuser.me/api/portraits/men/18.jpg',
+                        department: 'User Experience',
+                        business: '-',
+                        overtime: '03:30',
+                        from: '21-Apr-2018, 18:12:00, Monday',
+                        until: '22-Apr-2018, 18:12:00, Wednesday',
+                        commentary: 'none'
+                    }, {
+                        name: 'Vasil Ivanov',
+                        imgUrl: 'https://randomuser.me/api/portraits/men/17.jpg',
+                        department: 'Accounts',
+                        workId: 23612,
+                        work: '46:59',
+                        business: '46:00',
+                        overtime: '-',
+                        total: '92:59',
+                        from: '25-Apr-2018, 18:12:00, Tuesday',
+                        until: '27-Apr-2018, 18:12:00, Friday',
+                        commentary: 'He was on a trip about implementing the platform for credit cards for hotels'
+                    }, {
+                        name: 'Ivan Ivanov',
+                        imgUrl: 'https://randomuser.me/api/portraits/men/22.jpg',
+                        department: 'Cytric',
+                        workId: 40612,
+                        business: '-',
+                        overtime: '01:54',
+                        from: '20-Apr-2018, 18:12:00, Friday',
+                        until: '20-Apr-2018, 18:12:00, Friday',
+                        commentary: 'none'
+                    }
+                ],
                 valueSelectedEmployee: '',
                 reasonOptions: [{
                         value: 'Business',
@@ -277,6 +332,14 @@
             }    
         },
         methods: {
+            showNotification() {
+                this.$notify({
+                message: 'Record has been deleted successfully',
+                type: 'success',
+                offset: 180,
+                duration: 1000
+                });
+            },
             durationRedClass({row, rowIndex}) {
             for (var i = 0; i < this.timesheetTable.length; i++) {
                 if (row.duration > '08:00:00') {
@@ -284,6 +347,14 @@
                 }
             }
             return '';
+            },
+            hideConfirmation () {
+                this.visibleConfirmation = false;
+            },
+            deleteRecord (index) {
+                this.people.splice(index, 1);
+                this.hideConfirmation();
+                this.showNotification();
             }
             
         },
@@ -507,5 +578,8 @@ router-link
 
   span 
     padding-right: 1% 
+
+.secondary-button:first-child
+    margin-right: 0
 </style>
 

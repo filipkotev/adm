@@ -154,6 +154,23 @@ body > .el-container {
 .el-table .el-table__fixed, .el-table__body {
   width: 100% !important;
 }
+/* Styles for Edit Time and Employee's hours pages */
+#selectEmployee {
+  padding-left: 60px;
+}
+.el-checkbox__input.is-checked+.el-checkbox__label {
+  color: #444;
+  font-weight: 400;
+}
+.el-checkbox__input.is-checked .el-checkbox__inner,
+.el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  border-color: #1F98BD;
+  background-color: #1F98BD;
+}
+.el-checkbox__inner.is-focused,
+.el-checkbox__inner:hover {
+  border-color: #1F98BD;
+}
 
 .duration-red td:last-of-type {
   color: #C76161;
