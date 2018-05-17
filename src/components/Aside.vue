@@ -122,6 +122,8 @@ export default {
   line-height: 3
 
 .el-menu-item span
+  font-family: Roboto
+  font-weight: 400
   width: 100%
   height: 100%
   display: inline-block
@@ -134,6 +136,8 @@ export default {
 
 .el-menu-item-group__title
   font-size: 14px
+  font-family: Roboto
+  font-weight: 300
   text-align: left
   padding: 0 0 0 30px
   margin-top: 45px

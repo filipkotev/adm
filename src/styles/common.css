@@ -86,13 +86,14 @@ body > .el-container {
 }
 
 .internal-information .page-name {
-  color: #333;
+  color: #1A2C33;
 }
 
 .internal-information span {
+  font-family: Roboto;
   color: #249ABF;
-  font-weight: 600;
-  font-size: 11px;
+  font-weight: 500;
+  font-size: 14px;
 }
 
 [class*=" el-icon-"], [class^=el-icon-] {
@@ -154,18 +155,19 @@ body > .el-container {
 .el-table .el-table__fixed, .el-table__body {
   width: 100% !important;
 }
-/* Styles for Edit Time and Employee's hours pages */
+
 #selectEmployee {
-  padding-left: 60px;
-}
+    padding-left: 60px;
+  /* Styles for Edit Time and Employee's hours pages */
+  }
 .el-checkbox__input.is-checked+.el-checkbox__label {
-  color: #444;
+color: #444;
   font-weight: 400;
 }
 .el-checkbox__input.is-checked .el-checkbox__inner,
 .el-checkbox__input.is-indeterminate .el-checkbox__inner {
   border-color: #1F98BD;
-  background-color: #1F98BD;
+background-color: #1F98BD;
 }
 .el-checkbox__inner.is-focused,
 .el-checkbox__inner:hover {

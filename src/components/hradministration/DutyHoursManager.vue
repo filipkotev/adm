@@ -176,11 +176,15 @@
 
                 <el-button 
                     class="secondary-button"
-                    @click="showRecords = !showRecords">List Record(s)</el-button>
+                    @click="showRecords = !showRecords"
+                    :class="{disabled: isSelectedEmployee}"
+                    :disabled="isSelectedEmployee">List Record(s)</el-button>
 
                 <el-button 
                     class="secondary-button"
-                    @click = "showTimesheet = !showTimesheet">View Timesheet</el-button>
+                    @click = "showTimesheet = !showTimesheet"
+                    :class="{disabled: isSelectedEmployee}"
+                    :disabled="isSelectedEmployee">View Timesheet</el-button>
                     
             </div>
         </div>    
@@ -209,6 +213,9 @@
                 return this.$store.dispatch('shared/updateDatePickerValue', datePickerValue, {root:true});
             }
             },
+            isSelectedEmployee () {
+                return this.valueSelectedEmployee === ''
+            }
         }, // End of computed properties
         data() {
             return {
@@ -458,6 +465,9 @@ router-link
 .ml-2
     margin-left: 20px
 
+.disabled
+    opacity: 0.3    
+
 // Modal dialog styles
 
 .popup-container
@@ -581,5 +591,6 @@ router-link
 
 .secondary-button:first-child
     margin-right: 0
+
 </style>
 
