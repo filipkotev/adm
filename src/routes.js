@@ -12,8 +12,7 @@ import MyPassword from './components/profile/MyPassword.vue'
 import MyPermits from './components/profile/MyPermits.vue'
 
 import EditTime from './components/hradministration/EditTime.vue'
-// import EmployeеHours from './components/hradministration/EmployeеHours.vue'
-import DutyHoursManager from './components/hradministration/DutyHoursManager.vue'
+import EmployeesHours from './components/hradministration/EmployeesHours.vue'
 import StaffManager from './components/hradministration/StaffManager.vue'
 import SetPermits from './components/hradministration/SetPermits.vue'
 
@@ -31,8 +30,7 @@ export const routes = [
   {path: '/mypermits', component: MyPermits},
 
   {path: '/edittime', component: EditTime},
-//   {path: '/employeehours', component: EmployeeHours},
-  {path: '/dutyhoursmanager', component: DutyHoursManager},
+  {path: '/EmployeesHours', component: EmployeesHours},
   {path: '/staffmanager', component: StaffManager},
   {path: '/setpermits', component: SetPermits}
 ]

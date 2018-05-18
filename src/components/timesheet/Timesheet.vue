@@ -14,7 +14,7 @@
           end-placeholder="End date"
           align="right">
         </el-date-picker>
-        
+        {{ datePickerValue }}
         <div class="submitButton">
           <el-button class="button" type="primary" >Go</el-button>
         </div>

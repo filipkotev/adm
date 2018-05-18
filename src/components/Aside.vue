@@ -11,16 +11,14 @@
           <el-menu-item index="11">
             <router-link :to="{ path: 'edittime' }"><span @click="select">Edit Time</span></router-link>
           </el-menu-item>
+          </el-menu-item>
           <el-menu-item index="12">
-            <router-link :to="{ path: 'employeehours' }"><span @click="select">Employee's Hours Manager</span></router-link>
+            <router-link :to="{ path: 'EmployeesHours' }"><span @click="select">Employee's Hours Manager</span></router-link>
           </el-menu-item>
           <el-menu-item index="13">
-            <router-link :to="{ path: 'dutyhoursmanager' }"><span @click="select">Duty Hours Manager</span></router-link>
-          </el-menu-item>
-          <el-menu-item index="14">
             <router-link :to="{ path: 'staffmanager' }"><span @click="select">Staff Manager</span></router-link>
           </el-menu-item>
-          <el-menu-item index="15">
+          <el-menu-item index="14">
             <router-link :to="{ path: 'setpermits' }"><span @click="select">Set Permits</span></router-link>
           </el-menu-item>
         </el-menu-item-group>
