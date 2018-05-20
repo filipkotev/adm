@@ -144,6 +144,7 @@ export default {
 .select 
   width: 45%
   display: inline-block
+  margin-left: 5%
 
 .el-select
   width: 100%

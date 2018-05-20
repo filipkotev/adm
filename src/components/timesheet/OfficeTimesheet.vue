@@ -158,9 +158,12 @@ export default {
   flex-flow: row
   justify-content: space-between
 
-.select 
-  width: 45%
-  display: inline-block
+  .select 
+    width: 45%
+    display: inline-block
+
+    &:first-child
+      margin-right: 5% 
 
 .el-select 
   width: 100%

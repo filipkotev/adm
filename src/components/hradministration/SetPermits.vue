@@ -26,37 +26,37 @@
             </el-table-column>
                 <el-table-column label="Mon" width="115" type="selection">
                     <el-table-column 
-                        width="115">
+                        width="85">
                     </el-table-column>    
                 </el-table-column>
                 <el-table-column label="Tue" width="115" type="selection">
                     <el-table-column 
-                        width="115">
+                        width="85">
                     </el-table-column>
                 </el-table-column> 
                 <el-table-column label="Wed" width="115" type="selection">
                     <el-table-column 
-                        width="115">
+                        width="85">
                     </el-table-column>
                 </el-table-column> 
                 <el-table-column label="Thi" width="115" type="selection">
                     <el-table-column 
-                        width="115">
+                        width="85">
                     </el-table-column>
                 </el-table-column> 
                 <el-table-column label="Fri" width="115" type="selection">
                     <el-table-column 
-                        width="115">
+                        width="85">
                     </el-table-column>
                 </el-table-column> 
                 <el-table-column label="Sat" width="115" type="selection">
                     <el-table-column 
-                        width="115">
+                        width="85">
                     </el-table-column>
                 </el-table-column> 
                 <el-table-column label="Sun" width="115" type="selection">
                     <el-table-column 
-                         width="115">
+                         width="85">
                     </el-table-column>
                 </el-table-column>
                 <!-- <template slot-scope="people">
