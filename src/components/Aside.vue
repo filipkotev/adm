@@ -1,13 +1,13 @@
 <template lang="html">
-  <div class="">
-    <div class="internal-information">
+  <div class="" v-if="authenticated">
+    <div class="internal-information" v-if="authenticated || adminAuth">
       <span>Internal information</span> <i class="el-icon-arrow-right"></i><span class="page-name">{{selectedPage}}</span>
     </div>
     <el-row class="tac">
     <el-col :span="12">
       <!-- @open="handleOpen" @close="handleClose" -->
       <el-menu default-active="6" class="el-menu-vertical-demo">
-        <el-menu-item-group title="HR Administration">
+        <el-menu-item-group title="HR Administration" v-if="adminAuth">
           <el-menu-item index="11">
             <router-link :to="{ path: 'edittime' }"><span @click="select">Edit Time</span></router-link>
           </el-menu-item>
@@ -46,19 +46,10 @@
           <el-menu-item index="7">
             <router-link :to="{ path: 'accessrequests' }"><span @click="select">Access Requests</span></router-link>
           </el-menu-item>
+          <el-menu-item :index="index">
+            <router-link :to="{ path: link }"><span @click="select">{{ title }}</span></router-link>
+          </el-menu-item>
         </el-menu-item-group>
-        <!-- <el-menu-item-group title="Profile">
-          <el-menu-item index="8">
-            <router-link :to="{ path: 'mydetails' }"><span @click="select">My Details</span></router-link>
-          </el-menu-item>
-          <el-menu-item index="9">
-            <router-link :to="{ path: 'mypassword' }"><span @click="select">My Password</span></router-link>
-          </el-menu-item>
-          <el-menu-item index="10">
-            <router-link :to="{ path: 'mypermits' }"><span @click="select">My Permits</span></router-link>
-          </el-menu-item>
-        </el-menu-item-group> -->
-        
       </el-menu>
     </el-col>
   </el-row>
@@ -73,14 +64,37 @@ export default {
   computed: {
     ...mapGetters('nav', [
       'selectedPage'
-    ])
+    ]),
+    ...mapState('login', [
+      'userAuth',
+      'adminAuth',
+      'authenticated'
+    ]),
+    menuItems () {
+      let menuItems = []
+      // if (authenticated) {
+      //   menuItems = [
+      //     {title: 'Edit Time', link: 'editime'},
+      //     {title: 'Employees Hours', link: 'employeeshours'},
+      //     {title: 'Staff Manager', link: 'staffmanager'},
+      //     {title: 'Set Permits', link: 'setpermits'},
+      //     {title: 'My Timesheet', link: 'timesheet'},
+      //     {title: 'Breaking Obligaotry hours', link: 'breaking'},
+      //     {title: 'Abidance Time Frame and Break', link: 'abidance'},
+      //     {title: 'Office Timesheet', link: 'officetimesheet'},
+      //     {title: 'Work Calendar', link: 'workcalendar'},
+      //     {title: 'Edit Time', link: 'editime'},
+      //   ]
+      // }
+    },
+    isAuthenticated () {
+      return this.$store.state.authenticated
+    }
   },
   methods: {
     select: function(event) {
       let payload = event.currentTarget.innerText;
       return this.$store.dispatch('nav/updateSelectedPage', payload, {root: true});
-        // this.name = event.currentTarget.innerText;
-        // return this.name;
       }
     }
 }

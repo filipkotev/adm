@@ -5,7 +5,7 @@
       <p class="admission-system">
         Sofia Admission System
       </p>
-      <el-dropdown trigger="click"> 
+      <el-dropdown trigger="click" v-if="authenticated"> 
          <p class="welcome-user" >Welcome, {{arrays[0].name}}
           <i class="el-icon-arrow-down el-icon--right"></i>
         </p> 
@@ -34,7 +34,10 @@ export default {
   computed: {
     ...mapState('breaking', [
       'arrays'
-    ]), 
+    ]),
+    ...mapState('login', [
+      'authenticated'
+    ]) 
   },
   methods: {
     select: function(event) {
@@ -42,8 +45,8 @@ export default {
       return this.$store.dispatch('nav/updateSelectedPage', payload, {root: true});
         // this.name = event.currentTarget.innerText;
         // return this.name;
-      }
     }
+  }
 }
 </script>
 

@@ -4,13 +4,13 @@
         <div class="buttons">
             <el-button 
                 class="secondary-button"
-                :indeterminate="isIndeterminate" 
+                
                 v-model="checkAll"
                 @change="handleCheckAllChange">Check All</el-button>
             <el-button type="primary" class="submit-button">Submit Changes</el-button>
         </div>
 
-         <el-table ref="multipleTable" :data="people" style="width: 100%">
+         <el-table :data="people" style="width: 100%">
             <el-table-column 
                 label="Name">
                     <template slot-scope="people">
@@ -21,10 +21,33 @@
                             <div class="userInfo">
                                 <p><strong>{{ people.row.name }} </strong></p>
                             </div>
-                        </div>  
+                        </div>
                     </template>  
             </el-table-column>
-                <el-table-column label="Mon" width="115" type="selection">
+            <el-table-column label="Mon" width="85">
+                
+            </el-table-column>
+            <el-table-column label="Tue" width="85" >
+               
+            </el-table-column>
+            <el-table-column label="Wed" width="85">
+                
+            </el-table-column>
+            <el-table-column label="Thu" width="85" >
+               
+            </el-table-column>
+            <el-table-column label="Fri" width="85">
+                
+            </el-table-column>
+            <el-table-column label="Sat" width="85" >
+               
+            </el-table-column>
+            <el-table-column label="Sun" width="85">
+                
+            </el-table-column>
+
+            
+                <!-- <el-table-column label="Mon" width="115" type="selection">
                     <el-table-column 
                         width="85">
                     </el-table-column>    
@@ -58,7 +81,7 @@
                     <el-table-column 
                          width="85">
                     </el-table-column>
-                </el-table-column>
+                </el-table-column> -->
                 <!-- <template slot-scope="people">
                     <el-table ref="multipleTable" style="width: 100%" >
                         <el-table-column type="selection" width="75" @selection-change="handleSelectionChange">
@@ -96,14 +119,14 @@
         data () {
             return {
                 checkAll: false,
-                checkedCities: ['Shanghai', 'Beijing', 'London'],
-                cities: cityOptions,
+                checkedDays: ['Mon', 'Tue', 'Fri'],
+                // cities: cityOptions,
                 isIndeterminate: true
             };
         },
         methods: {
             handleCheckAllChange(val) {
-                this.checkedCities = val ? cityOptions : [];
+                // this.checkedCities = val ? cityOptions : [];
                 this.isIndeterminate = false;
             },
             handleCheckedCitiesChange(value) {

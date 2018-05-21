@@ -11,6 +11,7 @@ import nav from './modules/nav';
 import officeTimesheet from './modules/officeTimesheet';
 import workCalendar from './modules/workCalendar'
 import recordsFor from './modules/recordsFor'
+import login from './modules/login'
  
 Vue.use(Vuex);
 
@@ -26,7 +27,8 @@ export const store = new Vuex.Store({
     nav,
     officeTimesheet,
     workCalendar,
-    recordsFor
+    recordsFor,
+    login
   }
 
 });

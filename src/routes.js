@@ -7,6 +7,7 @@ import WorkCalendar from './components/timesheet/WorkCalendar.vue'
 import OfficeStatus from './components/others/OfficeStatus.vue'
 import AccessRequests from './components/others/AccessRequests.vue'
 
+import Login from './components/profile/Login.vue'
 import MyDetails from './components/profile/MyDetails.vue'
 import MyPassword from './components/profile/MyPassword.vue'
 import MyPermits from './components/profile/MyPermits.vue'
@@ -17,6 +18,7 @@ import StaffManager from './components/hradministration/StaffManager.vue'
 import SetPermits from './components/hradministration/SetPermits.vue'
 
 export const routes = [
+  {path: '/login', component: Login},
   {path: '/', component: OfficeStatus},
   {path: '/timesheet', component: Timesheet},
   {path: '/breaking', component: Breaking},
