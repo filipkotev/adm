@@ -14,12 +14,11 @@
           end-placeholder="End date"
           align="right">
         </el-date-picker>
-        {{ datePickerValue }}
         <div class="submitButton">
-          <el-button class="button" type="primary" >Go</el-button>
+          <el-button class="button" type="primary" @click="loadData">Go</el-button>
         </div>
       </div>
-      <!-- <p>{{datePickerValue}}</p> -->
+      <p>{{datePickerValue}}</p>
     </div>
     
     <el-table
@@ -61,6 +60,12 @@ import axios from 'axios';
 const { add } = require('timelite')
 
 export default {
+  data () {
+    return {
+      datePickerValue: [ "2018-01-01T08:10:00.000Z", "2018-01-23T18:10:00.000Z" ]
+
+    }
+  },
   computed: {
     ...mapState('timesheet', [
       'timesheetTable',
@@ -71,14 +76,14 @@ export default {
       'redDuration'
     ]),
     
-    datePickerValue: {
-      get() {
-        return this.$store.getters['shared/datePickerValue'];
-      },  
-      set(datePickerValue) {
-        return this.$store.dispatch('shared/updateDatePickerValue', datePickerValue, {root:true});
-      }
-    },
+    // datePickerValue: {
+    //   get() {
+    //     return this.$store.getters['shared/datePickerValue'];
+    //   },  
+    //   set(datePickerValue) {
+    //     return this.$store.dispatch('shared/updateDatePickerValue', datePickerValue, {root:true});
+    //   }
+    // },
     
   },
   methods: {
@@ -89,14 +94,33 @@ export default {
         }
       }
       return '';
+    },
+    loadData () {
+      const configRequest = {
+        id: 40820,
+        checkIn: this.datePickerValue[0],
+        checkOut: this.datePickerValue[1]
+      }
+      console.log(configRequest);
+
+      axios.get('https://new-project-adm.firebaseio.com/data.json', )
+        .then(res => {
+          console.log(res)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
-      
+  
   }
 };
 </script>
 
 <!-- Set local styles -->
-<style lang="sass" scoped> 
+<style lang="sass" scoped>
+.el-date-editor.el-input__inner
+  width: 33%
+
 .submitButton
   float: left
   

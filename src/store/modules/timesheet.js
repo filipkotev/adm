@@ -58,11 +58,13 @@ const mutations = {
   //       state.timesheetTable[i].tagType = '';
   //     }
   //   }
-  // }  
+  // }
 }
 
 const actions = {
-  
+  loadData: ({commit}, payload) => {
+    commit 
+  }  
 }
 
 export default {

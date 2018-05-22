@@ -10,7 +10,6 @@ import locale from 'element-ui/lib/locale/lang/en'
 import VCalendar from 'v-calendar'
 import 'v-calendar/lib/v-calendar.min.css';
 import Vuelidate from 'vuelidate'
-// import VueInputMask from 'vue-inputmask'
 const VueInputMask = require('vue-inputmask').default
 
 Vue.use(ElementUI, { locale })
@@ -25,7 +24,8 @@ Vue.use(VCalendar, {
   weeksTransition: 'slide-v',
 })
 
-Vue.http.options.root = 'https://admission.sofia.ifao.net/' // api/log
+// Vue.http.options.root = 'https://admission.sofia.ifao.net/' // api/log
+
 
 const router = new VueRouter({
   routes,

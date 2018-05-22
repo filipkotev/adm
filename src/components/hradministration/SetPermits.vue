@@ -24,27 +24,30 @@
                         </div>
                     </template>  
             </el-table-column>
-            <el-table-column label="Mon" width="85">
+            <el-table-column v-for="{permit, index} in people.permits" :key="index" :label="permit">
+                <el-checkbox :value="permit"></el-checkbox>
+            </el-table-column>
+            <!-- <el-table-column label="Mon" width="85">
                 
             </el-table-column>
             <el-table-column label="Tue" width="85" >
-               
+                
             </el-table-column>
             <el-table-column label="Wed" width="85">
                 
             </el-table-column>
             <el-table-column label="Thu" width="85" >
-               
+                
             </el-table-column>
             <el-table-column label="Fri" width="85">
                 
             </el-table-column>
             <el-table-column label="Sat" width="85" >
-               
+                
             </el-table-column>
             <el-table-column label="Sun" width="85">
                 
-            </el-table-column>
+            </el-table-column> -->
 
             
                 <!-- <el-table-column label="Mon" width="115" type="selection">
@@ -102,7 +105,7 @@
                         </el-table-column>
                     </el-table>
                 </template>         -->
-        </el-table>
+        </el-table>>    
     </div>    
 </template>
 

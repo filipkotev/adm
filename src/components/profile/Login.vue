@@ -8,7 +8,10 @@
             <el-input type="password" id="password" name="password" v-model="input.password" ></el-input>
             <p v-if="error" class="red">Something went wrong!</p>
             <p v-if="empty" class="red">Username and password must be filled in!</p>
-            <el-button type="primary" class="button" v-on:click="login()">LOGIN</el-button>
+            <el-button 
+                type="primary" 
+                class="button"
+                @click="login">LOGIN</el-button>
         </div>
     </div>    
 </template>
