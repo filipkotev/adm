@@ -23,11 +23,13 @@
                     {{ person.name }}
                 </div>
                 <div class="week-permits">
-                    <div class="day-permit" v-for="{permit, key} in person.permits">
+                    <div class="day-permit" v-for="{permit, index} in person.permits">
                         
                         <el-checkbox
-                            v-model="permit"
-                            >
+                            :label = "permit"
+                            :key = "permit"
+                            v-model="permits"
+                            > {{ permit}}
                         </el-checkbox>
                             <!-- <input 
                             type="checkbox"
@@ -50,7 +52,7 @@
         data () {
             return {
                 weekdays : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                permit: false
+                permits : []
             }    
         },
         computed: {

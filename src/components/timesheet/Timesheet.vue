@@ -96,14 +96,12 @@ export default {
       return '';
     },
     loadData () {
-      const configRequest = {
-        id: 40820,
-        checkIn: this.datePickerValue[0],
-        checkOut: this.datePickerValue[1]
-      }
-      console.log(configRequest);
+      
+        var id= 40820
+        var checkIn= this.datePickerValue[0]
+        var checkOut= this.datePickerValue[1]
 
-      axios.get('https://new-project-adm.firebaseio.com/data.json', )
+      axios.get('https://admission.sofia.ifao.net/' + id + '/' + checkIn + '/' + checkOut)
         .then(res => {
           console.log(res)
         })
