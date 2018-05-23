@@ -1,167 +1,136 @@
-<template>
+<template lang="html">
     <div class="">
         <div class="page-title"><h1>Set Permits</h1></div>
         <div class="buttons">
             <el-button 
                 class="secondary-button"
                 
-                v-model="checkAll"
-                @change="handleCheckAllChange">Check All</el-button>
+                >Check All</el-button>
             <el-button type="primary" class="submit-button">Submit Changes</el-button>
         </div>
 
-         <el-table :data="people" style="width: 100%">
-            <el-table-column 
-                label="Name">
-                    <template slot-scope="people">
-                        <div class="picNameId">
-                            <div class="pic">
-                                <img :src="people.row.imgUrl" alt="">
-                            </div>  
-                            <div class="userInfo">
-                                <p><strong>{{ people.row.name }} </strong></p>
-                            </div>
-                        </div>
-                    </template>  
-            </el-table-column>
-            <el-table-column v-for="{permit, index} in people.permits" :key="index" :label="permit">
-                <el-checkbox :value="permit"></el-checkbox>
-            </el-table-column>
-            <!-- <el-table-column label="Mon" width="85">
-                
-            </el-table-column>
-            <el-table-column label="Tue" width="85" >
-                
-            </el-table-column>
-            <el-table-column label="Wed" width="85">
-                
-            </el-table-column>
-            <el-table-column label="Thu" width="85" >
-                
-            </el-table-column>
-            <el-table-column label="Fri" width="85">
-                
-            </el-table-column>
-            <el-table-column label="Sat" width="85" >
-                
-            </el-table-column>
-            <el-table-column label="Sun" width="85">
-                
-            </el-table-column> -->
-
-            
-                <!-- <el-table-column label="Mon" width="115" type="selection">
-                    <el-table-column 
-                        width="85">
-                    </el-table-column>    
-                </el-table-column>
-                <el-table-column label="Tue" width="115" type="selection">
-                    <el-table-column 
-                        width="85">
-                    </el-table-column>
-                </el-table-column> 
-                <el-table-column label="Wed" width="115" type="selection">
-                    <el-table-column 
-                        width="85">
-                    </el-table-column>
-                </el-table-column> 
-                <el-table-column label="Thi" width="115" type="selection">
-                    <el-table-column 
-                        width="85">
-                    </el-table-column>
-                </el-table-column> 
-                <el-table-column label="Fri" width="115" type="selection">
-                    <el-table-column 
-                        width="85">
-                    </el-table-column>
-                </el-table-column> 
-                <el-table-column label="Sat" width="115" type="selection">
-                    <el-table-column 
-                        width="85">
-                    </el-table-column>
-                </el-table-column> 
-                <el-table-column label="Sun" width="115" type="selection">
-                    <el-table-column 
-                         width="85">
-                    </el-table-column>
-                </el-table-column> -->
-                <!-- <template slot-scope="people">
-                    <el-table ref="multipleTable" style="width: 100%" >
-                        <el-table-column type="selection" width="75" @selection-change="handleSelectionChange">
-                        </el-table-column>
-                        <el-table-column type="selection" width="75" @selection-change="handleSelectionChange">
-                        </el-table-column>
-                        <el-table-column type="selection" width="75" @selection-change="handleSelectionChange">
-                        </el-table-column>
-                        <el-table-column type="selection" width="75" @selection-change="handleSelectionChange">
-                        </el-table-column>
-                        <el-table-column type="selection" width="75" @selection-change="handleSelectionChange">
-                        </el-table-column>
-                        <el-table-column type="selection" width="75" @selection-change="handleSelectionChange">
-                        </el-table-column>
-                        <el-table-column type="selection" width="75" @selection-change="handleSelectionChange">
-                        </el-table-column>
-                        <el-table-column type="selection" width="75" @selection-change="handleSelectionChange">
-                        </el-table-column>
-                    </el-table>
-                </template>         -->
-        </el-table>>    
+        <!-- Set Permits Table  --> 
+        <div class="permits-table">
+            <div class= "permits-table-head">
+                <div class="name-label label">Name</div>
+                <div class="week-label label">
+                    <div class="weekday-label label" v-for="day in weekdays">{{ day }} </div>
+                </div>
+            </div>
+            <div v-for="person in people" class="permits-table-row">
+                <div class="name">
+                    <img class="permits-image" :src="person.imgUrl" alt="">
+                    {{ person.name }}
+                </div>
+                <div class="week-permits">
+                    <div class="day-permit" v-for="{permit, key} in person.permits">
+                        
+                        <el-checkbox
+                            v-model="permit"
+                            >
+                        </el-checkbox>
+                            <!-- <input 
+                            type="checkbox"
+                            
+                            :value="permit" 
+                            v-model="permit"
+                            class="checkbox-container"> -->
+                    </div>        
+                </div>
+            </div>
+        </div>
+        
     </div>    
 </template>
 
 <script>
     import { mapState, mapActions, mapGetters, mapMutations } from 'vuex';
-    const  weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ];
     
     export default {
+        data () {
+            return {
+                weekdays : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                permit: false
+            }    
+        },
         computed: {
             ...mapState('officeTimesheet', [
                 'people'
             ]),
         },
-        data () {
-            return {
-                checkAll: false,
-                checkedDays: ['Mon', 'Tue', 'Fri'],
-                // cities: cityOptions,
-                isIndeterminate: true
-            };
-        },
         methods: {
-            handleCheckAllChange(val) {
-                // this.checkedCities = val ? cityOptions : [];
-                this.isIndeterminate = false;
-            },
-            handleCheckedCitiesChange(value) {
-                let checkedCount = value.length;
-                this.checkAll = checkedCount === this.cities.length;
-                this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length;
-            },
-            handleSelectionChange(val) {
-                this.multipleSelection = val;
-            }
+           
         }
             
     }
 </script>
 
 <style scoped>
-.picNameId{ 
+.permits-table {
+    margin-top: 60px;
+}
+.permits-table-row {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #ECECEC;
+    padding: 20px
+}
+/*** Table Labels Styles***/
+.label {
+    font-size: 12px;
+    font-family: Roboto;
+    color: #8D8D8D;
+    font-weight: bold;
+}
+.permits-table-head {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+.week-label {
+    display: inline-flex;
+    width: 45%;
+}
+.weekday-label {
+    width: 15%;
+    padding-left: 12px;
+}
+.name-label {
+    padding-left: 20px;
+}
+
+/*** Table Body Styles ***/
+.week-permits {
+    display: inline-flex;
+    width: 45%;
+}
+.day-permit {
+    width: 15%;
+    padding: 20px;
+}
+.checkbox-container {
+    width: 16px;
+    height: 16px;
+}
+.name{ 
   width: 220px;
   display: flex;
   flex-flow: row;
   padding-top: 15px;
 }
-.pic{ 
+/* .pic{ 
   margin-right: 25px;
 }
 .userInfo p{ 
   line-height: 5px;
-}
-.pic img {
+} */
+.name img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  margin-right: 25px;
 }
 .buttons {
     display: flex;
