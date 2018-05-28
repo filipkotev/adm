@@ -36,7 +36,7 @@
       <!-- <p>{{datePickerValue}}</p> -->
     </div> <!-- END selectPeriod -->
 
-    <!-- <span @click="sortedArray"><i class="el-icon-arrow-down"></i></span> -->
+    <span @click="sortedArray"><i class="el-icon-arrow-down"></i></span>
     <el-table
       :data="people"
       style="width: 100%; margin-top: 72px"
@@ -141,7 +141,7 @@ export default {
          return 1;
        return 0;
      }
-     return this.arrays.sort(compare);
+     return this.people.sort(compare);
    }
   }
 }

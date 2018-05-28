@@ -181,6 +181,11 @@ background-color: #1F98BD;
 .duration-red td:last-of-type {
   color: #C76161;
 }
+/*** Button icon on staff manager page ***/
+.el-icon-circle-plus-outline {
+  color: white !important;
+  font-size: 16px;
+}
 
 /**** Check *****/
 /**** Media query ****/

@@ -8,7 +8,9 @@ const state = {
         business: '-',
         overtime: '-',
         total: '26:59',
-        permits: ['Monday','Tuesday', 'Wedenseday', 'Thursday', 'Friday', 'Saturday', 'Sunday']  
+        permits: ['Monday','Tuesday', 'Wedenseday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        role: "Coordinator",
+        tagType: ""
      }, {
         name: 'Filip Kotev',
         imgUrl: 'https://randomuser.me/api/portraits/men/18.jpg',
@@ -18,7 +20,9 @@ const state = {
         business: '-',
         overtime: '03:30',
         total: '27:29',
-        permits: ['Monday','Tuesday', 'Wedenseday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        permits: ['Monday','Tuesday', 'Wedenseday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        role: "User",
+        tagType: ""
      }, {
         name: 'Vasil Ivanov',
         imgUrl: 'https://randomuser.me/api/portraits/men/17.jpg',
@@ -28,7 +32,9 @@ const state = {
         business: '46:00',
         overtime: '-',
         total: '92:59',
-        permits: ['Monday','Tuesday', 'Wedenseday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        permits: ['Monday','Tuesday', 'Wedenseday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        role: "Teamleader",
+        tagType: ""
      }, {
         name: 'Ivan Ivanov',
         imgUrl: 'https://randomuser.me/api/portraits/men/22.jpg',
@@ -38,7 +44,9 @@ const state = {
         business: '-',
         overtime: '01:54',
         total: '37:54',
-        permits: ['Monday','Tuesday', 'Wedenseday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        permits: ['Monday','Tuesday', 'Wedenseday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        role: "Executive officer",
+        tagType: ""
      }, {
         name: 'Nikolai Buhtiyarov',
         imgUrl: 'https://randomuser.me/api/portraits/men/19.jpg',
@@ -48,7 +56,9 @@ const state = {
         business: '-',
         overtime: '01:54',
         total: '37:54',
-        permits: ['Monday','Tuesday', 'Wedenseday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        permits: ['Monday','Tuesday', 'Wedenseday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        role: "Administrator",
+        tagType: ""
      }, {
         name: 'Dimitar Ivanov',
         imgUrl: 'https://randomuser.me/api/portraits/men/20.jpg',
@@ -58,7 +68,9 @@ const state = {
         business: '-',
         overtime: '01:54',
         total: '37:54',
-        permits: ['Monday','Tuesday', 'Wedenseday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        permits: ['Monday','Tuesday', 'Wedenseday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        role: "Company Executive",
+        tagType: ""
      }, {
         name: 'Angel Trifonov',
         imgUrl: 'https://randomuser.me/api/portraits/men/22.jpg',
@@ -68,7 +80,9 @@ const state = {
         business: '-',
         overtime: '01:54',
         total: '37:54',
-        permits: ['Monday','Tuesday', 'Wedenseday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        permits: ['Monday','Tuesday', 'Wedenseday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        role: "User",
+        tagType: ""
      }   
     ]
 }
