@@ -58,7 +58,7 @@
             <el-col :span="10" class="buttons-container">
                 <el-button class="secondary-button">Recover</el-button>
                 <el-button class="secondary-button">Edit</el-button>
-                <el-button class="secondary-button">Delete</el-button>
+                <el-button class="secondary-button">Password</el-button>
                 <el-button class="secondary-button">Permission</el-button>
             </el-col>
         </el-row>     

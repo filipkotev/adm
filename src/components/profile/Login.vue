@@ -5,11 +5,16 @@
             <label for="username">Username</label>
             <el-input type="text" id="username" name="username" v-model="input.username" ></el-input>
             <label for="password">Password</label> 
-            <el-input type="password" id="password" name="password" v-model="input.password" ></el-input>
+            <el-input 
+                type="password" 
+                id="password" 
+                name="password"
+                @keyup.13.native="login"
+                v-model="input.password"></el-input>
             <p v-if="error" class="red">Something went wrong!</p>
             <p v-if="empty" class="red">Username and password must be filled in!</p>
-            <el-button 
-                type="primary" 
+            <el-button
+                type="primary"
                 class="button"
                 @click="login">LOGIN</el-button>
         </div>

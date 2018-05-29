@@ -80,7 +80,7 @@ const state = {
         business: '-',
         overtime: '01:54',
         total: '37:54',
-        permits: ['Monday','Tuesday', 'Wedenseday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        permits: ['Mon','Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         role: "User",
         tagType: ""
      }   

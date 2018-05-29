@@ -1,14 +1,11 @@
 <template lang="html">
     <div class="">
-        <div class="page-title"><h1>Set Permits</h1></div>
         <div class="buttons">
-            <el-button 
-                class="secondary-button"
-                
-                >Check All</el-button>
+            <el-button class="secondary-button" @click="checkAll">Check All</el-button>
+            <el-button class="secondary-button" @click="uncheckAll">Uncheck All</el-button>
             <el-button type="primary" class="submit-button">Submit Changes</el-button>
         </div>
-
+        <div class="page-title"><h1>Set Permits</h1></div>
         <!-- Set Permits Table  --> 
         <div class="permits-table">
             <div class= "permits-table-head">
@@ -22,27 +19,66 @@
                     <img class="permits-image" :src="person.imgUrl" alt="">
                     {{ person.name }}
                 </div>
+                <!-- <p>{{person.permits}}</p> -->
                 <div class="week-permits">
-                    <div class="day-permit" v-for="{permit, index} in person.permits">
-                        
-                        <el-checkbox
-                            :label = "permit"
-                            :key = "permit"
-                            v-model="permits"
-                            > {{ permit}}
-                        </el-checkbox>
-                            <!-- <input 
-                            type="checkbox"
-                            
-                            :value="permit" 
-                            v-model="permit"
-                            class="checkbox-container"> -->
-                    </div>        
+                    <!-- <div v-for="permit in person.permits" class="hidden"></div> -->
+                    <div class="day-permit">
+                        <input 
+                            type="checkbox" 
+                            value="Monday" 
+                            v-model="person.permits" >
+                    </div>
+                    <div class="day-permit">        
+                        <input 
+                            name="weekday-input"
+                            type="checkbox" 
+                            value="Tuesday" 
+                            v-model="person.permits" >
+                    </div>
+                    <div class="day-permit">
+                        <input 
+                            name="weekday-input"
+                            type="checkbox" 
+                            value="Wednesday" 
+                            v-model="person.permits" >
+                    </div>
+                    <div class="day-permit">        
+                        <input 
+                            name="weekday-input"
+                            type="checkbox" 
+                            value="Thursday" 
+                            v-model="person.permits" >
+                    </div>
+                    <div class="day-permit">        
+                        <input 
+                            name="weekday-input"
+                            type="checkbox" 
+                            value="Friday" 
+                            v-model="person.permits" >
+                    </div>
+                    <div class="day-permit">        
+                        <input 
+                            name="weekday-input"
+                            type="checkbox" 
+                            value="Saturday" 
+                            v-model="person.permits" >
+                    </div>
+                    <div class="day-permit">        
+                        <input 
+                            name="weekday-input"
+                            type="checkbox" 
+                            value="Sunday" 
+                            v-model="person.permits" >
+                    </div>
                 </div>
             </div>
+                        <!-- <el-checkbox-group v-model="person.permits">
+                            <el-checkbox :label="permit"></el-checkbox>
+                        </el-checkbox-group> -->
         </div>
+        <!-- Buttons Container -->
         
-    </div>    
+    </div>
 </template>
 
 <script>
@@ -52,16 +88,74 @@
         data () {
             return {
                 weekdays : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                permits : []
+                permits : [],
+                selected: [],
+                people: [
+                {
+                    name: 'Ivan Ivanov',
+                    imgUrl: 'https://randomuser.me/api/portraits/men/15.jpg',
+                    workId: 40812,
+                    permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                }, {
+                    name: 'Filip Kotev',
+                    imgUrl: 'https://randomuser.me/api/portraits/men/18.jpg',
+                    workId: 40652,
+                    permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                }, {
+                    name: 'Vasil Ivanov',
+                    imgUrl: 'https://randomuser.me/api/portraits/men/17.jpg',
+                    workId: 23612,
+                    permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                }, {
+                    name: 'Ivan Ivanov',
+                    imgUrl: 'https://randomuser.me/api/portraits/men/22.jpg',
+                    workId: 40612,
+                    permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                }, {
+                    name: 'Nikolai Buhtiyarov',
+                    imgUrl: 'https://randomuser.me/api/portraits/men/19.jpg',
+                    workId: 40612,
+                    permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                }, {
+                    name: 'Dimitar Ivanov',
+                    imgUrl: 'https://randomuser.me/api/portraits/men/20.jpg',
+                    workId: 40612,
+                    permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+                }, {
+                    name: 'Angel Trifonov',
+                    imgUrl: 'https://randomuser.me/api/portraits/men/22.jpg',
+                    workId: 40612,
+                    permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+                }   
+                ]
             }    
         },
         computed: {
-            ...mapState('officeTimesheet', [
-                'people'
-            ]),
+            // selectAll: {
+            //     get: function () {
+            //         return this.people.permits ? this.selected.length == this.people.permits.length : false
+            //     },
+            //     set: function (value) {
+            //         var selected = []
+
+            //         if (value) {
+            //             this.people.permits.forEach(function (permit) {
+            //                 selected.push(person.permits.permit)
+            //             })
+            //         }
+            //         this.selected = selected
+            //     }
+            // }
+            
         },
         methods: {
-           
+            checkAll () {
+                document.querySelectorAll("input[name=weekday-input]").setAttribute('checked', true)
+                
+            },
+            uncheckAll () {
+
+            }
         }
             
     }
@@ -137,6 +231,13 @@
 .buttons {
     display: flex;
     justify-content: flex-end;
+    padding: 2%;
+    background-color: white;
+    box-shadow: 0px 0px 7px lightgrey;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
 }
 .submit-button {
   background-color: #1F98BD;
@@ -160,6 +261,10 @@
 .el-button--primary:focus {
   background-color: hsl(192, 65%, 45%);
   border-color: transparent;
+}
+
+.hidden {
+    display: none;
 }
 
 </style>
