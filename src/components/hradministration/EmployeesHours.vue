@@ -61,7 +61,7 @@
                 <h5 class="demonstration">Additional commentary</h5>
                 <el-input placeholder="Your comment..." v-model="commentInput"></el-input>
             </div>
-            <div class="block checkbox">
+            <div class="block checkbox-container">
                 <el-checkbox v-model="checked">Perform time verification</el-checkbox>
             </div>
         </div>
@@ -423,13 +423,13 @@
     left: 10px
     z-index: 2
 
-.checkbox
+.checkbox-container
     display: flex
     flex-direction: row
     align-items: flex-end
 
 .el-checkbox__input
-    line-height: 2.5    
+    line-height: 2.5
 
 .el-checkbox__input.is-checked .el-checkbox__inner,
  .el-checkbox__input.is-indeterminate .el-checkbox__inner

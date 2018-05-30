@@ -132,6 +132,7 @@ export default {
   height: 100%
   display: inline-block
   line-height: 3
+  outline: none
 
 .el-menu-item span
   font-family: Roboto

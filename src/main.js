@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import axios from 'axios'
 import App from './App.vue'
 import { routes } from './routes'
 import { store } from './store/store'
@@ -24,8 +25,8 @@ Vue.use(VCalendar, {
   weeksTransition: 'slide-v',
 })
 
-// Vue.http.options.root = 'https://admission.sofia.ifao.net/' // api/log
-
+// Vue.http.options.root = 'http://admission.sofia.ifao.net/' // api/log
+axios.defaults.baseURL = 'http://admission.sofia.ifao.net'
 
 const router = new VueRouter({
   routes,

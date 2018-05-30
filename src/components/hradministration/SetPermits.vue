@@ -3,7 +3,7 @@
         <div class="buttons">
             <el-button class="secondary-button" @click="checkAll">Check All</el-button>
             <el-button class="secondary-button" @click="uncheckAll">Uncheck All</el-button>
-            <el-button type="primary" class="submit-button">Submit Changes</el-button>
+            <el-button type="primary" class="submit-button" @click="showNotification">Submit Changes</el-button>
         </div>
         <div class="page-title"><h1>Set Permits</h1></div>
         <!-- Set Permits Table  --> 
@@ -17,64 +17,71 @@
             <div v-for="person in people" class="permits-table-row">
                 <div class="name">
                     <img class="permits-image" :src="person.imgUrl" alt="">
-                    {{ person.name }}
+                    <p>{{ person.name }}</p>
                 </div>
+                <!-- For checking purposes -->
                 <!-- <p>{{person.permits}}</p> -->
+                <!-------------------------------->
                 <div class="week-permits">
-                    <!-- <div v-for="permit in person.permits" class="hidden"></div> -->
                     <div class="day-permit">
-                        <input 
-                            type="checkbox" 
+                        <input
+                            name="weekday-input"
+                            type="checkbox"
+                            class="costumized-input" 
                             value="Monday" 
                             v-model="person.permits" >
                     </div>
                     <div class="day-permit">        
-                        <input 
+                        <input
                             name="weekday-input"
                             type="checkbox" 
+                            class="costumized-input"
                             value="Tuesday" 
                             v-model="person.permits" >
                     </div>
                     <div class="day-permit">
-                        <input 
+                        <input
                             name="weekday-input"
                             type="checkbox" 
+                            class="costumized-input"
                             value="Wednesday" 
                             v-model="person.permits" >
                     </div>
                     <div class="day-permit">        
-                        <input 
+                        <input
                             name="weekday-input"
                             type="checkbox" 
+                            class="costumized-input"
                             value="Thursday" 
                             v-model="person.permits" >
                     </div>
                     <div class="day-permit">        
-                        <input 
+                        <input
                             name="weekday-input"
                             type="checkbox" 
+                            class="costumized-input"
                             value="Friday" 
                             v-model="person.permits" >
                     </div>
                     <div class="day-permit">        
-                        <input 
+                        <input
                             name="weekday-input"
                             type="checkbox" 
+                            class="costumized-input"
                             value="Saturday" 
                             v-model="person.permits" >
                     </div>
                     <div class="day-permit">        
-                        <input 
+                        <input
                             name="weekday-input"
                             type="checkbox" 
+                            class="costumized-input"
                             value="Sunday" 
                             v-model="person.permits" >
                     </div>
                 </div>
             </div>
-                        <!-- <el-checkbox-group v-model="person.permits">
-                            <el-checkbox :label="permit"></el-checkbox>
-                        </el-checkbox-group> -->
+                      
         </div>
         <!-- Buttons Container -->
         
@@ -131,32 +138,43 @@
             }    
         },
         computed: {
-            // selectAll: {
-            //     get: function () {
-            //         return this.people.permits ? this.selected.length == this.people.permits.length : false
-            //     },
-            //     set: function (value) {
-            //         var selected = []
-
-            //         if (value) {
-            //             this.people.permits.forEach(function (permit) {
-            //                 selected.push(person.permits.permit)
-            //             })
-            //         }
-            //         this.selected = selected
-            //     }
-            // }
             
         },
         methods: {
             checkAll () {
-                document.querySelectorAll("input[name=weekday-input]").setAttribute('checked', true)
+                var checkboxes = document.getElementsByName('weekday-input')
                 
+                for (var i=0; i <checkboxes.length; i++) {
+                    checkboxes[i].checked = true
+                }
             },
             uncheckAll () {
-
+                var checkboxes = document.getElementsByName('weekday-input')
+                
+                for (var i=0; i <checkboxes.length; i++) {
+                    checkboxes[i].checked = false
+                }
+            },
+            showNotification () {
+                this.$notify({
+                message: 'Changes submitted successfully',
+                type: 'success',
+                offset: 180,
+                duration: 1000
+                });
+            },
+            reachedBottom (w) {
+                if (w.offsetHeight + w.scrollTop == w.scrollHeight) {
+                    console.log("end")
+                }
             }
-        }
+        },
+        created () {
+            window.addEventListener('scroll', this.reachedBottom)
+        },
+        destroyed () {
+            window.removeEventListener('scroll', this.reachedBottom)
+        },
             
     }
 </script>
@@ -216,17 +234,16 @@
   flex-flow: row;
   padding-top: 15px;
 }
-/* .pic{ 
-  margin-right: 25px;
-}
-.userInfo p{ 
-  line-height: 5px;
-} */
+
 .name img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   margin-right: 25px;
+}
+
+.name p {
+    margin-top: 25px;
 }
 .buttons {
     display: flex;
@@ -267,4 +284,34 @@
     display: none;
 }
 
+.costumized-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    border: 1px solid #B4B4B4;
+    border-radius: 1px;
+    width: 16px;
+    height: 16px;
+    outline: none;
+}
+
+.costumized-input:checked {
+    background-color: #1F98BD;
+    border: 1px solid #1F98BD;
+}
+
+.costumized-input:checked:after {
+    content: '\2714';
+    font-size: 10px;
+    position: relative;
+    top: -2px;
+    left: 3px;
+    color: #fff;
+}
+/*** Target Mozilla Firefox ***/
+@-moz-document url-prefix() { 
+  .costumized-input:checked:after {
+     top: -3px;
+  }
+}
 </style>
