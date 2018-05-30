@@ -101,7 +101,6 @@ export default {
         var checkIn= this.datePickerValue[0]
         var checkOut= this.datePickerValue[1]
 
-      // axios.get('/' + id + '/' + checkIn + '/' + checkOut)
       axios.get('/' + id + '/' + checkIn + '/' + checkOut)
         .then(res => {
           console.log(res)

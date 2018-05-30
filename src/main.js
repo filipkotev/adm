@@ -26,6 +26,9 @@ Vue.use(VCalendar, {
 })
 
 // Vue.http.options.root = 'http://admission.sofia.ifao.net/' // api/log
+// FIREBASE DATAs
+// https://axios-546ac.firebaseio.com/ - "users for test purposes" 
+// https://new-project-adm.firebaseio.com/ - "log for test purposes"
 axios.defaults.baseURL = 'http://admission.sofia.ifao.net'
 
 const router = new VueRouter({
