@@ -170,8 +170,8 @@
                             <div class="timesheet_total sm">
                                 <span>Total:</span> {{timesheetTotal}}
                             </div>
-                        </div>    
-                    </div>    
+                        </div>
+                    </div>
                 </div>
 
                 <el-button 
@@ -471,7 +471,7 @@ router-link
 // Modal dialog styles
 
 .popup-container
-    position: absolute
+    position: fixed
     left: 0
     top: 0
     z-index: 3

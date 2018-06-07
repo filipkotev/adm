@@ -46,9 +46,9 @@
           <el-menu-item index="7">
             <router-link :to="{ path: 'accessrequests' }"><span @click="select">Access Requests</span></router-link>
           </el-menu-item>
-          <el-menu-item :index="index">
+          <!-- <el-menu-item :index="index">
             <router-link :to="{ path: link }"><span @click="select">{{ title }}</span></router-link>
-          </el-menu-item>
+          </el-menu-item> -->
         </el-menu-item-group>
       </el-menu>
     </el-col>

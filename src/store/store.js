@@ -16,6 +16,11 @@ import login from './modules/login'
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
+  state: {
+    loggedUsername: 'Filip Kotev',
+    loggedUserId: '40820',
+    loggedUserImg: '',
+  },
   modules: {
     shared,
     breaking,

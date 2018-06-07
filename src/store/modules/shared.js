@@ -84,7 +84,7 @@ const state = {
       }
     }]
   },
-  datePickerValue: [new Date(2018, 0, 1, 10, 10), new Date(2018, 0, 11, 10, 10)],
+  datePickerValue: [new Date(), new Date()],
   pickerValue: '',
 };
 // Getters

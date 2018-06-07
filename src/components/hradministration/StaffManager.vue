@@ -19,7 +19,8 @@
                 <el-button
                     type="primary" 
                     icon="el-icon-circle-plus-outline"
-                    class="button add-user-button">
+                    class="button add-user-button"
+                    @click="onAddNewUser">
                 Add New User</el-button>
             </el-col>
         </el-row>
@@ -56,12 +57,53 @@
                 <el-tag :type="person.tagType">{{person.role}}</el-tag>
             </el-col>
             <el-col :span="10" class="buttons-container">
-                <el-button class="secondary-button">Recover</el-button>
-                <el-button class="secondary-button">Edit</el-button>
-                <el-button class="secondary-button">Password</el-button>
-                <el-button class="secondary-button">Permission</el-button>
+                <el-button class="secondary-button" @click="isDeletePopup = !isDeletePopup">Delete</el-button>
+                <el-button class="secondary-button" >Recover</el-button>
+                <el-button 
+                    class="secondary-button" 
+                    @click="onEditUser">Edit</el-button>
+                <el-button class="secondary-button" @click="isPasswordPopup = !isPasswordPopup">Password</el-button>
             </el-col>
-        </el-row>     
+        </el-row>
+
+        <!-- Delete popup -->
+        <div class="popup-container" v-show="isDeletePopup">
+            <div class="popup">
+                <div class="popup-header">
+                    <h3 class="popup-title">Delete User</h3>
+                    <i class="el-icon-close" @click="isDeletePopup = !isDeletePopup"></i>
+                </div>
+                <div class="popup-content">
+                    <h4>Are you sure you want to delete Andon Atanasov?</h4>
+                    <el-button class="secondary-button" @click="isDeletePopup = !isDeletePopup">Cancel</el-button>
+                    <el-button class="button" type="primary">Save</el-button>
+                </div>        
+            </div>    
+        </div>    
+        <!-- Password popup -->
+        <div class="popup-container" v-show="isPasswordPopup">
+            <div class="popup">
+                <div class="popup-header">
+                    <h3 class="popup-title">Change Password for Andon Atanasov</h3>
+                    <i class="el-icon-close" @click="isPasswordPopup = !isPasswordPopup"></i>
+                </div>
+                <div class="popup-content">
+                    <h5>Password change becomes effective next time the user login the admission system</h5>
+                    <div class="input-container">
+                        <div class="popup-input">
+                            <label for="newPasswordInput">New Password</label>
+                            <el-input id="newPasswordInput" v-model="newPassword"></el-input>
+                        </div>
+                        <div class="popup-input">
+                            <label for="retypeNewPasswordInput">Re-type</label>
+                            <el-input id="retypeNewPasswordInput" v-model="retypePassword"></el-input>
+                        </div>
+                    </div>    
+                    <el-button class="secondary-button" @click="isPasswordPopup = !isPasswordPopup">Cancel</el-button>
+                    <el-button class="button" type="primary">Save</el-button>
+                </div>        
+            </div>    
+        </div>
     </div>
 </template>
 
@@ -71,7 +113,11 @@ import {mapState, mapActions, mapGetters, mapMutations} from 'vuex'
 export default {
     data () {
         return {
-            input: ''
+            input: '',
+            isDeletePopup: false,
+            isPasswordPopup: false,
+            newPassword: '',
+            retypePassword: ''
         }
     },
     computed: {
@@ -80,7 +126,7 @@ export default {
         ]),
     },
     methods: {
-        sortedArray: function() {
+        sortedArray: function () {
             function compare(a, b) {
             if (a.name < b.name)
                 return -1;
@@ -89,6 +135,12 @@ export default {
             return 0;
             }
             return this.people.sort(compare);
+        },
+        onEditUser: function () {
+            this.$router.push('/staffmanager/editdetailsfor')
+        },
+        onAddNewUser: function () {
+            this.$router.push('/staffmanager/addnewuser')
         }
     },
     created () {
@@ -190,6 +242,94 @@ img {
 .el-tag {
     width: 130px;
     text-align: center;
+}
+
+/*** Modal dialog styles ***/
+.popup-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3); // Black w/ opacity
+}
+.popup {
+    z-index: 4;
+    background-color: white;
+    padding: 30px 22px;
+    width: 35% ;
+    max-height: 60%;
+    position: absolute ;
+    top: 35%  ;
+    left: 30%;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+
+    &span {
+        line-height: normal;
+    }
+}
+
+.popup-header {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    margin-bottom: 15px;
+
+    & h3{
+        color: #444444;
+        font-weight: 400;
+    }    
+    & i{
+        font-size: 22px;
+        &:hover {
+            cursor: pointer;
+        }
+    }      
+}
+.popup-content {
+    padding-right: 10px;
+    max-height: 350px;
+    overflow-y: auto;
+
+    & h4 {
+        font-weight: 400;
+        margin-bottom: 63px;
+    }
+
+    & h5 {
+        color: #444;
+        font-weight: 400;
+        margin-bottom: 63px;
+        font-size: 14px;
+    }
+
+    & .input-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+
+        & label {
+            display: inline-block;
+            margin-bottom: 16px;
+            font-size: 12px;
+            color: #8D8D8D;
+        }
+
+        & .popup-input {
+            width: 48%;
+        }
+    }
+
+    & .el-button {
+        width: 120px;
+        height: 40px;
+    }
+
+    & .button {
+        float: right;
+    }
 }
 
 </style>

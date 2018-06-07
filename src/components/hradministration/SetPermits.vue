@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="">
+    <div v-bind:class="{bottomOffset: bottomIsReached}">
         <div class="buttons">
             <el-button class="secondary-button" @click="checkAll">Check All</el-button>
             <el-button class="secondary-button" @click="uncheckAll">Uncheck All</el-button>
@@ -98,43 +98,44 @@
                 permits : [],
                 selected: [],
                 people: [
-                {
-                    name: 'Ivan Ivanov',
-                    imgUrl: 'https://randomuser.me/api/portraits/men/15.jpg',
-                    workId: 40812,
-                    permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                }, {
-                    name: 'Filip Kotev',
-                    imgUrl: 'https://randomuser.me/api/portraits/men/18.jpg',
-                    workId: 40652,
-                    permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                }, {
-                    name: 'Vasil Ivanov',
-                    imgUrl: 'https://randomuser.me/api/portraits/men/17.jpg',
-                    workId: 23612,
-                    permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                }, {
-                    name: 'Ivan Ivanov',
-                    imgUrl: 'https://randomuser.me/api/portraits/men/22.jpg',
-                    workId: 40612,
-                    permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                }, {
-                    name: 'Nikolai Buhtiyarov',
-                    imgUrl: 'https://randomuser.me/api/portraits/men/19.jpg',
-                    workId: 40612,
-                    permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                }, {
-                    name: 'Dimitar Ivanov',
-                    imgUrl: 'https://randomuser.me/api/portraits/men/20.jpg',
-                    workId: 40612,
-                    permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-                }, {
-                    name: 'Angel Trifonov',
-                    imgUrl: 'https://randomuser.me/api/portraits/men/22.jpg',
-                    workId: 40612,
-                    permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-                }   
-                ]
+                    {
+                        name: 'Ivan Ivanov',
+                        imgUrl: 'https://randomuser.me/api/portraits/men/15.jpg',
+                        workId: 40812,
+                        permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                    }, {
+                        name: 'Filip Kotev',
+                        imgUrl: 'https://randomuser.me/api/portraits/men/18.jpg',
+                        workId: 40652,
+                        permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                    }, {
+                        name: 'Vasil Ivanov',
+                        imgUrl: 'https://randomuser.me/api/portraits/men/17.jpg',
+                        workId: 23612,
+                        permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                    }, {
+                        name: 'Ivan Ivanov',
+                        imgUrl: 'https://randomuser.me/api/portraits/men/22.jpg',
+                        workId: 40612,
+                        permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                    }, {
+                        name: 'Nikolai Buhtiyarov',
+                        imgUrl: 'https://randomuser.me/api/portraits/men/19.jpg',
+                        workId: 40612,
+                        permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                    }, {
+                        name: 'Dimitar Ivanov',
+                        imgUrl: 'https://randomuser.me/api/portraits/men/20.jpg',
+                        workId: 40612,
+                        permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+                    }, {
+                        name: 'Angel Trifonov',
+                        imgUrl: 'https://randomuser.me/api/portraits/men/22.jpg',
+                        workId: 40612,
+                        permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+                    }   
+                ],
+                bottomIsReached: false
             }    
         },
         computed: {
@@ -163,10 +164,14 @@
                 duration: 1000
                 });
             },
-            reachedBottom (w) {
-                if (w.offsetHeight + w.scrollTop == w.scrollHeight) {
-                    console.log("end")
+            reachedBottom () {
+                if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                    this.bottomIsReached = true
+                    console.log('Bottom reached!')
+                } else {
+                    this.bottomIsReached = false
                 }
+                
             }
         },
         created () {
@@ -308,6 +313,12 @@
     left: 3px;
     color: #fff;
 }
+
+.bottomOffset {
+    position: relative;
+    bottom: 120px;
+}
+
 /*** Target Mozilla Firefox ***/
 @-moz-document url-prefix() { 
   .costumized-input:checked:after {

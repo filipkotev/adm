@@ -1,4 +1,5 @@
 import data from '../../data/data';
+import axios from 'axios';
 const { add } = require('timelite');
 
 const state = {
@@ -48,6 +49,9 @@ const state = {
 };
 
 const mutations = {
+  loadTimesheets () {
+   
+  }
   // setTageType (state) {
   //   for (var i = 0; i < state.timesheetTable.length; i++) {
   //     if (state.timesheetTable[i].tagName === 'on duty') {
@@ -62,9 +66,19 @@ const mutations = {
 }
 
 const actions = {
-  loadData: ({commit}, payload) => {
-    commit 
-  }  
+  loadTimesheetTable ({commit}) {
+    var responseData = []
+    let id = this.$store.state.loggedUserId
+    let checkIn = this.$store.state.shared.datePickerValue[0]
+    let checkOut = this.$store.state.shared.datePickerValue[1]
+
+    axios.get('/api/log' + id + '/' + checkIn + '/' + checkout)
+      .then(res => {
+        responseData = res.data
+        commit('loadTimesheet', responseData)
+      })
+      .cathc(error => {})
+  }
 }
 
 export default {

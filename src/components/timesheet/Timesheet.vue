@@ -1,55 +1,63 @@
 <template lang="html">
   <div class="container">
-    <div class="page-title"><h1>My Timesheet</h1></div>
-    <div class="block selectPeriod">
-      <h5 class="demonstration">Period</h5>
-        <div class="select-container">
-        <el-date-picker
-          v-model="datePickerValue"
-          type="datetimerange"
-          format="dd/MM/yyyy"
-          :picker-options="pickerOptions"
-          range-separator="To"
-          start-placeholder="Start date"
-          end-placeholder="End date"
-          align="right">
-        </el-date-picker>
-        <div class="submitButton">
-          <el-button class="button" type="primary" @click="loadData">Go</el-button>
+    <el-row><div class="page-title"><h1>My Timesheet</h1></div></el-row>
+    <el-row>
+      <el-col>
+        <div class="block selectPeriod">
+          <h5 class="demonstration">Period</h5>
+            <div class="select-container">
+            <el-date-picker
+              v-model="datePickerValue"
+              type="datetimerange"
+              format="dd/MM/yyyy"
+              :picker-options="pickerOptions"
+              range-separator="To"
+              start-placeholder="Start date"
+              end-placeholder="End date"
+              align="right">
+            </el-date-picker>
+            <div class="submitButton">
+              <el-button class="button" type="primary" @click="loadData">Go</el-button>
+            </div>
+          </div>
+          <p>{{datePickerValue}}</p>
         </div>
-      </div>
-      <p>{{datePickerValue}}</p>
-    </div>
-    
-    <el-table
-      :data="timesheetTable"
-      style="width: 100%"
-      :row-class-name="durationRedClass"
-    >
-      <el-table-column
-        label="Date"
-        prop="date">
-      </el-table-column>
-      <el-table-column
-        align="center"
-        label="Check In"
-        prop="checkIn">
-      </el-table-column>
-      <el-table-column
-        align="center"
-        label="Check Out"
-        prop="checkOut">
-      </el-table-column>
-      <el-table-column
-        align="center"
-        label="Duration"
-        prop="duration">
-        
-      </el-table-column>
-    </el-table>
-    <div class="timesheet_total sm">
-      <span>Total:</span> {{timesheetTotal}}
-    </div>
+      </el-col>  
+    </el-row>
+
+    <el-row>
+      <el-col>
+        <el-table
+          :data="timesheetTable"
+          style="width: 100%"
+          :row-class-name="durationRedClass"
+        >
+          <el-table-column
+            label="Date"
+            prop="date">
+          </el-table-column>
+          <el-table-column
+            align="center"
+            label="Check In"
+            prop="checkIn">
+          </el-table-column>
+          <el-table-column
+            align="center"
+            label="Check Out"
+            prop="checkOut">
+          </el-table-column>
+          <el-table-column
+            align="center"
+            label="Duration"
+            prop="duration">
+            
+          </el-table-column>
+        </el-table>
+        <div class="timesheet_total sm">
+          <span>Total:</span> {{timesheetTotal}}
+        </div>
+      </el-col>  
+    </el-row>  
   </div>
 </template>
 
@@ -60,12 +68,12 @@ import axios from 'axios';
 const { add } = require('timelite')
 
 export default {
-  data () {
-    return {
-      datePickerValue: [ "2018-01-01T08:10:00.000Z", "2018-01-23T18:10:00.000Z" ]
+  // data () {
+  //   return {
+  //     datePickerValue: [ "2018-01-01T08:10:00.000Z", "2018-01-23T18:10:00.000Z" ]
 
-    }
-  },
+  //   }
+  // },
   computed: {
     ...mapState('timesheet', [
       'timesheetTable',
@@ -76,14 +84,14 @@ export default {
       'redDuration'
     ]),
     
-    // datePickerValue: {
-    //   get() {
-    //     return this.$store.getters['shared/datePickerValue'];
-    //   },  
-    //   set(datePickerValue) {
-    //     return this.$store.dispatch('shared/updateDatePickerValue', datePickerValue, {root:true});
-    //   }
-    // },
+    datePickerValue: {
+      get() {
+        return this.$store.getters['shared/datePickerValue'];
+      },  
+      set(datePickerValue) {
+        return this.$store.dispatch('shared/updateDatePickerValue', datePickerValue, {root:true});
+      }
+    },
     
   },
   methods: {
@@ -97,17 +105,24 @@ export default {
     },
     loadData () {
       
-        var id= 40820
-        var checkIn= this.datePickerValue[0]
-        var checkOut= this.datePickerValue[1]
+      this.$store.dispatch('timesheet/loadTimesheetTable', {root: true})
+      //   var id= 40820
+      //   var checkIn= this.datePickerValue[0]
+      //   var checkOut= this.datePickerValue[1]
 
-      axios.get('/' + id + '/' + checkIn + '/' + checkOut)
-        .then(res => {
-          console.log(res)
-        })
-        .catch(error => {
-          console.log(error)
-        })
+      // // axios.get('/api/log/' + id + '/' + checkIn + '/' + checkOut)
+      // axios.get('/api/log/', {params: {
+      //     id: 40820,
+      //     checkIn: this.datePickerValue[0],
+      //     checkOut: this.datePickerValue[1]
+      //     }})
+      //   .then(res => {
+      //     console.log(res)
+
+      //   })
+      //   .catch(error => {
+      //     console.log(error)
+      //   })
     }
   
   }

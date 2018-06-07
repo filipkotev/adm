@@ -16,10 +16,13 @@ import EditTime from './components/hradministration/EditTime.vue'
 import EmployeesHours from './components/hradministration/EmployeesHours.vue'
 import StaffManager from './components/hradministration/StaffManager.vue'
 import SetPermits from './components/hradministration/SetPermits.vue'
+import AddNewUser from './components/hradministration/AddNewUser.vue'
+import EditDetailsFor from './components/hradministration/EditDetailsFor.vue'
 
 export const routes = [
   {path: '/login', component: Login},
-  {path: '/', component: OfficeStatus},
+  {path: '/', component: Login},
+  // {path: '/', component: OfficeStatus},
   {path: '/timesheet', component: Timesheet},
   {path: '/breaking', component: Breaking},
   {path: '/abidance', component: Abidance},
@@ -33,6 +36,9 @@ export const routes = [
 
   {path: '/edittime', component: EditTime},
   {path: '/EmployeesHours', component: EmployeesHours},
-  {path: '/staffmanager', component: StaffManager},
+  {path: '/staffmanager', component: StaffManager, children: [
+    {path: '/addnewuser', component: AddNewUser },
+    {path: '/editdetailsfor', component: EditDetailsFor }
+  ]},
   {path: '/setpermits', component: SetPermits}
 ]

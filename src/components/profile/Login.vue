@@ -46,7 +46,7 @@ export default {
                     this.$router.push('/')
                 } else if (this.input.username == this.adminUsername && this.input.password == this.adminPassword) {
                     this.$store.dispatch('login/adminLogin')
-                    this.$router.push('/')
+                    this.$router.push('/officestatus')
                 } else {
                     this.error = true
                 }

@@ -39,7 +39,7 @@ export default {
     ])
   },
   methods: {
-
+    
   },
   created: function(){
     for (var i = 0; i < this.weekdays.length; i++) {

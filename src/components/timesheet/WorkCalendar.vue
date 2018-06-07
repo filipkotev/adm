@@ -58,7 +58,8 @@
     </div> 
     <!-- Holidays Legend -->
     <div class="holidays-legend" 
-          v-for="item in attributes">
+          v-for="item in attributes"
+          >
       <div class="holiday-info" 
           v-for="key in item.hintDate"
           v-if=""
@@ -67,20 +68,21 @@
             class="holiday-date"
             
             
-        >{{ key}} {{ currentMonth }}
+        >{{ key}}
         
         </div>
         <span >{{ item.key }}</span>
+        {{ isCurrentMonth }}
       </div>
       <!-- <div class="holiday-info">
         <div class="holiday-date">5 Mar 2018</div>
         <span>National Liberation Day</span>
       </div> -->
     </div>
-    <div 
+    <!-- <div 
         v-for="month in currentMonths"
         styles="display: inline-block;"
-        > {{ month }} </div>
+        > {{ month }} </div> -->
     <!--- Full Year Calendar -->
     <div class="calendar full-year-calendar" :class="{ hiddenFullYear: !hideFullYear }">
       
@@ -107,7 +109,7 @@ export default {
     return {
       hideFullYear: false,
       months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "Oktober", "November", "December"],
-      currentMonths: [],
+      // currentMonths: [],
     }
   },
   computed: {
@@ -117,35 +119,47 @@ export default {
       'options',
       'attributes',
     ]),
-    thisYear() {
+    thisYear () {
       return _today.getFullYear();
     },
-    currentMonth() {
-      var _countMonth = _today.getMonth();
-      var _currentMonth = false;
-      var countMonth="";
-      var vm = this;
-      // console.log(_countMonth);
-      for (let j=2; j < this.attributes.length; j++) {
-        let dates = this.attributes[j].dates;
-        // console.log(dates);
-        for (let i=0; i < dates.length; i++) {
-          countMonth = dates[i].getMonth();
-          // console.log(countMonth);
-          if(countMonth === _countMonth) {
-            _currentMonth = true;
-          } else {
-            _currentMonth = false;
-          }
-          // console.log(_currentMonth);
-          vm.currentMonths.push(_currentMonth);
-          
-        } // End for loop 1
-        console.log(vm.currentMonths);
-      } // End for loop 2
+    // currentMonth () {
+      //   var _countMonth = _today.getMonth();
+      //   var _currentMonth = false;
+      //   var countMonth="";
+      //   var vm = this;
       
-    },
-    
+      //   for (let j=2; j < this.attributes.length; j++) {
+      //     let dates = this.attributes[j].dates;
+        
+      //     for (let i=0; i < dates.length; i++) {
+      //       countMonth = dates[i].getMonth();
+      //       console.log(countMonth)
+      //       if(countMonth == _countMonth) {
+      //         _currentMonth = true;
+      //         console.log(_currentMonth)
+      //         return
+      //       } else {
+      //         _currentMonth = false;
+      //         return
+      //       }
+          
+      //       // vm.currentMonths.push(_currentMonth);
+            
+      //     } // End for loop 1
+      //     console.log(vm.currentMonths);
+      //   } // End for loop 2
+      //   return _currentMonth
+      //   console.log(_currentMonth)
+      // },
+    isCurrentMonth () {
+      var presentMonth = _today.getMonth()
+      var givenMonth = ''
+      for (var i=2; i <= this.attributes.length; i++) {
+        givenMonth  = this.attributes[i].dates
+        return givenMonth
+      }
+      
+    }
   },
   
 }
