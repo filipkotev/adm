@@ -20,9 +20,10 @@
                     type="primary" 
                     icon="el-icon-circle-plus-outline"
                     class="button add-user-button"
-                    @click="onAddNewUser">
+                    @click="onAddNewUser(); select()">
                 Add New User</el-button>
             </el-col>
+            
         </el-row>
 
         <!-- Employee Table Head-->
@@ -47,6 +48,7 @@
             align="middle"
             v-for="person in people">
             <el-col :span="8" class="picNameId">
+        
                 <img :src="person.imgUrl" alt>
                 <div class="userInfo">
                     <p><strong>{{person.name}}</strong></p>
@@ -59,10 +61,13 @@
             <el-col :span="10" class="buttons-container">
                 <el-button class="secondary-button" @click="isDeletePopup = !isDeletePopup">Delete</el-button>
                 <el-button class="secondary-button" >Recover</el-button>
-                <el-button 
-                    class="secondary-button" 
-                    @click="onEditUser">Edit</el-button>
+                <router-link :to="{path: '/editDetailsFor'}">    
+                    <el-button 
+                        class="secondary-button" 
+                        @click="select()">Edit</el-button>
+                </router-link>
                 <el-button class="secondary-button" @click="isPasswordPopup = !isPasswordPopup">Password</el-button>
+                <router-view name="editDetails"></router-view>
             </el-col>
         </el-row>
 
@@ -141,6 +146,10 @@ export default {
         },
         onAddNewUser: function () {
             this.$router.push('/staffmanager/addnewuser')
+        },
+        select: function(event) {
+            let payload = event.currentTarget.innerText;
+            return this.$store.dispatch('nav/updateSelectedPage', payload, {root: true});
         }
     },
     created () {

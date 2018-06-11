@@ -102,7 +102,7 @@
                         name: 'Ivan Ivanov',
                         imgUrl: 'https://randomuser.me/api/portraits/men/15.jpg',
                         workId: 40812,
-                        permits: ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                        permits: ['Monday','Tuesday', 'Wednesday', 'Thursday'],
                     }, {
                         name: 'Filip Kotev',
                         imgUrl: 'https://randomuser.me/api/portraits/men/18.jpg',

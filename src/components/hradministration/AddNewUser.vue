@@ -1,1 +1,5 @@
-<h1>Add new user </h1>
+<template>
+    <div>
+        <h1>Add New User</h1>
+    </div>    
+</template>

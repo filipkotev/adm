@@ -12,6 +12,7 @@ import officeTimesheet from './modules/officeTimesheet';
 import workCalendar from './modules/workCalendar'
 import recordsFor from './modules/recordsFor'
 import login from './modules/login'
+import employee from './modules/employee'
  
 Vue.use(Vuex);
 
@@ -33,7 +34,8 @@ export const store = new Vuex.Store({
     officeTimesheet,
     workCalendar,
     recordsFor,
-    login
+    login,
+    employee
   }
 
 });
