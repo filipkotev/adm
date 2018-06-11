@@ -16,14 +16,16 @@
         <!--  Add New user -->
         <el-row :span="24" >
             <el-col >
-                <el-button
-                    type="primary" 
-                    icon="el-icon-circle-plus-outline"
-                    class="button add-user-button"
-                    @click="onAddNewUser(); select()">
-                Add New User</el-button>
+                <router-link :to="{path:'/addnewuser'}">
+                    <el-button
+                        type="primary" 
+                        icon="el-icon-circle-plus-outline"
+                        class="button add-user-button"
+                        @click="select">
+                    Add New User</el-button>
+                </router-link>    
             </el-col>
-            
+            <router-view></router-view>
         </el-row>
 
         <!-- Employee Table Head-->
@@ -61,13 +63,10 @@
             <el-col :span="10" class="buttons-container">
                 <el-button class="secondary-button" @click="isDeletePopup = !isDeletePopup">Delete</el-button>
                 <el-button class="secondary-button" >Recover</el-button>
-                <router-link :to="{path: '/editDetailsFor'}">    
-                    <el-button 
-                        class="secondary-button" 
-                        @click="select()">Edit</el-button>
-                </router-link>
+                <el-button 
+                    class="secondary-button" 
+                    @click="onEditUser">Edit</el-button>
                 <el-button class="secondary-button" @click="isPasswordPopup = !isPasswordPopup">Password</el-button>
-                <router-view name="editDetails"></router-view>
             </el-col>
         </el-row>
 
@@ -109,6 +108,7 @@
                 </div>        
             </div>    
         </div>
+        <roouter-view></roouter-view>
     </div>
 </template>
 
