@@ -63,9 +63,11 @@
             <el-col :span="10" class="buttons-container">
                 <el-button class="secondary-button" @click="isDeletePopup = !isDeletePopup">Delete</el-button>
                 <el-button class="secondary-button" >Recover</el-button>
-                <el-button 
-                    class="secondary-button" 
-                    @click="onEditUser">Edit</el-button>
+                <router-link :to="{path:'/editdetailsfor'}">    
+                    <el-button 
+                        class="secondary-button" 
+                        @click="select">Edit</el-button>
+                </router-link>        
                 <el-button class="secondary-button" @click="isPasswordPopup = !isPasswordPopup">Password</el-button>
             </el-col>
         </el-row>
@@ -149,7 +151,7 @@ export default {
         },
         select: function(event) {
             let payload = event.currentTarget.innerText;
-            return this.$store.dispatch('nav/updateSelectedPage', payload, {root: true});
+            return this.$store.dispatch('nav/updateSelectedSubPage', payload, {root: true});
         }
     },
     created () {

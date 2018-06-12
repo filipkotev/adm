@@ -2,6 +2,9 @@
   <div class="" v-if="authenticated">
     <div class="internal-information" v-if="authenticated || adminAuth">
       <span>Internal information</span> <i class="el-icon-arrow-right"></i><span class="page-name">{{selectedPage}}</span>
+      <span v-if="">
+        <i class="el-icon-arrow-right"></i><span class="page-name">{{selectedChildPage}}</span>
+      </span>
     </div>
     <el-row class="tac">
     <el-col :span="12">
@@ -63,7 +66,8 @@ import {mapState, mapGetters, mapMutations, mapActions} from 'vuex';
 export default {
   computed: {
     ...mapGetters('nav', [
-      'selectedPage'
+      'selectedPage',
+      'selectedChildPage'
     ]),
     ...mapState('login', [
       'userAuth',
