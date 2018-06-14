@@ -8,7 +8,7 @@
           <img class="defaultImg" src="../../assets/user.svg" alt=""/>
           <el-select 
             id="selectEmployee"
-            class="full-width"
+            class="full-width "
             v-model="valueSelectedEmployee"
             filterable 
             placeholder="Select Employee">

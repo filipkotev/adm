@@ -24,6 +24,10 @@ body {
   font-weight: 400 !important;
 }
 
+.mr-1 {
+  margin-right: 10px;
+}
+
 .el-main {
   background-color: #fff;
   color: #333;
@@ -101,10 +105,6 @@ body > .el-container {
   color: #b2b4b5;
 }
 
-.el-date-editor .el-range-separator {
-  padding: 0;
-}
-
 .submitButton {
   display: flex;
   flex-direction: column-reverse;
@@ -145,6 +145,10 @@ body > .el-container {
   color: #28a0bd !important;
 }
 
+#selectEmployee {
+  padding-left: 60px !important;
+}
+
 .select-container {
   display: flex;
   flex-direction: row;
@@ -160,31 +164,8 @@ body > .el-container {
   width: 100% !important;
 }
 
-#selectEmployee {
-    padding-left: 60px;
-  /* Styles for Edit Time and Employee's hours pages */
-  }
-.el-checkbox__input.is-checked+.el-checkbox__label {
-color: #444;
-  font-weight: 400;
-}
-.el-checkbox__input.is-checked .el-checkbox__inner,
-.el-checkbox__input.is-indeterminate .el-checkbox__inner {
-  border-color: #1F98BD;
-background-color: #1F98BD;
-}
-.el-checkbox__inner.is-focused,
-.el-checkbox__inner:hover {
-  border-color: #1F98BD;
-}
-
 .duration-red td:last-of-type {
   color: #C76161;
-}
-/*** Button icon on staff manager page ***/
-.el-icon-circle-plus-outline {
-  color: white !important;
-  font-size: 16px;
 }
 
 /**** Check *****/

@@ -4,18 +4,25 @@
             <h1> Staff Manager </h1>
         </el-row>
         <!-- Search Employee -->
-        <el-row :gutter="20">
-                <h5 class="demonstration">Period</h5>
-            <el-col :span="6">
-                <el-input placeholder="Enter Employee Name" v-model="input"></el-input>
+        <el-row 
+            type="flex"
+            justify-content="space-between"
+            :gutter="20">
+            <el-col :span="8">
+                <h5 class="demonstration">Employee</h5>
+                <el-input
+                    placeholder="Enter Employee Name" 
+                    v-model="input"></el-input>
             </el-col>
-            <el-col class="submitButton" :span="6">
-                <el-button class="button" type="primary">Search</el-button>
-            </el-col>    
-        </el-row>
+            <!-- <el-col class="submitButton" :span="6">
+                <el-button 
+                    class="button" 
+                    type="primary"
+                    @click="searchNames">Search</el-button>
+            </el-col>     -->
+       
         <!--  Add New user -->
-        <el-row :span="24" >
-            <el-col >
+            <el-col class="add-new-user">
                 <router-link :to="{path:'/addnewuser'}">
                     <el-button
                         type="primary" 
@@ -25,21 +32,21 @@
                     Add New User</el-button>
                 </router-link>    
             </el-col>
-            <router-view></router-view>
+            
         </el-row>
 
         <!-- Employee Table Head-->
-        <el-row class="border-bottom">
+        <el-row class="border-bottom table-head">
             <el-col :span="8">
                 <div class="sort-name-label">
                     <i class="el-icon-arrow-down" @click="sortedArray"></i>
                     <h5 class="demonstration bold">Name and ID</h5>
                 </div>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="10">
                 <h5 class="demonstration bold">User Role</h5>
             </el-col>
-            <el-col :span="10">
+            <el-col :span="6">
                 <h5 class="demonstration bold">Actions</h5>
             </el-col>
         </el-row>
@@ -48,24 +55,33 @@
             class="border-bottom table-body"
             type="flex"
             align="middle"
-            v-for="person in people">
+            v-for="person in searchNames"
+        >
+            
             <el-col :span="8" class="picNameId">
         
                 <img :src="person.imgUrl" alt>
                 <div class="userInfo">
-                    <p><strong>{{person.name}}</strong></p>
+                    <p id="user-name"><strong>{{person.name}}</strong></p>
                     <p>{{person.workId}}</p>
                 </div>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="10">
                 <el-tag :type="person.tagType">{{person.role}}</el-tag>
             </el-col>
-            <el-col :span="10" class="buttons-container">
-                <el-button class="secondary-button" @click="isDeletePopup = !isDeletePopup">Delete</el-button>
-                <el-button class="secondary-button" >Recover</el-button>
+            <el-col :span="6" class="buttons-container">
+                <el-button 
+                    class="secondary-button delete-button mr-1" 
+                    v-if="deleted"
+                    @click="isDeletePopup = !isDeletePopup">Delete</el-button>
+
+                <el-button 
+                    class="secondary-button recover-button mr-1" 
+                    v-if="!deleted">Recover</el-button>
+
                 <router-link :to="{path:'/editdetailsfor'}">    
                     <el-button 
-                        class="secondary-button" 
+                        class="secondary-button mr-1" 
                         @click="select">Edit</el-button>
                 </router-link>        
                 <el-button class="secondary-button" @click="isPasswordPopup = !isPasswordPopup">Password</el-button>
@@ -124,13 +140,23 @@ export default {
             isDeletePopup: false,
             isPasswordPopup: false,
             newPassword: '',
-            retypePassword: ''
+            retypePassword: '',
+            deleted: true,
         }
     },
     computed: {
         ...mapState('officeTimesheet', [
             'people'
         ]),
+        searchNames () {
+            var self = this;
+            if( this.input == ''){
+                return this.people;
+            }
+            return this.people.filter(function(person){
+                return person.name.indexOf(self.input) >= 0;
+            });
+            }
     },
     methods: {
         sortedArray: function () {
@@ -181,9 +207,13 @@ export default {
 .button {
     width: auto;
 }
-
-.add-user-button {
-    float: right;
+.add-new-user {
+    display: flex;
+    flex-flow: column-reverse;
+    
+    & .add-user-button {
+        float: right;
+    }
 }
 
 .sort-name-label h5 {
@@ -199,12 +229,16 @@ export default {
     font-weight: bold !important;
 }
 
-.table-body {
-    padding: 1%;
+.table-head {
+    margin-top: 40px;
 }
 
-.table-body:hover {
-    background-color: #EAF6FB;
+.table-body {
+    padding: 1%;
+
+    &:hover {
+        background-color: #EAF6FB;
+    }
 }
 
 .border-bottom {
@@ -250,6 +284,23 @@ img {
     border-radius: 3px;
 }
 
+.recover-button {
+    border: 1px solid #178D70;
+    color: #178D70 !important;
+    & :hover {
+        border-color: rgb(41, 138, 113) !important;
+        color: rgb(41, 138, 113) !important;
+    }
+}
+
+.delete-button {
+    border: 1px solid #C76161;
+    color: #C76161 !important;
+    &:hover {
+        border-color: rgb(202, 117, 117) !important;
+        color: rgb(202, 117, 117);
+    }
+}
 .el-tag {
     width: 130px;
     text-align: center;

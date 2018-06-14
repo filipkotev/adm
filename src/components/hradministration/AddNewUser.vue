@@ -180,7 +180,8 @@ export default {
                 number: [
                     { validator: checkNumber, trigger: 'blur' }
                 ]
-            }
+            },
+            departmentValue: ''
         }
     },
     computed: {
