@@ -57,7 +57,7 @@
       </div>
     </div> 
     <!-- Holidays Legend -->
-    <div class="holidays-legend" 
+    <!-- <div class="holidays-legend" 
           v-for="item in attributes"
           >
       <div class="holiday-info" 
@@ -78,7 +78,7 @@
         <div class="holiday-date">5 Mar 2018</div>
         <span>National Liberation Day</span>
       </div> -->
-    </div>
+  <!--  </div> -->
     <!-- <div 
         v-for="month in currentMonths"
         styles="display: inline-block;"
@@ -165,159 +165,170 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
 
-strong
-  color: #000 !important
+strong {
+  color: #000 !important;
+}
+.select-container {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+.hiddenFullYear {
+  display: none !important;
+}
+.show-month {
+  display: flex;
+  align-items: flex-end;
+}
+.change-month {
+  height: 38px;
+  width: 43px;
+  border: 1px solid #dcdfe6;
+  border-radius: 3px;
 
-.select-container
-  display: flex
-  flex-flow: row
-  justify-content: space-between
+  &:hover {
+    cursor: pointer;
+  }
+}  
+.el-icon-arrow-left {
+  line-height: 2;
 
-.hiddenFullYear
-  display: none !important
+  &:before {
+    padding: 12px;
+  }
+}  
+.el-icon-arrow-right {
+  line-height: 2;
 
-.show-month
-  display: flex
-  align-items: flex-end
+  &:before {
+    padding: 12px;
+  }
+}  
+.el-select {
+  width: 150px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.el-switch {
+  margin-left: 15px;
+}
+.show-full-year-switch {
+  display: flex;
+  align-items: center;
+}  
 
-.change-month
-  height: 38px
-  width: 43px
-  border: 1px solid #dcdfe6
-  border-radius: 3px
-
-  &:hover 
-    cursor: pointer
-
-.el-icon-arrow-left
-  line-height: 2
-  &:before
-    padding: 12px
-
-.el-icon-arrow-right
-  line-height: 2
-  &:before
-    padding: 12px
-
-.el-select
-  width: 150px
-  margin-right: 10px
-  margin-left: 10px
-
-.el-switch
-  margin-left: 15px
-
-.show-full-year-switch
-  display: flex
-  align-items: center
-
-strong
-  font-size: 14px
-
+strong {
+  font-size: 14px;
+}
 /***** Legend Styles *****/
-.legend
-  display: flex
-  flex-flow: row
-  margin-top: 20px
-
-.legend-box
-  margin-right: 85px
-  position: relative
-
-.legend-box>p
-  font-size: 12px
-  color: #8D8D8D
-  position: relative
-  top: -20px
-  left: 40px
-
-.legend-box>span
-  width: 28px
-  height: 18px
-  border: 1px solid #BFBFBF
-  display: inline-block
-  margin-right: 15px
-
-.legend-current-day
-  background-color: #EAF6FB
-
-.legend-holiday
-  background-color: #F1FBEA
-
-.legend-working-day
-  background-color: #fff
-
-.legend-weekend
-  background-color: #ECECEC
-
+.legend {
+  display: flex;
+  flex-flow: row;
+  margin-top: 20px;
+}
+.legend-box {
+  margin-right: 85px;
+  position: relative;
+}
+.legend-box > p {
+  font-size: 12px;
+  color: #8D8D8D;
+  position: relative;
+  top: -20px;
+  left: 40px;
+}
+.legend-box > span {
+  width: 28px;
+  height: 18px;
+  border: 1px solid #BFBFBF;
+  display: inline-block;
+  margin-right: 15px;
+}  
+.legend-current-day {
+  background-color: #EAF6FB;
+}
+.legend-holiday {
+  background-color: #F1FBEA;
+}
+.legend-working-day {
+  background-color: #fff;
+}
+.legend-weekend {
+  background-color: #ECECEC;
+}
 /****** Calendar ******/
-.calendar
-  margin-top: 30px
-  
-.c-title-popover
-  border: 1px solid lightgrey
-  border-radius: 4px
-  padding: 5px 35px
+.calendar{
+  margin-top: 30px;
+}  
+.c-title-popover {
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  padding: 5px 35px;
 
-  &:hover
-    cursor: pointer
-
-.c-pane-container
-  background: #fff !important
-  border: none  !important
-
-.c-title
-  color: #444444 !important
-
-.c-weekday
-  padding: 10px !important
-
-.c-week,
-  border-bottom: 1px solid lightgrey
-
-.c-week:nth-chilld(6)
-  background-color: #ECECEC
-
-.c-day-background
-  width: 100% !important
-  height: 100% !important
-
-.c-day
-   height: 56px !important
-  
+  &:hover{
+    cursor: pointer;
+  }
+}
+.c-pane-container {
+  background: #fff !important;
+  border: none  !important;
+}
+.c-title{
+  color: #444444 !important;
+}
+.c-weekday {
+  padding: 10px !important;
+}
+.c-week {
+  border-bottom: 1px solid lightgrey !important;
+}
+.c-week:nth-chilld(6) {
+  background-color: #ECECEC;
+}
+.c-day-background {
+  width: 100% !important;
+  height: 100% !important;
+}
+.c-day {
+   height: 54px !important;
+}
 /******* Holidays Legend *******/
-.holidays-legend
-  margin-top: 30px
-
-.holiday-info
-  display: flex
-  width: 370px
-  border-top: 1px solid lightgrey
+.holidays-legend {
+  margin-top: 30px;
+}
+.holiday-info {
+  display: flex;
+  width: 370px;
+  border-top: 1px solid lightgrey;
   
-  &:last-of-type
-    border-bottom: 1px solid lightgrey
-
-  &>span
-    padding-top: 20px
-    padding-left: 10px
-
-.holiday-date
+  &:last-of-type {
+    border-bottom: 1px solid lightgrey;
+  }
+  & > span {
+    padding-top: 20px;
+    padding-left: 10px;
+  }
+}
+.holiday-date {
+  height: 40px;
+  background-color: #F1FBEA;
+  color: #444444;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 20px 28px 11px 15px;
+}
+.full-year-month {
+  width: 45%;
+}
+.full-year-calendar {
   
-  height: 40px
-  background-color: #F1FBEA
-  color: #444444
-  font-size: 14px
-  font-weight: bold
-  padding: 20px 28px 11px 15px
-
-.full-year-month
-  width: 45%
-
-.full-year-calendar
-  &:nth-child(odd)
-    margin-right: 10%
-.full-year-calendar:first-child()
-  margin-right: 10%
+  &:nth-child(odd) {
+    margin-right: 10%;
+  }
+}    
+.full-year-calendar:first-child() {
+  margin-right: 10%;
+}  
 </style>
