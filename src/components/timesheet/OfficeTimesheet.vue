@@ -43,7 +43,7 @@
       class="office-timesheet-table"
       :row-class-name="overtimeRedClass"
     >
-      
+     
       <el-table-column label="Name and ID" style="width: 262px">
         <template slot-scope="people">
           <div class="picNameId">
@@ -54,9 +54,9 @@
               <p><strong>{{ people.row.name }} </strong></p>
               <p>{{ people.row.workId }}</p>
             </div>
-          </div>  
-        </template>  
-      </el-table-column>  
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column
         label="Work"
         prop="work"
@@ -178,6 +178,16 @@ export default {
  .el-date-editor--datetimerange.el-input__inner{
    width: 100%;
  } */
+.el-icon-arrow-down 
+  position: relative
+  top: 101px
+  z-index: 10
+  & :hover
+    cursor: pointer
+
+.el-table th > .cell
+  padding-left: 15px !important
+  
 .button 
   margin-left: 20px
   height: 40px
@@ -185,8 +195,8 @@ export default {
   background-color:#1F98BD
   border-color: transparent
 
-.button:hover 
-  background-color: hsl(192, 65%, 45%)
+  & :hover 
+    background-color: hsl(192, 65%, 45%)
 
 .button.is-active, .button:active, .button:focus 
   background-color: hsl(192, 65%, 45%)

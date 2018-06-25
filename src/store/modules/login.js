@@ -20,12 +20,12 @@ const getters = {
 }
 
 const actions = {
-   userLogin: ({commit}) => {
-       commit ('userLogin')
-   },
-   adminLogin: ({commit}) => {
-    commit ('adminLogin')
-}
+    userLogin: ({commit}) => {
+      commit ('userLogin')
+    },
+    adminLogin: ({commit}) => {
+      commit ('adminLogin')
+    }
 }
 
 export default {

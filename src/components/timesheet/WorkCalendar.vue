@@ -281,11 +281,11 @@ strong
   background-color: #ECECEC
 
 .c-day-background
-  width: 100% !important
-  height: 100% !important
+  width: 100% 
+  height: 100% 
 
 .c-day
-   height: 56px !important
+   height: 56px 
   
 /******* Holidays Legend *******/
 .holidays-legend

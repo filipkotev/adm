@@ -45,8 +45,8 @@ export default {
 
 </script>
 
-<style>
+<style lang="sass">
 
-@import './styles/common.css'; 
+@import './styles/common.sass'; 
 
 </style>

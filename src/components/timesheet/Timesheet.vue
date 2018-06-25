@@ -1,6 +1,9 @@
 <template lang="html">
   <div class="container">
+    <!-- Page Header -->   
     <el-row><div class="page-title"><h1>My Timesheet</h1></div></el-row>
+    
+    <!-- Search Field -->
     <el-row>
       <el-col>
         <div class="block selectPeriod">
@@ -20,7 +23,6 @@
               <el-button class="button" type="primary" @click="loadData">Go</el-button>
             </div>
           </div>
-          <p>{{datePickerValue}}</p>
         </div>
       </el-col>  
     </el-row>
@@ -62,10 +64,10 @@
 </template>
 
 <script>
-import HeaderTitle from './../HeaderTitle.vue'
-import {mapState, mapGetters, mapMutations, mapActions} from 'vuex';
-import axios from 'axios';
-const { add } = require('timelite')
+// import HeaderTitle from './../HeaderTitle.vue'
+import { mapState } from 'vuex'
+import axios from 'axios'
+// const { add } = require('timelite')
 
 export default {
   // data () {
@@ -77,79 +79,78 @@ export default {
   computed: {
     ...mapState('timesheet', [
       'timesheetTable',
+	'loadDaata',
       'timesheetTotal'
     ]),
     ...mapState('shared', [
       'pickerOptions',
       'redDuration'
     ]),
-    
+
     datePickerValue: {
-      get() {
-        return this.$store.getters['shared/datePickerValue'];
-      },  
-      set(datePickerValue) {
-        return this.$store.dispatch('shared/updateDatePickerValue', datePickerValue, {root:true});
+      get () {
+        return this.$store.getters['shared/datePickerValue']
+      },
+      set (datePickerValue) {
+        return this.$store.dispatch('shared/updateDatePickerValue', datePickerValue, {root: true})
       }
-    },
-    
+    }
   },
   methods: {
-    durationRedClass({row, rowIndex}) {
+    durationRedClass ({row, rowIndex}) {
       for (var i = 0; i < this.timesheetTable.length; i++) {
-          if (row.duration > '08:00:00') {
-              return 'duration-red';
+        if (row.duration > '08:00:00') {
+          return 'duration-red'
         }
       }
-      return '';
+      return ''
     },
     loadData () {
-      
       this.$store.dispatch('timesheet/loadTimesheetTable', {root: true})
-      //   var id= 40820
-      //   var checkIn= this.datePickerValue[0]
-      //   var checkOut= this.datePickerValue[1]
-
-      // // axios.get('/api/log/' + id + '/' + checkIn + '/' + checkOut)
-      // axios.get('/api/log/', {params: {
-      //     id: 40820,
-      //     checkIn: this.datePickerValue[0],
-      //     checkOut: this.datePickerValue[1]
-      //     }})
-      //   .then(res => {
-      //     console.log(res)
-
-      //   })
-      //   .catch(error => {
-      //     console.log(error)
-      //   })
+//      var id= 40820
+//      var checkIn= this.datePickerValue[0]
+//      var checkOut= this.datePickerValue[1]
+//
+//      axios.get('/api/log/' + id + '/' + checkIn + '/' + checkOut)
+////       axios.get('/api/log/', {params: {
+////          id: 40820,
+////          checkIn: this.datePickerValue[0],
+////          checkOut: this.datePickerValue[1]
+////        }})
+//        .then(res => {
+//          console.log(res)
+//        })
+//        .catch(error => {
+//          console.log(error)
+//        })
     }
-  
   }
-};
+}
 </script>
 
-<!-- Set local styles -->
-<style lang="sass" scoped>
-.el-date-editor.el-input__inner
-  width: 33%
-
-.submitButton
-  float: left
+<style lang="scss" scoped>
+  .el-date-editor.el-input__inner {
+  width: 33%;
+}
   
-.timesheet_total
-  line-height: 3
-  text-align: right
-  // padding-right: 145px
-  padding-right: 10%
-  background-color: #e4e7ea
-  font-weight: 600
+.submitButton {
+  float: left;
+}
+  
+.timesheet_total {
+  line-height: 3;
+  text-align: right;
+  padding-right: 10%;
+  background-color: #e4e7ea;
+  font-weight: 600;
 
-  span 
-    padding-right: 1%
+  & span { 
+    padding-right: 1%;
+  }
+}
 
-.el-table:nth-child(last) 
-  text-align: center
-
+.el-table:nth-child(last) { 
+  text-align: center;
+}
 </style>
 

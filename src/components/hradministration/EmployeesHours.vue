@@ -194,150 +194,150 @@
 </template>
 
 <script>
-    import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
+    import { mapState } from 'vuex'
     
     export default {
-        computed: {
-             ...mapState('shared', [
-               'pickerOptions'
-            ]),
-            ...mapState('timesheet', [
-                'timesheetTable',
-                'timesheetTotal'
-            ]),
-            datePickerValue: {
-            get() {
-                return this.$store.getters['shared/datePickerValue'];
-            },  
-            set(datePickerValue) {
-                return this.$store.dispatch('shared/updateDatePickerValue', datePickerValue, {root:true});
-            }
-            },
-            isSelectedEmployee () {
-                return this.valueSelectedEmployee === ''
-            }
-        }, // End of computed properties
-        data() {
-            return {
-                visibleConfirmation: false,
-                showRecords: false,
-                showTimesheet: false,
-                options: [{
-                    value: 'Ivan Borisov',
-                    label: 'Ivan Borisov',
-                    url: 'https://randomuser.me/api/portraits/men/55.jpg'
-                    }, {
-                    value: 'Ivvan Hristov',
-                    label: 'Ivvan Hristov',
-                    url: 'https://randomuser.me/api/portraits/men/53.jpg'
-                    }, {
-                    value: 'Filipp Kotev',
-                    label: 'Filipp Kotev',
-                    url: 'https://randomuser.me/api/portraits/men/51.jpg'
-                    }, {
-                    value: 'Vasil Ivanov',
-                    label: 'Vasil Ivanov',
-                    url: 'https://randomuser.me/api/portraits/men/91.jpg'
-                    }, {
-                    value: 'Ilian Ivannov',
-                    label: 'ILian Ivannov',
-                    url: 'https://randomuser.me/api/portraits/women/55.jpg'
-                    },{
-                    value: 'Ivan Borissov',
-                    label: 'Ivan Borissov',
-                    url: 'https://randomuser.me/api/portraits/men/13.jpg'
-                    }, {
-                    value: 'Ivan Hristov',
-                    label: 'Ivan Hristov',
-                    url: 'https://randomuser.me/api/portraits/men/29.jpg'
-                    }, {
-                    value: 'Filip Kotev',
-                    label: 'Filip Kotev',
-                    url: 'https://randomuser.me/api/portraits/men/15.jpg'
-                    }, {
-                    value: 'Vassil Georgiev',
-                    label: 'Vassil Georgiev',
-                    url: 'https://randomuser.me/api/portraits/men/35.jpg'
-                    }, {
-                    value: 'Ilian Ivanov',
-                    label: 'ILian Ivanov',
-                    url: 'https://randomuser.me/api/portraits/men/39.jpg'
-                }],
-                people: [{
-                        name: 'Ivan Ivanov',
-                        imgUrl: 'https://randomuser.me/api/portraits/men/15.jpg',
-                        business: '-',
-                        overtime: '-',
-                        from: '20-Apr-2018, 18:12:00, Friday',
-                        until: '20-Apr-2018, 18:12:00, Friday',
-                        commentary: 'He was on a trip about implementing the platform for credit cards for hotels'
-                    }, {
-                        name: 'Filip Kotev',
-                        imgUrl: 'https://randomuser.me/api/portraits/men/18.jpg',
-                        department: 'User Experience',
-                        business: '-',
-                        overtime: '03:30',
-                        from: '21-Apr-2018, 18:12:00, Monday',
-                        until: '22-Apr-2018, 18:12:00, Wednesday',
-                        commentary: 'none'
-                    }, {
-                        name: 'Vasil Ivanov',
-                        imgUrl: 'https://randomuser.me/api/portraits/men/17.jpg',
-                        department: 'Accounts',
-                        workId: 23612,
-                        work: '46:59',
-                        business: '46:00',
-                        overtime: '-',
-                        total: '92:59',
-                        from: '25-Apr-2018, 18:12:00, Tuesday',
-                        until: '27-Apr-2018, 18:12:00, Friday',
-                        commentary: 'He was on a trip about implementing the platform for credit cards for hotels'
-                    }, {
-                        name: 'Ivan Ivanov',
-                        imgUrl: 'https://randomuser.me/api/portraits/men/22.jpg',
-                        department: 'Cytric',
-                        workId: 40612,
-                        business: '-',
-                        overtime: '01:54',
-                        from: '20-Apr-2018, 18:12:00, Friday',
-                        until: '20-Apr-2018, 18:12:00, Friday',
-                        commentary: 'none'
-                    }
-                ],
-                valueSelectedEmployee: '',
-                reasonOptions: [{
-                        value: 'Business',
-                        label: 'Business'
-                    }, {
-                        value: 'Overtime',
-                        label: 'Overtime'
-                    }, {
-                        value: 'On Duty',
-                        label: 'On Duty'
-                    }],
-                value: '',
-                approvedByInput: 'Margarita Daskalova',
-                commentInput: "",
-                checked: true,
-                gridData: [{
-                    date: '2016-05-02',
-                    name: 'Jack',
-                    address: 'New York City'
-                    }, {
-                    date: '2016-05-04',
-                    name: 'Jack',
-                    address: 'New York City'
-                    }, {
-                    date: '2016-05-01',
-                    name: 'Jack',
-                    address: 'New York City'
-                    }, {
-                    date: '2016-05-03',
-                    name: 'Jack',
-                    address: 'New York City'
-                }]
-            }    
+      computed: {
+        ...mapState('shared', [
+          'pickerOptions'
+        ]),
+        ...mapState('timesheet', [
+          'timesheetTable',
+          'timesheetTotal'
+        ]),
+        datePickerValue: {
+          get () {
+            return this.$store.getters['shared/datePickerValue']
+          },
+          set (datePickerValue) {
+            return this.$store.dispatch('shared/updateDatePickerValue', datePickerValue, {root: true})
+          }
         },
+        isSelectedEmployee () {
+          return this.valueSelectedEmployee === ''
+        }
+      }, // End of computed properties
+      data () {
+        return {
+          visibleConfirmation: false,
+          showRecords: false,
+          showTimesheet: false,
+          options: [{
+              value: 'Ivan Borisov',
+              label: 'Ivan Borisov',
+              url: 'https://randomuser.me/api/portraits/men/55.jpg'
+              }, {
+              value: 'Ivvan Hristov',
+              label: 'Ivvan Hristov',
+              url: 'https://randomuser.me/api/portraits/men/53.jpg'
+              }, {
+              value: 'Filipp Kotev',
+              label: 'Filipp Kotev',
+              url: 'https://randomuser.me/api/portraits/men/51.jpg'
+              }, {
+              value: 'Vasil Ivanov',
+              label: 'Vasil Ivanov',
+              url: 'https://randomuser.me/api/portraits/men/91.jpg'
+              }, {
+              value: 'Ilian Ivannov',
+              label: 'ILian Ivannov',
+              url: 'https://randomuser.me/api/portraits/women/55.jpg'
+              },{
+              value: 'Ivan Borissov',
+              label: 'Ivan Borissov',
+              url: 'https://randomuser.me/api/portraits/men/13.jpg'
+              }, {
+              value: 'Ivan Hristov',
+              label: 'Ivan Hristov',
+              url: 'https://randomuser.me/api/portraits/men/29.jpg'
+              }, {
+              value: 'Filip Kotev',
+              label: 'Filip Kotev',
+              url: 'https://randomuser.me/api/portraits/men/15.jpg'
+              }, {
+              value: 'Vassil Georgiev',
+              label: 'Vassil Georgiev',
+              url: 'https://randomuser.me/api/portraits/men/35.jpg'
+              }, {
+              value: 'Ilian Ivanov',
+              label: 'ILian Ivanov',
+              url: 'https://randomuser.me/api/portraits/men/39.jpg'
+          }],
+              people: [{
+                  name: 'Ivan Ivanov',
+                  imgUrl: 'https://randomuser.me/api/portraits/men/15.jpg',
+                  business: '-',
+                  overtime: '-',
+                  from: '20-Apr-2018, 18:12:00, Friday',
+                  until: '20-Apr-2018, 18:12:00, Friday',
+                  commentary: 'He was on a trip about implementing the platform for credit cards for hotels'
+              }, {
+                  name: 'Filip Kotev',
+                  imgUrl: 'https://randomuser.me/api/portraits/men/18.jpg',
+                  department: 'User Experience',
+                  business: '-',
+                  overtime: '03:30',
+                  from: '21-Apr-2018, 18:12:00, Monday',
+                  until: '22-Apr-2018, 18:12:00, Wednesday',
+                  commentary: 'none'
+              }, {
+                  name: 'Vasil Ivanov',
+                  imgUrl: 'https://randomuser.me/api/portraits/men/17.jpg',
+                  department: 'Accounts',
+                  workId: 23612,
+                  work: '46:59',
+                  business: '46:00',
+                  overtime: '-',
+                  total: '92:59',
+                  from: '25-Apr-2018, 18:12:00, Tuesday',
+                  until: '27-Apr-2018, 18:12:00, Friday',
+                  commentary: 'He was on a trip about implementing the platform for credit cards for hotels'
+              }, {
+                  name: 'Ivan Ivanov',
+                  imgUrl: 'https://randomuser.me/api/portraits/men/22.jpg',
+                  department: 'Cytric',
+                  workId: 40612,
+                  business: '-',
+                  overtime: '01:54',
+                  from: '20-Apr-2018, 18:12:00, Friday',
+                  until: '20-Apr-2018, 18:12:00, Friday',
+                  commentary: 'none'
+              }
+              ],
+              valueSelectedEmployee: '',
+              reasonOptions: [{
+                      value: 'Business',
+                      label: 'Business'
+                  }, {
+                      value: 'Overtime',
+                      label: 'Overtime'
+                  }, {
+                      value: 'On Duty',
+                      label: 'On Duty'
+                  }],
+              value: '',
+              approvedByInput: 'Margarita Daskalova',
+              commentInput: "",
+              checked: true,
+              gridData: [{
+                  date: '2016-05-02',
+                  name: 'Jack',
+                  address: 'New York City'
+                  }, {
+                  date: '2016-05-04',
+                  name: 'Jack',
+                  address: 'New York City'
+                  }, {
+                  date: '2016-05-01',
+                  name: 'Jack',
+                  address: 'New York City'
+                  }, {
+                  date: '2016-05-03',
+                  name: 'Jack',
+                  address: 'New York City'
+              }]
+          }    
+      },
         methods: {
             showNotification() {
                 this.$notify({
@@ -432,9 +432,9 @@
     line-height: 2.5
 
 .el-checkbox__input.is-checked .el-checkbox__inner,
- .el-checkbox__input.is-indeterminate .el-checkbox__inner
-     border-color: #1F98BD
-     background-color: #1F98BD
+.el-checkbox__input.is-indeterminate .el-checkbox__inner
+     border-color: #1F98BD !important
+     background-color: #1F98BD !important
 
 // Additional styles for buttons
 router-link
@@ -502,12 +502,13 @@ router-link
     margin-bottom: 15px
 
     h3
-        color: #444444
-        font-weight: 400
+      color: #444444
+      font-weight: 400
     i
-        font-size: 22px
-        &:hover
-            cursor: pointer
+      font-size: 22px
+      
+      &:hover
+          cursor: pointer
 
 .popup-content
     padding-right: 10px
