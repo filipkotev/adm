@@ -94,7 +94,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters, mapMutations } from 'vuex';
+import { mapState } from 'vuex'
 export default {
   data: {
     isRed: true
@@ -108,151 +108,170 @@ export default {
       'people'
     ]),
     datePickerValue: {
-      get() {
-        return this.$store.getters['shared/datePickerValue'];
-      },  
-      set(datePickerValue) {
-        return this.$store.dispatch('shared/updateDatePickerValue', datePickerValue, {root:true});
+      get () {
+        return this.$store.getters['shared/datePickerValue']
+      },
+      set (datePickerValue) {
+        return this.$store.dispatch('shared/updateDatePickerValue', datePickerValue, {root: true})
       }
     },
     departmentValue: {
-      get() {
-        return this.$store.getters['shared/departmentValue'];
+      get () {
+        return this.$store.getters['shared/departmentValue']
       },
-      set(departmentValue) {
-        return this.$store.dispatch('shared/updateDepartmentValue', departmentValue, {root:true});
+      set (departmentValue) {
+        return this.$store.dispatch('shared/updateDepartmentValue', departmentValue, {root: true})
       }
     }
   },
   methods: {
-    overtimeRedClass({row, rowIndex}) {
+    overtimeRedClass ({row, rowIndex}) {
       for (var i = 0; i < this.people.length; i++) {
-          if (row.overtime !== '-') {
-              return 'redText';
+        if (row.overtime !== '-') {
+          return 'redText'
         }
       }
-      return '';
+      return ''
     },
-    sortedArray: function() {
-     function compare(a, b) {
-       if (a.name < b.name)
-         return -1;
-       if (a.name > b.name)
-         return 1;
-       return 0;
-     }
-     return this.people.sort(compare);
-   }
+    sortedArray: function () {
+      function compare (a, b) {
+        if (a.name < b.name) {
+          return -1
+        }
+        if (a.name > b.name) {
+          return 1
+        }
+        return 0
+      }
+      return this.people.sort(compare)
+    }
   }
 }
 </script>
 
 <!-- Set local styles -->
-<style lang="sass" scoped>
-.block 
-  display: inline-block
-  width: 100%
+<style lang="scss" scoped>
+.block {
+  display: inline-block;
+  width: 100%;
+}
+.selectPeriod {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+  
+.select {
+  width: 45%;
+  display: inline-block;
 
-.selectPeriod 
-  display: flex
-  flex-flow: row
-  justify-content: space-between
+  & :first-child {
+    margin-right: 5%;
+  }
+}
 
-  .select 
-    width: 45%
-    display: inline-block
-
-    &:first-child
-      margin-right: 5% 
-
-.el-select 
-  width: 100%
+.el-select {
+  width: 100%;
+}
 
 .el-date-editor--daterange.el-input, 
 .el-date-editor--daterange.el-input__inner, 
 .el-date-editor--timerange.el-input, 
-.el-date-editor--timerange.el-input__inner 
-  width: 100%
+.el-date-editor--timerange.el-input__inner {
+  width: 100%;
+}
 
-/* .el-date-editor--datetimerange.el-input,
- .el-date-editor--datetimerange.el-input__inner{
-   width: 100%;
- } */
-.el-icon-arrow-down 
-  position: relative
-  top: 101px
-  z-index: 10
-  & :hover
-    cursor: pointer
-
-.el-table th > .cell
-  padding-left: 15px !important
+.el-icon-arrow-down {
+  position: relative;
+  top: 101px;
+  z-index: 10;
+    
+  & :hover {
+    cursor: pointer;
+}
   
-.button 
-  margin-left: 20px
-  height: 40px
-  width: 85px
-  background-color:#1F98BD
-  border-color: transparent
+.el-table th > .cell {
+  padding-left: 15px !important;
+} 
+  
+.button {
+  margin-left: 20px;
+  height: 40px;
+  width: 85px;
+  background-color:#1F98BD;
+  border-color: transparent;
 
-  & :hover 
-    background-color: hsl(192, 65%, 45%)
+  & :hover {
+    background-color: hsl(192, 65%, 45%);
+  }
+}
 
-.button.is-active, .button:active, .button:focus 
-  background-color: hsl(192, 65%, 45%)
-  border-color: transparent
+.button.is-active, .button:active, .button:focus {
+  background-color: hsl(192, 65%, 45%);
+  border-color: transparent;
+}
+  
+.submitButton {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+}
+  
+.picNameId {
+  width: 220px;
+  display: flex;
+  flex-flow: row;
+  padding-top: 15px;
+}
+  
+.pic {
+  margin-right: 25px;
+}
+  
+.userInfo p {
+  line-height: 5px;
+}
 
-.submitButton 
-  display: flex
-  flex-direction: column-reverse
-  align-items: flex-start
+.pic img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
 
-.picNameId 
-  width: 220px
-  display: flex
-  flex-flow: row
-  padding-top: 15px
+.timesheet_total {
+  line-height: 3;
+  padding-left: 6%;
+  background-color: #E4E7EA;
+  font-weight: 600;
+}
 
-.pic 
-  margin-right: 25px
+.timesheet_total > div {
+  display: inline-block;
+  width: 15%;
+}
 
-.userInfo p 
-  line-height: 5px
+#total-hours {
+  width: 23% !important;
+}
 
-.pic img 
-  width: 50px
-  height: 50px
-  border-radius: 50%
+.total-work-hours {
+  padding-left: 1%;
+}
 
-.timesheet_total
-  line-height: 3
-  padding-left: 6%
-  background-color: #E4E7EA
-  font-weight: 600
-  // display: flex
-  // justify-content: space-around 
+.total-business-hours {
+  margin-left: 6%;
+  text-align: left;
+}
 
-.timesheet_total>div
-  display: inline-block
-  width: 15%
+.total-overtime-hours {
+  text-align: center;
+}
 
-#total-hours 
-  width: 23% !important
+.total-total-hours {
+  text-align: right;
+}
 
-.total-work-hours 
-  padding-left: 1%
-
-.total-business-hours 
-  margin-left: 6%
-  text-align: left
-
-.total-overtime-hours 
-  text-align: center
-
-.total-total-hours 
-  text-align: right
-
-.redText td:nth-child(4) 
-  color: #C76161
-
+.redText td:nth-child(4) {
+  color: #C76161;
+}
 </style>

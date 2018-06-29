@@ -24,9 +24,9 @@
             </div>
           </div>
         </div>
-      </el-col>  
+      </el-col>
     </el-row>
-
+<!--    <p>{{ datePickerValue }}</p>-->
     <el-row>
       <el-col>
         <el-table
@@ -79,20 +79,20 @@ export default {
   computed: {
     ...mapState('timesheet', [
       'timesheetTable',
-	'loadDaata',
-      'timesheetTotal'
+      'timesheetTotal',
+      'loadedData',
+      'pickerOptions'
     ]),
     ...mapState('shared', [
-      'pickerOptions',
       'redDuration'
     ]),
 
     datePickerValue: {
       get () {
-        return this.$store.getters['shared/datePickerValue']
+        return this.$store.getters['timesheet/datePickerValue']
       },
       set (datePickerValue) {
-        return this.$store.dispatch('shared/updateDatePickerValue', datePickerValue, {root: true})
+        return this.$store.dispatch('timesheet/updateDatePickerValue', datePickerValue, {root: true})
       }
     }
   },

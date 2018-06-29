@@ -40,56 +40,62 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
-    data() {
-        return {
-            tableData: [{
-                date: '2016-05-03',
-                name: 'Tom',
-                address: 'No. 189, Grove St, Los Angeles'
-            }, {
-                date: '2016-05-02',
-                name: 'Tom',
-                address: 'No. 189, Grove St, Los Angeles'
-            }, {
-                date: '2016-05-04',
-                name: 'Tom',
-                address: 'No. 189, Grove St, Los Angeles'
-            }, {
-                date: '2016-05-01',
-                name: 'Tom',
-                address: 'No. 189, Grove St, Los Angeles'
-            }]
-        }
-    },
-    computed: {
-        ...mapState('officeTimesheet', [
-            'people'
-        ])
+  data () {
+    return {
+      tableData: [{
+        date: '2016-05-03',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles'
+      }, {
+        date: '2016-05-02',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles'
+      }, {
+        date: '2016-05-04',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles'
+      }, {
+        date: '2016-05-01',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles'
+      }]
     }
+  },
+  computed: {
+    ...mapState('officeTimesheet', [
+      'people'
+    ])
+  }
 }
 </script>
 
-<style lang="sass">
-.sub-title
-    font-size: 21px
-    color: #3d3d3d
-    margin-top: 60px
-    margin-bottom: 30px
+<style lang="scss">
+.sub-title {
+  font-size: 21px;
+  color: #3d3d3d;
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+  
+.picName {
+  display: flex;
+  flex-flow: row;
+}
+  
+.pic{
+  margin-right: 25px;
 
-.picName
-    display: flex
-    flex-flow: row
-.pic
-    margin-right: 25px
-
-    img
-        width: 50px
-        height: 50px
-        border-radius: 50%
-
-.id-column
-    padding-left: 50px        
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+}
+  
+.id-column{
+  padding-left: 50px;
+}
 </style>

@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import {mapState, mapGetters, mapMutations, mapActions} from 'vuex';
+import { mapState } from 'vuex'
 
 export default {
   computed: {
@@ -73,58 +73,60 @@ export default {
       'persons'
     ]),
     departmentValue: {
-      get() {
-        return this.$store.getters['shared/departmentValue'];
+      get () {
+        return this.$store.getters['shared/departmentValue']
       },
-      set(departmentValue) {
-        return this.$store.dispatch('shared/updateDepartmentValue', departmentValue, {root:true});
+      set (departmentValue) {
+        return this.$store.dispatch('shared/updateDepartmentValue', departmentValue, {root: true})
       }
     },
     statusValue: {
-      get() {
-        return this.$store.getters['shared/statusValue'];
+      get () {
+        return this.$store.getters['shared/statusValue']
       },
-      set(statusValue) {
-        return this.$store.dispatch('shared/updateStatusValue', statusValue, {root:true});
+      set (statusValue) {
+        return this.$store.dispatch('shared/updateStatusValue', statusValue, {root: true})
       }
     },
     pickerValue: {
-      get() {
-        return this.$store.getters['shared/pickerValue'];
+      get () {
+        return this.$store.getters['shared/pickerValue']
       },
-      set(pickerValue) {
-        return this.$store.dispatch('shared/updatePickerValue', pickerValue, {root:true});
+      set (pickerValue) {
+        return this.$store.dispatch('shared/updatePickerValue', pickerValue, {root: true})
       }
     }
   },
   methods: {
-    sortedArray: function() {
-      function compare(a, b) {
-        if (a.name < b.name)
-          return -1;
-        if (a.name > b.name)
-          return 1;
-        return 0;
+    sortedArray: function () {
+      function compare (a, b) {
+        if (a.name < b.name) {
+          return -1
+        }
+        if (a.name > b.name) {
+          return 1
+        }
+        return 0
       }
 
-      return this.persons.sort(compare);
+      return this.persons.sort(compare)
     }
   },
-  created: function(){
+  created: function () {
     for (var i = 0; i < this.persons.length; i++) {
       if (this.persons[i].tagName === 'at work') {
-          this.persons[i].tagType = 'success';
-      }else if (this.persons[i].tagName === 'absent') {
-          this.persons[i].tagType = 'warning';
-      }else{
-        this.persons[i].tagType = '';
-      } 
+        this.persons[i].tagType = 'success'
+      } else if (this.persons[i].tagName === 'absent') {
+        this.persons[i].tagType = 'warning'
+      } else {
+        this.persons[i].tagType = ''
+      }
     }
   }
 }
 </script>
 
-<style lang="css">
+<style lang="scss">
 .el-select-dropdown__wrap{
   overflow: hidden;
 }
@@ -144,7 +146,9 @@ export default {
 .button:hover {
   background-color: hsl(192, 65%, 45%);
 }
-.button--primary.is-active, .button--primary:active, .button--primary:focus {
+.button--primary.is-active,
+.button--primary:active,
+.button--primary:focus {
   background-color: hsl(192, 65%, 45%);
   border-color: transparent;
 }
@@ -153,12 +157,14 @@ export default {
   flex-direction: column-reverse;
   align-items: flex-start;
 }
-.office-status-container .block, .select-status{
+.office-status-container .block,
+.select-status{
   width: 28%;
   display: inline-block;
   margin-right: 3%;
 }
-.office-status-container .el-date-editor.el-input, .el-date-editor.el-input__inner {
+.office-status-container .el-date-editor.el-input,
+.el-date-editor.el-input__inner {
     width: 100%;
 }
 .office-status-container .title-table-status-right{

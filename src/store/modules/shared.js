@@ -1,6 +1,7 @@
 const state = {
   // Select Department
-  selectDepartment: [{
+  selectDepartment: [
+    {
       value: 'everyone',
       label: 'everyone'
     }, {  
@@ -37,7 +38,8 @@ const state = {
   departmentValue: 'everyone',
 
   //shared select Status
-  status: [{
+  status: [
+    {
     stat: 'Show All',
     label: 'Show All'
     },{
@@ -58,29 +60,30 @@ const state = {
 
   // Date picker
   pickerOptions: {
-    shortcuts: [{
+    shortcuts: [
+    {
       text: 'Last week',
-      onClick(picker) {
-        const end = new Date();
-        const start = new Date();
-        start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-        picker.$emit('pick', [start, end]);
+      onClick (picker) {
+        const end = new Date ();
+        const start = new Date ();
+        start.setTime(start.getTime () - 3600 * 1000 * 24 * 7);
+        picker.$emit('pick', [start, end])
       }
     }, {
       text: 'Last month',
-      onClick(picker) {
-        const end = new Date();
-        const start = new Date();
-        start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
-        picker.$emit('pick', [start, end]);
+      onClick (picker) {
+        const end = new Date ();
+        const start = new Date ();
+        start.setTime(start.getTime () - 3600 * 1000 * 24 * 30);
+        picker.$emit('pick', [start, end])
       }
     }, {
       text: 'Last 3 months',
-      onClick(picker) {
-        const end = new Date();
-        const start = new Date();
-        start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
-        picker.$emit('pick', [start, end]);
+      onClick (picker) {
+        const end = new Date ();
+        const start = new Date ();
+        start.setTime(start.getTime () - 3600 * 1000 * 24 * 90);
+        picker.$emit('pick', [start, end])
       }
     }]
   },
@@ -90,16 +93,16 @@ const state = {
 // Getters
 const getters = {
   departmentValue: (state) => {
-    return state.departmentValue;
+    return state.departmentValue
   },
   statusValue: (state) => {
-    return state.statusValue;
+    return state.statusValue
   },
   pickerValue: (state) => {
-    return state.pickerValue;
+    return state.pickerValue
   },
   datePickerValue: (state) => {
-    return state.datePickerValue;
+    return state.datePickerValue
   }
 }
 // Mutations

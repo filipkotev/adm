@@ -101,7 +101,7 @@
 
 </template>
 <script>
-import {mapState, mapGetters, mapMutations, mapActions} from 'vuex';
+import { mapState } from 'vuex'
 
 export default {
   computed: {
@@ -110,150 +110,167 @@ export default {
     ]),
     ...mapState('shared', [
       'selectDepartment',
-      'pickerOptions'  
+      'pickerOptions'
     ]),
     departmentValue: {
-      get() {
-        return this.$store.getters['shared/departmentValue'];
+      get () {
+        return this.$store.getters['shared/departmentValue']
       },
-      set(departmentValue) {
-        return this.$store.dispatch('shared/updateDepartmentValue', departmentValue, {root:true});
+      set (departmentValue) {
+        return this.$store.dispatch('shared/updateDepartmentValue', departmentValue, {root: true})
       }
     },
     datePickerValue: {
-      get() {
-        return this.$store.getters['shared/datePickerValue'];
-      },  
-      set(datePickerValue) {
-        return this.$store.dispatch('shared/updateDatePickerValue', datePickerValue, {root:true});
+      get () {
+        return this.$store.getters['shared/datePickerValue']
+      },
+      set (datePickerValue) {
+        return this.$store.dispatch('shared/updateDatePickerValue', datePickerValue, {root: true})
       }
     }
   },
   methods: {
-    
-    sortedArray: function() {
-     function compare(a, b) {
-       if (a.name < b.name)
-         return -1;
-       if (a.name > b.name)
-         return 1;
-       return 0;
-     }
-     return this.arrays.sort(compare);
-   }
+
+    sortedArray: function () {
+      function compare (a, b) {
+        if (a.name < b.name) {
+          return -1
+        }
+        if (a.name > b.name) {
+          return 1
+        }
+        return 0
+      }
+      return this.arrays.sort(compare)
+    }
 
   },
-  created: function(){
+  created: function () {
     for (var i = 0; i < this.arrays.length; i++) {
-      if (this.arrays[i].dayHours > '02:00:00'
-          && this.arrays[i].dayHours < '04:00:00') {
-          this.arrays[i].progressPercentage = 25;
-      }else if (this.arrays[i].dayHours > '04:00:00'
-          && this.arrays[i].dayHours < '06:00:00') {
-          this.arrays[i].progressPercentage = 50;
-      }else if (this.arrays[i].dayHours > '06:00:00'
-          && this.arrays[i].dayHours < '08:00:00') {
-          this.arrays[i].progressPercentage = 75;
-      }else if (this.arrays[i].dayHours > '08:00:00'){
-          this.arrays[i].progressPercentage = 100;
-          this.arrays[i].colorProgress = 'success';
+      if (this.arrays[i].dayHours > '02:00:00' && this.arrays[i].dayHours < '04:00:00') {
+        this.arrays[i].progressPercentage = 25
+      } else if (this.arrays[i].dayHours > '04:00:00' && this.arrays[i].dayHours < '06:00:00') {
+        this.arrays[i].progressPercentage = 50
+      } else if (this.arrays[i].dayHours > '06:00:00' && this.arrays[i].dayHours < '08:00:00') {
+        this.arrays[i].progressPercentage = 75
+      } else if (this.arrays[i].dayHours > '08:00:00') {
+        this.arrays[i].progressPercentage = 100
+        this.arrays[i].colorProgress = 'success'
       }
     }
   }
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
 .el-date-editor--daterange.el-input,
 .el-date-editor--daterange.el-input__inner,
 .el-date-editor--timerange.el-input,
-.el-date-editor--timerange.el-input__inner 
-    width: 100%
-
-.el-select-dropdown__wrap
-  overflow: hidden
-
-.search-field 
-  display: flex
-  align-items: space-between
-
-
-.breaking-container
-  margin-top: 61px
-
-.block
-  width: 45%
-  display: inline-block
-
-.select 
-  width: 45%
-  margin-left: 5%
-  display: inline-block
-
-
-.el-select
+.el-date-editor--timerange.el-input__inner {
   width: 100%
+}  
 
-.user-name
-  font-weight: 600
-  width: 342px !important
+.el-select-dropdown__wrap {
+  overflow: hidden;  
+} 
 
-.breaking-list
-  padding-left: 5px
+.search-field {
+  display: flex;
+  align-items: space-between;  
+}
 
-.el-progress
-  width: 40% !important
+.breaking-container {
+  margin-top: 61px;
+}
+  
+.block {
+  width: 45%;
+  display: inline-block;
+}
+  
+.select {
+  width: 45%;
+  margin-left: 5%;
+  display: inline-block;
+}
+  
+.el-select {
+  width: 100%;
+}
+  
+.user-name {
+  font-weight: 600;
+  width: 342px !important;
+}
+  
+.breaking-list {
+  padding-left: 5px;
+}
+  
+.el-progress {
+  width: 40% !important;
+}
+ul {
+  line-height: 2;
+  list-style: none;
+}
+  
+.breaking-row, .breaking-title-table {
+  flex-flow: row;
+  display: flex;
+  justify-content: space-between;
+}
+  
+.breaking-list li {
+  line-height: 3;
+  padding: 10px 0;
+  border-bottom: 1px solid #dddddd;
+}
+  
+.breaking-list li:hover {
+  background-color: #EAF6FB;
+}
+  
+.title-table {
+  line-height: 4;
+  color: #878d99;
+  font-weight: 600;
+  font-size: 14px;
+  padding-left: 15px;
 
-ul
-  line-height: 2
-  list-style: none
-
-.breaking-row, .breaking-title-table
-  flex-flow: row
-  display: flex
-  justify-content: space-between
-
-.breaking-list li
-  line-height: 3
-  padding: 10px 0
-  border-bottom: 1px solid #dddddd
-
-.breaking-list li:hover
-  background-color: #EAF6FB
-
-.title-table
-  line-height: 4
-  color: #878d99
-  font-weight: 600
-  font-size: 14px
-  padding-left: 15px
-
-  span:hover
-    cursor: pointer
-
-.title-table-name
-  width: 80px
-
-.breaking
-  font-size: 14px
-
-.breaking-image 
-  float: left
-  border-radius: 90%
-  width: 40px
-  padding-right: 10px
-
-.breaking-daily-hours
-  width: 300px
-
-.breaking-absent
-  width: 200px
-
-.breaking-hours
-  float: right
-  width: 150px
-  text-align: right
-  padding-right: 15px
-
+  span:hover {
+    cursor: pointer;
+  }
+}
+ 
+.title-table-name {
+  width: 80px;
+}
+  
+.breaking {
+  font-size: 14px;
+}
+  
+.breaking-image {
+  float: left;
+  border-radius: 90%;
+  width: 40px;
+  padding-right: 10px;
+}
+  
+.breaking-daily-hours {
+  width: 300px;
+}
+  
+.breaking-absent {
+  width: 200px;
+}
+  
+.breaking-hours {
+  float: right;
+  width: 150px;
+  text-align: right;
+  padding-right: 15px;
+}
 
 </style>
