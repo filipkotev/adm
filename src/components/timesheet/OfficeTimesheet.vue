@@ -188,6 +188,7 @@ export default {
     
   & :hover {
     cursor: pointer;
+  }
 }
   
 .el-table th > .cell {
@@ -273,5 +274,5 @@ export default {
 
 .redText td:nth-child(4) {
   color: #C76161;
-}
+} 
 </style>

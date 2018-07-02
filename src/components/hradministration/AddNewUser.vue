@@ -103,98 +103,97 @@
 </template>
 
 <script>
-import {mapState, mapGetters, mapMutations, mapActions} from 'vuex';
+import { mapState } from 'vuex'
 
 export default {
-    data () {
-        var checkNumber = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('Please input the number'));
+  data () {
+    var checkNumber = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error('Please input the number'))
+      }
+      setTimeout(() => {
+        if (!Number.isInteger(value)) {
+          callback(new Error('Please input digits'))
         }
-        setTimeout(() => {
-          if (!Number.isInteger(value)) {
-            callback(new Error('Please input digits'));
-          } 
-        }, 2000);
-      };
-      var validatePass = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('Please input the password'));
-        } else {
-          if (this.ruleForm2.checkPass !== '') {
-            this.$refs.ruleForm2.validateField('checkPass');
-          }
-          callback();
+      }, 2000)
+    }
+    var validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('Please input the password'))
+      } else {
+        if (this.ruleForm2.checkPass !== '') {
+          this.$refs.ruleForm2.validateField('checkPass')
         }
-      };
-      var validatePass2 = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('Please input the password again'));
-        } else if (value !== this.ruleForm2.pass) {
-          callback(new Error('Two inputs don\'t match!'));
-        } else {
-          callback();
+        callback()
+      }
+    }
+    var validatePass2 = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('Please input the password again'))
+      } else if (value !== this.ruleForm2.pass) {
+        callback(new Error('Two inputs don\'t match!'))
+      } else {
+        callback()
+      }
+    }
+    return {
+      accessLevels: [
+        {
+          value: 'teamleader',
+          label: 'Teamleader'
+        },
+        {
+          value: 'coordinator',
+          label: 'Coordinator'
+        },
+        {
+          value: 'user',
+          label: 'User'
+        },
+        {
+          value: 'execcutive officer',
+          label: 'Execcutive officer'
+        },
+        {
+          value: 'administrator',
+          label: 'Administrator'
+        },
+        {
+          value: 'company executive',
+          label: 'Company executive'
         }
-      };
-        return {
-            accessLevels: [
-                { 
-                    value: 'teamleader',
-                    label: 'Teamleader'
-                },
-                { 
-                    value: 'coordinator',
-                    label: 'Coordinator'
-                },
-                { 
-                    value: 'user',
-                    label: 'User'
-                },
-                { 
-                    value: 'execcutive officer',
-                    label: 'Execcutive officer'
-                },
-                { 
-                    value: 'administrator',
-                    label: 'Administrator'
-                },  
-                { 
-                    value: 'company executive',
-                    label: 'Company executive'
-                },    
-            ],
-            form: {
-                phoneExtension: '',
-                mobile: '',
-                egn: '',
-                joinDate: '',
-                accessLevelValue: 'teamleader'
-            },
-            rules: {
-                pass: [
-                    { validator: validatePass, trigger: 'blur' }
-                ],
-                checkPass: [
-                    { validator: validatePass2, trigger: 'blur' }
-                ],
-                number: [
-                    { validator: checkNumber, trigger: 'blur' }
-                ]
-            },
-            departmentValue: ''
-        }
-    },
-    computed: {
-        ...mapState('breaking', [
-        'arrays'
-        ]),
-        ...mapState('shared', [
-        'selectDepartment',
-        'pickerOptions'  
-        ]),
-    },
-}    
-
+      ],
+      form: {
+        phoneExtension: '',
+        mobile: '',
+        egn: '',
+        joinDate: '',
+        accessLevelValue: 'teamleader'
+      },
+      rules: {
+        pass: [
+            { validator: validatePass, trigger: 'blur' }
+        ],
+        checkPass: [
+            { validator: validatePass2, trigger: 'blur' }
+        ],
+        number: [
+            { validator: checkNumber, trigger: 'blur' }
+        ]
+      },
+      departmentValue: ''
+    }
+  },
+  computed: {
+    ...mapState('breaking', [
+      'arrays'
+    ]),
+    ...mapState('shared', [
+      'selectDepartment',
+      'pickerOptions'
+    ])
+  }
+}
 </script>
 <style lang="scss" scoped>
 .content-container {

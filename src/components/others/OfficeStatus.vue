@@ -142,9 +142,10 @@ export default {
   background-color:#1F98BD;
   border-color: transparent;
   color: white;
-}
-.button:hover {
+
+  & :hover {
   background-color: hsl(192, 65%, 45%);
+  }
 }
 .button--primary.is-active,
 .button--primary:active,

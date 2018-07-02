@@ -37,7 +37,7 @@ export const routes = [
   {path: '/edittime', component: EditTime},
   {path: '/employeeshours', component: EmployeesHours},
   {path: '/staffmanager', component: StaffManager},
-  {path: '/addnewuser', component: AddNewUser },
-  {path: '/editdetailsfor', component: EditDetailsFor },
+  {path: '/addnewuser', component: AddNewUser},
+  {path: '/editdetailsfor', component: EditDetailsFor},
   {path: '/setpermits', component: SetPermits}
 ]

@@ -95,72 +95,72 @@
 </template>
 
 <script>
-import {numeric, minLength, maxLength} from 'vuelidate/lib/validators'
-import {mapState, mapGetters, mapMutations, mapActions} from 'vuex'; 
+import { numeric, minLength, maxLength } from 'vuelidate/lib/validators'
+import { mapState } from 'vuex'
 
 export default {
-  data() {
+  data () {
     return {
       options: [{
-          value: 'Ivan Borisov',
-          label: 'Ivan Borisov',
-          url: 'https://randomuser.me/api/portraits/men/55.jpg'
-        }, {
-          value: 'Ivvan Hristov',
-          label: 'Ivvan Hristov',
-          url: 'https://randomuser.me/api/portraits/men/53.jpg'
-        }, {
-          value: 'Filipp Kotev',
-          label: 'Filipp Kotev',
-          url: 'https://randomuser.me/api/portraits/men/51.jpg'
-        }, {
-          value: 'Vasil Ivanov',
-          label: 'Vasil Ivanov',
-          url: 'https://randomuser.me/api/portraits/men/91.jpg'
-        }, {
-          value: 'Ilian Ivannov',
-          label: 'ILian Ivannov',
-          url: 'https://randomuser.me/api/portraits/women/55.jpg'
-        },{
-          value: 'Ivan Borissov',
-          label: 'Ivan Borissov',
-          url: 'https://randomuser.me/api/portraits/men/13.jpg'
-        }, {
-          value: 'Ivan Hristov',
-          label: 'Ivan Hristov',
-          url: 'https://randomuser.me/api/portraits/men/29.jpg'
-        }, {
-          value: 'Filip Kotev',
-          label: 'Filip Kotev',
-          url: 'https://randomuser.me/api/portraits/men/15.jpg'
-        }, {
-          value: 'Vassil Georgiev',
-          label: 'Vassil Georgiev',
-          url: 'https://randomuser.me/api/portraits/men/35.jpg'
-        }, {
-          value: 'Ilian Ivanov',
-          label: 'ILian Ivanov',
-          url: 'https://randomuser.me/api/portraits/men/39.jpg'
+        value: 'Ivan Borisov',
+        label: 'Ivan Borisov',
+        url: 'https://randomuser.me/api/portraits/men/55.jpg'
+      }, {
+        value: 'Ivvan Hristov',
+        label: 'Ivvan Hristov',
+        url: 'https://randomuser.me/api/portraits/men/53.jpg'
+      }, {
+        value: 'Filipp Kotev',
+        label: 'Filipp Kotev',
+        url: 'https://randomuser.me/api/portraits/men/51.jpg'
+      }, {
+        value: 'Vasil Ivanov',
+        label: 'Vasil Ivanov',
+        url: 'https://randomuser.me/api/portraits/men/91.jpg'
+      }, {
+        value: 'Ilian Ivannov',
+        label: 'ILian Ivannov',
+        url: 'https://randomuser.me/api/portraits/women/55.jpg'
+      }, {
+        value: 'Ivan Borissov',
+        label: 'Ivan Borissov',
+        url: 'https://randomuser.me/api/portraits/men/13.jpg'
+      }, {
+        value: 'Ivan Hristov',
+        label: 'Ivan Hristov',
+        url: 'https://randomuser.me/api/portraits/men/29.jpg'
+      }, {
+        value: 'Filip Kotev',
+        label: 'Filip Kotev',
+        url: 'https://randomuser.me/api/portraits/men/15.jpg'
+      }, {
+        value: 'Vassil Georgiev',
+        label: 'Vassil Georgiev',
+        url: 'https://randomuser.me/api/portraits/men/35.jpg'
+      }, {
+        value: 'Ilian Ivanov',
+        label: 'ILian Ivanov',
+        url: 'https://randomuser.me/api/portraits/men/39.jpg'
       }],
       valueSelectedEmployee: ''
-    }    
+    }
   },
   computed: {
     ...mapState('shared', [
       'pickerOptions'
     ]),
     ...mapState('editTime', [
-      'days',
+      'days'
     ]),
     datePickerValue: {
-      get() {
-        return this.$store.getters['shared/datePickerValue'];
-      },  
-      set(datePickerValue) {
-        return this.$store.dispatch('shared/updateDatePickerValue', datePickerValue, {root:true});
+      get () {
+        return this.$store.getters['shared/datePickerValue']
+      },
+      set (datePickerValue) {
+        return this.$store.dispatch('shared/updateDatePickerValue', datePickerValue, {root: true})
       }
     },
-    customValidation() {
+    customValidation () {
 
     }
   }, // End Computed
@@ -168,56 +168,55 @@ export default {
     input: {
       numeric,
       minLength: minLength(5),
-      maxLength: maxLength(5),
+      maxLength: maxLength(5)
     }
   },
   methods: {
-    showNotification() {
-        this.$notify({
-          message: 'Time has been updated!',
-          type: 'success',
-          offset: 180,
-          duration: 1000
-        });
+    showNotification () {
+      this.$notify({
+        message: 'Time has been updated!',
+        type: 'success',
+        offset: 180,
+        duration: 1000
+      })
     },
-    onEditTime: function(event) {
+    onEditTime: function (event) {
       var vm = event.currentTarget
 
-        vm.classList.add('editTimeBoxFocused');
-        vm.querySelector('.el-icon-time').classList.remove('hidden');
-        vm.querySelector ('.iconEditTime').classList.add('hidden');
-        vm.querySelector ('.editTime').classList.add('f-14');
-        vm.nextElementSibling.classList.remove('hidden');     
+      vm.classList.add('editTimeBoxFocused')
+      vm.querySelector('.el-icon-time').classList.remove('hidden')
+      vm.querySelector('.iconEditTime').classList.add('hidden')
+      vm.querySelector('.editTime').classList.add('f-14')
+      vm.nextElementSibling.classList.remove('hidden')
     },
-    onSave: function(event) {
+    onSave: function (event) {
       var vm = event.currentTarget
-     
-      vm.classList.add('hidden');
-      vm.previousElementSibling.classList.remove('editTimeBoxFocused');
-      vm.previousElementSibling.childNodes[0].classList.add('hidden');
-      vm.previousElementSibling.childNodes[2].classList.remove('f-14');
-      vm.previousElementSibling.lastChild.classList.remove('hidden');
 
-      this.showNotification();
-    },
-    entered: function(event) {
-      var vm = event.currentTarget;
-      
-      vm.classList.remove('f-14');
-      vm.nextElementSibling.classList.remove('hidden');
-      vm.parentNode.classList.remove('editTimeBoxFocused');
-      vm.parentNode.firstChild.classList.add('hidden');
-      vm.parentNode.nextElementSibling.classList.add('hidden');
+      vm.classList.add('hidden')
+      vm.previousElementSibling.classList.remove('editTimeBoxFocused')
+      vm.previousElementSibling.childNodes[0].classList.add('hidden')
+      vm.previousElementSibling.childNodes[2].classList.remove('f-14')
+      vm.previousElementSibling.lastChild.classList.remove('hidden')
 
-      this.showNotification();
+      this.showNotification()
     },
-    
-  } //End Methods
+    entered: function (event) {
+      var vm = event.currentTarget
+
+      vm.classList.remove('f-14')
+      vm.nextElementSibling.classList.remove('hidden')
+      vm.parentNode.classList.remove('editTimeBoxFocused')
+      vm.parentNode.firstChild.classList.add('hidden')
+      vm.parentNode.nextElementSibling.classList.add('hidden')
+
+      this.showNotification()
+    }
+
+  } // End Methods
 }
-
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 
 .select-container { 
   display: flex;
@@ -312,11 +311,8 @@ export default {
   justify-content: space-between;
   border-bottom: 1px solid #dddddd;
   padding: 20px 15px 15px 10px;
-  /* margin-right: 145px */
 }
-/* .edit-time-tablerow:hover { 
-  background-color: #EAF6FB;
-} */
+
 .editDateCell {
   width: 30%;
   line-height: 3;
@@ -359,9 +355,6 @@ export default {
   border: none;
 }
 
-/* .editTime:hover {
-  background-color: #EAF6FB;
-} */
 .f-14 {
   font-size: 14px;
 }

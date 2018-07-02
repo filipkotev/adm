@@ -22,31 +22,29 @@ export default {
     appTitle: HeaderTitle
   },
   methods: {
-    handleScroll: function(event) {
+    handleScroll: function (event) {
       if (document.body.scrollTop > 150 || document.documentElement.scrollTop > 150) {
-        document.querySelector('.header').classList.remove('default-header');
-        document.querySelector('.header').classList.add('hidden-header');
-        document.querySelector('.internal-information').classList.add('internal-information-up');
-      }
-      else {
-        document.querySelector('.header').classList.remove('hiddden-header');
-        document.querySelector('.header').classList.add('default-header');
-        document.querySelector('.internal-information').classList.remove('internal-information-up');
+        document.querySelector('.header').classList.remove('default-header')
+        document.querySelector('.header').classList.add('hidden-header')
+        document.querySelector('.internal-information').classList.add('internal-information-up')
+      } else {
+        document.querySelector('.header').classList.remove('hiddden-header')
+        document.querySelector('.header').classList.add('default-header')
+        document.querySelector('.internal-information').classList.remove('internal-information-up')
       }
     }
   },
   created: function () {
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll)
   },
   destroyed: function () {
-    window.removeEventListener('scroll', this.handleScroll);
-  }  
+    window.removeEventListener('scroll', this.handleScroll)
+  }
 }
-
 </script>
 
-<style lang="sass">
+<style lang="scss">
 
-@import './styles/common.sass'; 
+@import './styles/common.scss'; 
 
 </style>
