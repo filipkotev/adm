@@ -27,8 +27,7 @@
                   <el-button
                       type="primary" 
                       icon="el-icon-circle-plus-outline"
-                      class="button add-user-button"
-                      @click="select">
+                      class="button add-user-button">
                   Add New User</el-button>
               </router-link>    
           </el-col>
@@ -81,8 +80,8 @@
 
           <router-link :to="{path:'/editdetailsfor'}">    
               <el-button 
-                class="secondary-button mr-1" 
-                @click="select">Edit</el-button>
+                class="secondary-button mr-1"
+                >Edit</el-button>
           </router-link>        
           <el-button class="secondary-button" @click="isPasswordPopup = !isPasswordPopup">Password</el-button>
         </el-col>
@@ -171,16 +170,16 @@ export default {
       }
       return this.people.sort(compare)
     },
-    onEditUser: function () {
-      this.$router.push('/staffmanager/editdetailsfor')
-    },
-    onAddNewUser: function () {
-      this.$router.push('/staffmanager/addnewuser')
-    },
-    select: function (event) {
-      let payload = event.currentTarget.innerText
-      return this.$store.dispatch('nav/updateSelectedSubPage', payload, {root: true})
-    }
+//    onEditUser: function () {
+//      this.$router.push('/staffmanager/editdetailsfor')
+//    },
+//    onAddNewUser: function () {
+//      this.$router.push('/staffmanager/addnewuser')
+//    },
+//    select: function (event) {
+//      let payload = event.currentTarget.innerText
+//      return this.$store.dispatch('nav/updateSelectedSubPage', payload, {root: true})
+//    }
   },
   created () {
     for (let i = 0; i < this.people.length; i++) {

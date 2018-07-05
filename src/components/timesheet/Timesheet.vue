@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="container">
-    <!-- Page Header -->   
+    <!-- Page Header -->
     <el-row><div class="page-title"><h1>My Timesheet</h1></div></el-row>
     
     <!-- Search Field -->
@@ -26,7 +26,7 @@
         </div>
       </el-col>
     </el-row>
-<!--    <p>{{ datePickerValue }}</p>-->
+    <p>{{ datePickerValue }}</p>
     <el-row>
       <el-col>
         <el-table
@@ -59,23 +59,16 @@
           <span>Total:</span> {{timesheetTotal}}
         </div>
       </el-col>  
-    </el-row>  
+    </el-row>
   </div>
 </template>
 
 <script>
 // import HeaderTitle from './../HeaderTitle.vue'
 import { mapState } from 'vuex'
-import axios from 'axios'
 // const { add } = require('timelite')
 
 export default {
-  // data () {
-  //   return {
-  //     datePickerValue: [ "2018-01-01T08:10:00.000Z", "2018-01-23T18:10:00.000Z" ]
-
-  //   }
-  // },
   computed: {
     ...mapState('timesheet', [
       'timesheetTable',
@@ -107,22 +100,6 @@ export default {
     },
     loadData () {
       this.$store.dispatch('timesheet/loadTimesheetTable', {root: true})
-//      var id= 40820
-//      var checkIn= this.datePickerValue[0]
-//      var checkOut= this.datePickerValue[1]
-//
-//      axios.get('/api/log/' + id + '/' + checkIn + '/' + checkOut)
-////       axios.get('/api/log/', {params: {
-////          id: 40820,
-////          checkIn: this.datePickerValue[0],
-////          checkOut: this.datePickerValue[1]
-////        }})
-//        .then(res => {
-//          console.log(res)
-//        })
-//        .catch(error => {
-//          console.log(error)
-//        })
     }
   }
 }

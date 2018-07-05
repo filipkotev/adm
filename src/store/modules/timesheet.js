@@ -3,6 +3,7 @@ import axios from 'axios'
 // const { add } = require('timelite');
 
 const state = {
+  loggedinUserId: 40820,
   loadedData: [],
   timesheetTable: [
 //	{
@@ -22,7 +23,7 @@ const state = {
 //        missing: '01:30',
 //        tagName: 'business',
 //        tagType: ''
-//      }, 
+//      },
 //      {
 //        date: 'Tuesday 04-05-2016',
 //        checkIn: '09:00',
@@ -31,7 +32,7 @@ const state = {
 //        missing: '01:10',
 //        tagName: 'on duty',
 //        tagType: ''
-//      }, 
+//      },
 //      {
 //        date: 'Wednesday 05-05-2016',
 //        checkIn: '09:00',
@@ -40,7 +41,7 @@ const state = {
 //        missing: '01:00',
 //        tagName: 'on duty',
 //        tagType: ''
-//      }, 
+//      },
 //      {
 //        date: 'Thirsday 06-05-2016',
 //        checkIn: '09:00',
@@ -98,51 +99,68 @@ const mutations = {
     state.datePickerValue = payload
   },
   loadTimesheets (state, responseData) {
-    var weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    var day // getDay()
-    var hours
-    var checkInHours // getHours()
-    var checkInMinutes // getMinutes()
-    var checkOutHours
-    var checkOutMinutes
-    var date  // getDate()
-    var month // getMonth()
-    var year // getFullyear()
+    // empty the timesheet table first
+    state.timesheetTable = []
 
-    for (let i=0; i <= responseData.length; i++) {
+    var weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    var day             // getDay()
+    var hours
+    var checkInHours    // getHours()
+    var checkInMinutes  // getMinutes()
+    var checkOutHours   // getHours()
+    var checkOutMinutes // getMinutes()
+    var date            // getDate()
+    var month           // getMonth()
+    var year            // getFullyear()
+
+    for (let i = 0; i < responseData.length; i++) {
+//      var options = { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit' }
+      let a = new Date(responseData[i].logIn)
+      let b = new Date(responseData[i].logOut)
+
+//      function checkForSingleNumber (c) {
+//        if (c.toString().length < 10) {
+//          c = '0' + c
+//        }
+//      }
+
+      year = a.getFullYear()           // 2018
+      date = a.getDate()               // 22
+      month = a.getMonth() + 1         // 1-12
+      hours = a.getHours()             // 9
+      day = weekdays[a.getDay()]       // 1 or Monday
+      checkInHours = a.getHours()      // 09
+      checkInMinutes = a.getMinutes()  // 15
+      checkOutHours = b.getHours()     // 17
+      checkOutMinutes = b.getMinutes() // 10
+
+//      checkForSingleNumber(date)
+//      checkForSingleNumber(hours)
+//      checkForSingleNumber(checkInHours)
+//      checkForSingleNumber(checkInMinutes)
+//      checkForSingleNumber(checkOutHours)
+//      checkForSingleNumber(checkOutMinutes)
       
-        year = new Date(responseData[i].logIn).getFullYear() // 2018
-        date =  new Date(responseData[i].logIn).getDate() // 22
-        month = new Date( responseData[i].logIn).getMonth() + 1// 1-12
-        hours = new Date( responseData[i].logIn).getHours() // 9
-        day = weekdays[new Date(responseData[i].logIn).getDay()] // 1 or Monday
-        checkInHours = new Date (responseData[i].logIn).getHours() // 9
-        checkInMinutes = new Date (responseData[i].logIn).getMinutes() // 15
-        checkOutHours = new Date (responseData[i].logOut).getHours() // 17
-        checkOutMinutes = new Date (responseData[i].logOut).getMinutes() //10
-      
+//      if (hours.toString().length == 1 ||
+//          checkInHours.toString().length == 1 ||
+//          checkInMinutes.toString().length == 1 ||
+//          checkOutHours.toString().length == 1 ||
+//          checkOutMinutes.toString().length == 1) {
+//
+//        hours = '0' + hours
+//        checkInHours = '0' + checkInHours
+//        checkInMinutes = '0' + checkInMinutes
+//        checkOutHours = '0' + checkOutHours
+//        checkOutMinutes = '0' + checkOutMinutes
+      }
+
       var dayAtWork = {
-        date: day + ' ' + date + '-' + month + '-' + year,
+        date: day + '  ' + date + '-' + month + '-' + year,
         checkIn: checkInHours + ':' + checkInMinutes,
-        checkOut: checkOutHours + ':' + checkOutMinutes,
+        checkOut: checkOutHours + ':' + checkOutMinutes
       }
       state.timesheetTable.push(dayAtWork)
-    }
-  },
-//  loadDaata (state, responseData) {
-//    state.loadedData = responseData
-//  }
-  // setTageType (state) {
-  //   for (var i = 0; i < state.timesheetTable.length; i++) {
-  //     if (state.timesheetTable[i].tagName === 'on duty') {
-  //         state.timesheetTable[i].tagType = 'success';
-  //     }else if (state.timesheetTable[i].tagName === 'overtime') {
-  //         state.timesheetTable[i].tagType = 'warning';
-  //     }else {
-  //       state.timesheetTable[i].tagType = '';
-  //     }
-  //   }
-  // }
+  }
 }
 
 const actions = {
@@ -150,28 +168,30 @@ const actions = {
     var responseData = []
     let checkIn = state.datePickerValue[0]
     let checkOut = state.datePickerValue[1]
+    let id = state.loggedinUserId
 
-    axios.get('/api/log/40820' + '/' + checkIn + '/' + checkOut)
+    axios.get('/api/log/' + id + '/' + checkIn + '/' + checkOut)
 //    axios.get('http://admission.sofia.ifao.net/api/log/45507/2018-06-01/2018-06-27')
       .then(res => {
         responseData = res.data
+        console.log(responseData)
         commit('loadTimesheets', responseData)
-      console.log(responseData)
       })
       .catch(error => {
         console.log(error)
       })
   },
-  updateDatePickerValue: ({commit}) => {
-    commit('updateDatePickerValue');
+  updateDatePickerValue: ({commit}, payload) => {
+    commit('updateDatePickerValue', payload)
   }
 }
 
 const getters = {
   datePickerValue: (state) => {
-    return state.datePickerValue;
+    return state.datePickerValue
   }
 }
+
 export default {
   namespaced: true,
   state,

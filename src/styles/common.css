@@ -168,6 +168,9 @@ body > .el-container {
   color: #C76161;
 }
 
+.el-checkbox__label {
+  color: #444444 !important;
+}
 /**** Check *****/
 /**** Media query ****/
 @media only screen and (min-width: 910px) and (max-width: 1265px) {

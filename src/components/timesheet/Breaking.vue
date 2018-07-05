@@ -78,7 +78,7 @@
       </template>
     </el-table-column>
     <el-table-column
-                label="Hours"
+        label="Hours"
       >
       <template slot-scope="scope">
         <div class="breaking breaking-daily-hours" style="vertical-align: bottom">
@@ -88,12 +88,12 @@
       </template>
     </el-table-column>
     <el-table-column
-                label="Absent"
-                prop="absent">
+        label="Absent"
+        prop="absent">
     </el-table-column>
     <el-table-column
-                label="Work hours"
-                prop="hours">
+        label="Work hours"
+        prop="hours">
     </el-table-column>
     </el-table>   -->
 

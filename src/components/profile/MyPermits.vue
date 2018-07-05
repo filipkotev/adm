@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import {mapState, mapGetters, mapMutations, mapActions} from 'vuex';
+import { mapState } from 'vuex'
 
 export default {
   computed: {
@@ -39,23 +39,23 @@ export default {
     ])
   },
   methods: {
-    
+
   },
-  created: function(){
+  created: function () {
     for (var i = 0; i < this.weekdays.length; i++) {
       if (this.weekdays[i].tagName === 'allowed') {
-          this.weekdays[i].tagType = 'success';
-      }else if (this.weekdays[i].tagName === 'denied') {
-          this.weekdays[i].tagType = 'danger';
-      }else{
-        this.weekdays[i].tagType = '';
+        this.weekdays[i].tagType = 'success'
+      } else if (this.weekdays[i].tagName === 'denied') {
+        this.weekdays[i].tagType = 'danger'
+      } else {
+        this.weekdays[i].tagType = ''
       }
     }
   }
 }
 </script>
 
-<style lang="css">
+<style lang="scss">
 .page-heading {
   font-size: 21px;
   color: #3d3d3d;

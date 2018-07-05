@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="wrapper">
       <div class="page-title"><h1>Access Requests</h1></div>
-      <div class="sub-title">People allowed access on Tuesday</div> 
+      <div class="sub-title">People allowed access on Tuesday</div>
       <el-table
         :data="people"
         style="width: 100%"
@@ -14,12 +14,12 @@
                 <div class="picName">
                   <div class="pic">
                     <img :src="people.row.imgUrl" alt="">
-                  </div>  
+                  </div>
                   <div class="userInfo">
                     <p><strong>{{ people.row.name }} </strong></p>
                   </div>
-                </div>  
-            </template>          
+                </div> 
+            </template>
         </el-table-column>
         <el-table-column
           prop="workId"
