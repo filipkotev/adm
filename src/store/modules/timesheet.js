@@ -1,5 +1,6 @@
 // import data from '../../data/data';
 import axios from 'axios'
+var moment = require('moment')
 // const { add } = require('timelite');
 
 const state = {
@@ -102,64 +103,24 @@ const mutations = {
     // empty the timesheet table first
     state.timesheetTable = []
 
-    var weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    var day             // getDay()
-    var hours
-    var checkInHours    // getHours()
-    var checkInMinutes  // getMinutes()
-    var checkOutHours   // getHours()
-    var checkOutMinutes // getMinutes()
-    var date            // getDate()
-    var month           // getMonth()
-    var year            // getFullyear()
-
     for (let i = 0; i < responseData.length; i++) {
-//      var options = { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit' }
-      let a = new Date(responseData[i].logIn)
-      let b = new Date(responseData[i].logOut)
+      let checkIn = new Date(responseData[i].logIn)
+                        .toLocaleTimeString(navigator.language, {hour: '2-digit', minute: '2-digit', hour12: false})
+      let checkOut = new Date(responseData[i].logOut)
+                        .toLocaleTimeString(navigator.language, {hour: '2-digit', minute: '2-digit', hour12: false})
+      let date = new Date(responseData[i].logIn)
+                        .toLocaleString([], { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit' })
 
-//      function checkForSingleNumber (c) {
-//        if (c.toString().length < 10) {
-//          c = '0' + c
-//        }
-//      }
+      let duration = moment.parseZone(moment(responseData[i].logOut, 'hh:mm').diff(moment(responseData[i].logIn, 'hh:mm'))).format('hh:mm')
 
-      year = a.getFullYear()           // 2018
-      date = a.getDate()               // 22
-      month = a.getMonth() + 1         // 1-12
-      hours = a.getHours()             // 9
-      day = weekdays[a.getDay()]       // 1 or Monday
-      checkInHours = a.getHours()      // 09
-      checkInMinutes = a.getMinutes()  // 15
-      checkOutHours = b.getHours()     // 17
-      checkOutMinutes = b.getMinutes() // 10
-
-//      checkForSingleNumber(date)
-//      checkForSingleNumber(hours)
-//      checkForSingleNumber(checkInHours)
-//      checkForSingleNumber(checkInMinutes)
-//      checkForSingleNumber(checkOutHours)
-//      checkForSingleNumber(checkOutMinutes)
-      
-//      if (hours.toString().length == 1 ||
-//          checkInHours.toString().length == 1 ||
-//          checkInMinutes.toString().length == 1 ||
-//          checkOutHours.toString().length == 1 ||
-//          checkOutMinutes.toString().length == 1) {
-//
-//        hours = '0' + hours
-//        checkInHours = '0' + checkInHours
-//        checkInMinutes = '0' + checkInMinutes
-//        checkOutHours = '0' + checkOutHours
-//        checkOutMinutes = '0' + checkOutMinutes
+      let dayAtWork = {
+        date,
+        checkIn,
+        checkOut,
+        duration
       }
-
-      var dayAtWork = {
-        date: day + '  ' + date + '-' + month + '-' + year,
-        checkIn: checkInHours + ':' + checkInMinutes,
-        checkOut: checkOutHours + ':' + checkOutMinutes
-      }
-      state.timesheetTable.push(dayAtWork)
+      state.timesheetTable.unshift(dayAtWork)
+    }
   }
 }
 

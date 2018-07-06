@@ -26,7 +26,6 @@
         </div>
       </el-col>
     </el-row>
-    <p>{{ datePickerValue }}</p>
     <el-row>
       <el-col>
         <el-table
@@ -92,7 +91,7 @@ export default {
   methods: {
     durationRedClass ({row, rowIndex}) {
       for (var i = 0; i < this.timesheetTable.length; i++) {
-        if (row.duration > '08:00:00') {
+        if (row.duration > '08:00') {
           return 'duration-red'
         }
       }

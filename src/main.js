@@ -24,6 +24,7 @@ Vue.use(VCalendar, {
   titleTransition: 'fade',
   weeksTransition: 'slide-v'
 })
+var moment = require('moment')
 
 // Vue.http.options.root = 'http://admission.sofia.ifao.net/' // api/log
 // FIREBASE DATAs
