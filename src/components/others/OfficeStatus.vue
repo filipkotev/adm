@@ -45,15 +45,14 @@
         Status
       </div>
       <ul class="office-status-list">
-          <li v-for="person in persons">
-            <div class="office-status user-name">
-              <img :src="person.imgUrl" alt="">
-              {{ person.name }}
-            </div>
-            <div class="office-status office-status-tag" style="vertical-align: bottom">
-              <el-tag :type="person.tagType">{{person.tagName}}</el-tag>
-            </div>
-
+        <li v-for="person in persons">
+          <div class="office-status user-name">
+            <img :src="person.imgUrl" alt="">
+            {{ person.name }}
+          </div>
+          <div class="office-status office-status-tag" style="vertical-align: bottom">
+            <el-tag :type="person.tagType">{{person.tagName}}</el-tag>
+          </div>
         </li>
       </ul>
     </div>

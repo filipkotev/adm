@@ -2,8 +2,8 @@
 <template lang="html">
   <div class="">
     <div class="page-title"><h1>Breaking Obligatory Hours</h1></div>
-    <div class="search-field">
-      <div class="block">
+    <el-row :gutter="10">
+      <el-col :xs="24" :sm="24" :md="11">
         <h5 class="demonstration">Period</h5>
         <el-date-picker
           v-model="datePickerValue"
@@ -14,8 +14,8 @@
           start-placeholder="Start date"
           end-placeholder="End date">
         </el-date-picker>
-      </div>
-      <div class="select">
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="11">
         <h5 class="demonstration">Department</h5>
         <el-select  v-model="departmentValue" placeholder="Select">
           <el-option
@@ -25,12 +25,11 @@
             :value="item.value">
           </el-option>
         </el-select>
-      </div>
-      <div class="submitButton">
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="2"  class="submitButton">
         <el-button type="primary" class="button">Go</el-button>
-      </div>
-      
-    </div>  
+      </el-col>
+    </el-row>  
     <div class="breaking-container">
       <div class="breaking-title-table">
         <div class="breaking title-table title-table-name">
@@ -174,10 +173,12 @@ export default {
   overflow: hidden;  
 } 
 
+/*
 .search-field {
   display: flex;
   align-items: space-between;  
 }
+*/
 
 .breaking-container {
   margin-top: 61px;
@@ -197,7 +198,37 @@ export default {
 .el-select {
   width: 100%;
 }
-  
+
+.el-icon-arrow-down {
+  position: relative;
+  right: 5px
+}
+
+.submitButton {
+  position: relative;
+  top: 52px;
+}
+
+.el-button {
+  margin-left: 0;
+}
+
+.button {
+  height: 40px;
+  width: 85px;
+  background-color:#1F98BD;
+  border-color: transparent;
+
+  & :hover {
+    background-color: hsl(192, 65%, 45%);
+  }
+}
+
+.button.is-active, .button:active, .button:focus {
+  background-color: hsl(192, 65%, 45%);
+  border-color: transparent;
+}
+
 .user-name {
   font-weight: 600;
   width: 342px !important;

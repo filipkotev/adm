@@ -1,9 +1,10 @@
 <template lang="html">
   <div class="container">
     <div class="page-title"><h1>Office Timesheet</h1></div>
-    <div class="block selectPeriod">
+    <el-row :gutter="10">     <!--<div class="block selectPeriod">-->
     <!-- Select Date -->
-      <div class="select">  
+<!--      <div class="select">-->
+      <el-col :xs="24" :sm="24" :md="11">
         <h5 class="demonstration">Period</h5>
         
           <el-date-picker
@@ -16,10 +17,11 @@
             end-placeholder="End date"
             align="right">
           </el-date-picker>
-        
-      </div>  
-    <!-- Select Department -->
-      <div class="select">
+      </el-col>  
+<!--      </div>  END Select-->
+      <!-- Select Department -->
+<!--      <div class="select">-->
+      <el-col :xs="24" :sm="24" :md="11">
         <h5 class="demonstration">Department</h5>
         <el-select  v-model="departmentValue" placeholder="Select">
           <el-option
@@ -29,12 +31,15 @@
             :value="item.value">
           </el-option>
         </el-select>
-      </div>  <!-- END Select -->
-      <div class="submitButton">
-        <el-button class="button" type="primary" >Go</el-button>
-      </div>
+      </el-col>  
+      <!--</div>   END Select -->
+      <el-col :xs="24" :sm="24" :md="2">
+        <div class="submitButton">
+          <el-button class="button" type="primary" >Go</el-button>
+        </div>
+      </el-col>
       <!-- <p>{{datePickerValue}}</p> -->
-    </div> <!-- END selectPeriod -->
+  </el-row><!--</div>  END selectPeriod -->
 
     <span @click="sortedArray"><i class="el-icon-arrow-down"></i></span>
     <el-table
@@ -43,7 +48,6 @@
       class="office-timesheet-table"
       :row-class-name="overtimeRedClass"
     >
-     
       <el-table-column label="Name and ID" style="width: 262px">
         <template slot-scope="people">
           <div class="picNameId">
@@ -57,18 +61,21 @@
           </div>
         </template>
       </el-table-column>
+
       <el-table-column
         label="Work"
         prop="work"
         align="center"
       >
-      </el-table-column>  
+      </el-table-column>
+
       <el-table-column
         label="Business"
         prop="business"
         align="center"
       >
-      </el-table-column>  
+      </el-table-column>
+
       <el-table-column
         label="Overtime"
         prop="overtime"
@@ -155,12 +162,13 @@ export default {
   display: inline-block;
   width: 100%;
 }
+
 .selectPeriod {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
 }
-  
+
 .select {
   width: 45%;
   display: inline-block;
@@ -185,18 +193,17 @@ export default {
   position: relative;
   top: 101px;
   z-index: 10;
-    
-  & :hover {
-    cursor: pointer;
-  }
 }
-  
-.el-table th > .cell {
-  padding-left: 15px !important;
+
+.el-icon-arrow-down:hover {
+  cursor: pointer;
+}
+
+.cell:first-of-type {
+  background-color: red !important;
 } 
-  
+
 .button {
-  margin-left: 20px;
   height: 40px;
   width: 85px;
   background-color:#1F98BD;
@@ -213,9 +220,13 @@ export default {
 }
   
 .submitButton {
+/*
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-start;
+*/
+  position: relative;
+  top: 40px;
 }
   
 .picNameId {

@@ -7,19 +7,15 @@
       <el-row 
         type="flex"
         justify-content="space-between"
-        :gutter="20">
-          <el-col :span="8">
+        :gutter="10">
+
+        <!--  Search for employee --> 
+          <el-col :xs="12" :sm="10" :md="10">
               <h5 class="demonstration">Employee</h5>
               <el-input
                   placeholder="Enter Employee Name" 
                   v-model="input"></el-input>
           </el-col>
-          <!-- <el-col class="submitButton" :span="6">
-              <el-button 
-                  class="button" 
-                  type="primary"
-                  @click="searchNames">Search</el-button>
-          </el-col>     -->
 
       <!--  Add New user -->
           <el-col class="add-new-user">
@@ -36,28 +32,29 @@
 
       <!-- Employee Table Head-->
       <el-row class="border-bottom table-head">
-        <el-col :span="8">
+        <el-col :xs="8" :sm="8" :md="8" :lg="8">
           <div class="sort-name-label">
               <i class="el-icon-arrow-down" @click="sortedArray"></i>
               <h5 class="demonstration bold">Name and ID</h5>
           </div>
         </el-col>
-        <el-col :span="10">
-          <h5 class="demonstration bold">User Role</h5>
+        <el-col :xs="10" :sm="6" :md=8 :lg="8">
+          <h5 class="demonstration bold pl-1">User Role</h5>
         </el-col>
-        <el-col :span="6">
-          <h5 class="demonstration bold">Actions</h5>
+        <el-col :xs="6" :sm="10" :md="8" :lg="8">
+          <h5 class="demonstration bold pl-1">Actions</h5>
         </el-col>
       </el-row>
       <!-- Employee Table -->
       <el-row
+       :gutter="10"
         class="border-bottom table-body"
         type="flex"
         align="middle"
         v-for="person in searchNames"
       >
 
-        <el-col :span="8" class="picNameId">
+        <el-col :xs="8" :sm="8" :md="8" :lg="8" class="picNameId">
 
           <img :src="person.imgUrl" alt>
           <div class="userInfo">
@@ -65,10 +62,10 @@
             <p>{{person.workId}}</p>
           </div>
         </el-col>
-        <el-col :span="10">
+        <el-col :xs="10" :sm="6" :md=8 :lg="8">
             <el-tag :type="person.tagType">{{person.role}}</el-tag>
         </el-col>
-        <el-col :span="6" class="buttons-container">
+        <el-col :xs="6" :sm="10" :md="8" :lg="8" class="buttons-container">
           <el-button 
             class="secondary-button delete-button mr-1" 
             v-if="deleted"
@@ -246,9 +243,11 @@ export default {
   border-bottom: 1px solid #EAF6FB;
 }
 
+/*
 .border-bottom h5 {
   padding-left: 0;
 }
+*/
 
 .picNameId {
   display: flex;
@@ -270,6 +269,14 @@ img {
 
 .userInfo p:last-child {
   font-size: 14px;
+}
+
+.buttons-container {
+  
+  .el-button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
 }
 
 .secondary-button {

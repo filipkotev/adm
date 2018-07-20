@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="">
     <div class="page-title"><h1>Edit Employee Timesheet</h1></div>
-    <div class="select-container">
-      <div class="block">
+    <el-row :gutter="10">
+      <el-col :xs="24" :sm="24" :md="11">
         <h5 class="demonstration">Employee</h5>
         <div style="position: relative">
           <img class="defaultImg" src="../../assets/user.svg" alt=""/>
@@ -18,8 +18,8 @@
               </el-option>
           </el-select>
         </div>
-      </div>
-      <div class="block selectPeriod">
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="11">
         <h5 class="demonstration">Period</h5>
         <el-date-picker
           class="full-width" 
@@ -32,11 +32,11 @@
           end-placeholder="End date" 
           :picker-options="pickerOptions">
         </el-date-picker>
-      </div>
-      <div class="submit-button-box">
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="2" class="submitButton">
         <el-button class="submit-button" type="primary">Go</el-button>
-      </div> 
-    </div> 
+      </el-col> 
+    </el-row>
   <!-- Table header titles -->  
     <div class="edit-time-table">
       <div class="edit-title-table">
@@ -232,6 +232,13 @@ export default {
 .selectPeriod {
   margin-left: 20px;
 }
+.submitButton {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  position: relative;
+  top: 52px;
+}
 #selectEmployee {
     padding-left: 60px;
 }
@@ -269,7 +276,6 @@ export default {
   border-color: transparent;
 }
 .el-button {
-  margin-left: 20px;
   height: 40px;
   width: 85px;
   color: white;

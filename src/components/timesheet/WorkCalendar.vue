@@ -3,20 +3,8 @@
     <div class="page-title"><h1>Work Calendar</h1></div>
 
     
+<!--
     <div class="select-container">
-      <!-- <h5 class="demonstration">Choose Another Month</h5> -->
-      <!-- <div class="show-month">
-        <span class="change-month el-icon-arrow-left" @click="movePreviousMonth"></span>
-        <el-select v-model="value" placeholder="Select">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <span class="change-month el-icon-arrow-right" @click="moveNextMonth"></span>
-      </div> -->
       <div class="show-full-year-switch">
         <strong>Show Entire Year ({{thisYear}})</strong>
         <el-switch
@@ -25,7 +13,8 @@
           >
         </el-switch>
       </div>
-    </div> <!-- End Select Container -->
+    </div>  End Select Container 
+-->
 
     <div class="calendar">  
       <v-calendar
@@ -74,15 +63,17 @@
         <span >{{ item.key }}</span>
         {{ isCurrentMonth }}
       </div>
-      <!-- <div class="holiday-info">
+       <div class="holiday-info">
         <div class="holiday-date">5 Mar 2018</div>
         <span>National Liberation Day</span>
-      </div> -->
+      </div> 
     </div>
-    <!-- <div 
+<!--
+     <div 
         v-for="month in currentMonths"
         styles="display: inline-block;"
-        > {{ month }} </div> -->
+        > {{ month }} </div> 
+-->
     <!--- Full Year Calendar -->
     <div class="calendar full-year-calendar" :class="{ hiddenFullYear: !hideFullYear }">
       
@@ -165,159 +156,178 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss">
 
-strong
-  color: #000 !important
+strong {
+  color: #000 !important;
+  font-size: 14px;
+}
+.select-container {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+.hiddenFullYear {
+  display: none !important;
+}
+.show-month {
+  display: flex;
+  align-items: flex-end;
+}
+.change-month {
+  height: 38px;
+  width: 43px;
+  border: 1px solid #dcdfe6;
+  border-radius: 3px;
 
-.select-container
-  display: flex
-  flex-flow: row
-  justify-content: space-between
-
-.hiddenFullYear
-  display: none !important
-
-.show-month
-  display: flex
-  align-items: flex-end
-
-.change-month
-  height: 38px
-  width: 43px
-  border: 1px solid #dcdfe6
-  border-radius: 3px
-
-  &:hover 
-    cursor: pointer
-
-.el-icon-arrow-left
+  &:hover {
+    cursor: pointer;
+  }
+}
+.el-icon-arrow-left {
+  line-height: 2;
+  
+  &:before {
+    padding: 12px;
+  }
+}
+.el-icon-arrow-right {
   line-height: 2
-  &:before
-    padding: 12px
-
-.el-icon-arrow-right
-  line-height: 2
-  &:before
-    padding: 12px
-
-.el-select
-  width: 150px
-  margin-right: 10px
-  margin-left: 10px
-
-.el-switch
-  margin-left: 15px
-
-.show-full-year-switch
-  display: flex
-  align-items: center
-
-strong
-  font-size: 14px
+    
+  &:before {
+    padding: 12px;
+  }
+}
+.el-select {
+  width: 150px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.el-switch {
+  margin-left: 15px;
+}
+.show-full-year-switch {
+  display: flex;
+  align-items: center;
+}
 
 /***** Legend Styles *****/
-.legend
-  display: flex
-  flex-flow: row
-  margin-top: 20px
+.legend {
+  display: flex;
+  flex-flow: row;
+  margin-top: 20px;
+}
+.legend-box {
+  margin-right: 85px;
+  position: relative;
+}
+.legend-box > p {
+  font-size: 12px;
+  color: #8D8D8D;
+  position: relative;
+  top: -20px;
+  left: 40px;
+}
+.legend-box > span {
+  width: 28px;
+  height: 18px;
+  border: 1px solid #BFBFBF;
+  display: inline-block;
+  margin-right: 15px;
+}
+.legend-current-day {
+  background-color: #EAF6FB;
+}
+.legend-holiday {
+  background-color: #F1FBEA;
+}
+.legend-working-day {
+  background-color: #fff;
+}
+.legend-weekend {
+  background-color: #ECECEC;
+}
 
-.legend-box
-  margin-right: 85px
-  position: relative
-
-.legend-box>p
-  font-size: 12px
-  color: #8D8D8D
-  position: relative
-  top: -20px
-  left: 40px
-
-.legend-box>span
-  width: 28px
-  height: 18px
-  border: 1px solid #BFBFBF
-  display: inline-block
-  margin-right: 15px
-
-.legend-current-day
-  background-color: #EAF6FB
-
-.legend-holiday
-  background-color: #F1FBEA
-
-.legend-working-day
-  background-color: #fff
-
-.legend-weekend
-  background-color: #ECECEC
 
 /****** Calendar ******/
-.calendar
-  margin-top: 30px
+
+.calendar {
+  margin-top: 30px;
+}
+.c-title-popover {
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  padding: 5px 35px;
+
+  & :hover {
+    cursor: pointer;
+  }
+}
+
+.c-pane-container {
+  background: #fff !important;
+  border: none  !important;
+}
+.c-title {
+  color: #444444 !important;
+}
+.c-weekday {
+  padding: 10px !important;
+}
+.c-weeks-row .c-week {
+  border-bottom: 1px solid lightgrey;
+}
+.c-weeks-row .c-week:nth-chilld(6) {
+  background-color: #ECECEC;
+}
+.c-week {
+  border-bottom: 1px solid lightgrey;
+}
+.c-day .c-day-background {
+  width: 100% !important;
+  height: 100% !important;
+}
+.c-day {
+   height: 56px !important;
+}
+
+.full-year-month {
+  width: 45%;
+}
+
+.full-year-month {
+  margin-bottom: 35px;
+}
   
-.c-title-popover
-  border: 1px solid lightgrey
-  border-radius: 4px
-  padding: 5px 35px
-
-  &:hover
-    cursor: pointer
-
-.c-pane-container
-  background: #fff !important
-  border: none  !important
-
-.c-title
-  color: #444444 !important
-
-.c-weekday
-  padding: 10px !important
-
-.c-week,
-  border-bottom: 1px solid lightgrey
-
-.c-week:nth-chilld(6)
-  background-color: #ECECEC
-
-.c-day-background
-  width: 100% 
-  height: 100% 
-
-.c-day
-   height: 56px 
-  
+.full-year-month:nth-child(odd) {
+  margin-right: 10%;
+}
+ 
 /******* Holidays Legend *******/
-.holidays-legend
-  margin-top: 30px
-
-.holiday-info
-  display: flex
-  width: 370px
-  border-top: 1px solid lightgrey
+.holidays-legend {
+  margin-top: 30px;
+}
+.holiday-info {
+  display: flex;
+  width: 370px;
+  border-top: 1px solid lightgrey;
   
-  &:last-of-type
-    border-bottom: 1px solid lightgrey
+  & :last-of-type {
+    border-bottom: 1px solid lightgrey;
+  }
 
-  &>span
-    padding-top: 20px
-    padding-left: 10px
+  & > span {
+    padding-top: 20px;
+    padding-left: 10px;
+  }
+}
+.holiday-date {
+  height: 40px;
+  background-color: #F1FBEA;
+  color: #444444;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 20px 28px 11px 15px;
+}
 
-.holiday-date
-  
-  height: 40px
-  background-color: #F1FBEA
-  color: #444444
-  font-size: 14px
-  font-weight: bold
-  padding: 20px 28px 11px 15px
-
-.full-year-month
-  width: 45%
-
-.full-year-calendar
-  &:nth-child(odd)
-    margin-right: 10%
-.full-year-calendar:first-child()
-  margin-right: 10%
 </style>

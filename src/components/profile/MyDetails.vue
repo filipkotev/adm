@@ -284,5 +284,15 @@ input[type=number]::-webkit-inner-spin-button,
     appearance: none;
     margin: 0;
 }
+
+.el-upload {
+  width: 100%;
+}
+.el-upload-dragger {
+  width: 100%;
+}
+.el-upload__text {
+  list-style: 1;
+}
 </style>
  

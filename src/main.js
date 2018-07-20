@@ -14,7 +14,6 @@ import Vuelidate from 'vuelidate'
 const VueInputMask = require('vue-inputmask').default
 
 Vue.use(ElementUI, { locale })
-Vue.use(ElementUI)
 Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(Vuelidate)
