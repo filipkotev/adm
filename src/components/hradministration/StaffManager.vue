@@ -7,7 +7,7 @@
       <el-row 
         type="flex"
         justify-content="space-between"
-        :gutter="10">
+        :gutter="20">
 
         <!--  Search for employee --> 
           <el-col :xs="12" :sm="10" :md="10">
@@ -199,6 +199,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  
+h5.demonstration {
+  padding-left: 0;
+  margin-bottom: 10px;
+}
 .demonstration {
   padding-left: 10px;
 }    

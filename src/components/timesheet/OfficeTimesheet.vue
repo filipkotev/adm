@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="container">
     <div class="page-title"><h1>Office Timesheet</h1></div>
-    <el-row :gutter="10">     <!--<div class="block selectPeriod">-->
+    <el-row :gutter="20">     <!--<div class="block selectPeriod">-->
     <!-- Select Date -->
 <!--      <div class="select">-->
       <el-col :xs="24" :sm="24" :md="11">
@@ -201,32 +201,6 @@ export default {
 
 .cell:first-of-type {
   background-color: red !important;
-} 
-
-.button {
-  height: 40px;
-  width: 85px;
-  background-color:#1F98BD;
-  border-color: transparent;
-
-  & :hover {
-    background-color: hsl(192, 65%, 45%);
-  }
-}
-
-.button.is-active, .button:active, .button:focus {
-  background-color: hsl(192, 65%, 45%);
-  border-color: transparent;
-}
-  
-.submitButton {
-/*
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: flex-start;
-*/
-  position: relative;
-  top: 40px;
 }
   
 .picNameId {

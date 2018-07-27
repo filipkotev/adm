@@ -2,7 +2,7 @@
 <template lang="html">
   <div class="">
     <div class="page-title"><h1>Breaking Obligatory Hours</h1></div>
-    <el-row :gutter="10">
+    <el-row :gutter="20">
       <el-col :xs="24" :sm="24" :md="11">
         <h5 class="demonstration">Period</h5>
         <el-date-picker
@@ -171,19 +171,12 @@ export default {
 
 .el-select-dropdown__wrap {
   overflow: hidden;  
-} 
-
-/*
-.search-field {
-  display: flex;
-  align-items: space-between;  
 }
-*/
 
 .breaking-container {
   margin-top: 61px;
 }
-  
+
 .block {
   width: 45%;
   display: inline-block;
@@ -201,32 +194,7 @@ export default {
 
 .el-icon-arrow-down {
   position: relative;
-  right: 5px
-}
-
-.submitButton {
-  position: relative;
-  top: 52px;
-}
-
-.el-button {
-  margin-left: 0;
-}
-
-.button {
-  height: 40px;
-  width: 85px;
-  background-color:#1F98BD;
-  border-color: transparent;
-
-  & :hover {
-    background-color: hsl(192, 65%, 45%);
-  }
-}
-
-.button.is-active, .button:active, .button:focus {
-  background-color: hsl(192, 65%, 45%);
-  border-color: transparent;
+  right: 5px;
 }
 
 .user-name {

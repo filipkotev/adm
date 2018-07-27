@@ -1,16 +1,16 @@
 <template lang="html">
   <div class='office-status-container'>
     <div class="page-title"><h1>Office Status</h1></div>
-    <div class="search-field">
-      <div class="block">
+    <el-row :gutter="20">
+      <el-col :xs="24" :sm="24" :md="7">
         <h5 class="demonstration">Date and time</h5>
         <el-date-picker
           v-model="pickerValue"
           type="datetime"
           placeholder="Select date and time">
         </el-date-picker>
-      </div>
-      <div class="select-status">
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="7">
         <h5 class="demonstration">Department</h5>
         <el-select v-model="departmentValue" placeholder="Everyone">
           <el-option
@@ -20,8 +20,8 @@
             :value="item.value">
           </el-option>
         </el-select>
-      </div>
-      <div class="select-status">
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="7">
         <h5 class="demonstration-status">Status</h5>
         <el-select v-model="statusValue" placeholder="Show All">
           <el-option
@@ -31,11 +31,11 @@
             :value="item.stat">
           </el-option>
         </el-select>
-      </div>
-      <div class="submitButton">
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="3" class="submitButton">
           <el-button class="button" type="primary">Go</el-button>
-      </div>
-    </div> <!-- End search field -->
+      </el-col>
+    </el-row> <!-- End search field -->
     <div class="office-status-table">
       <div class="office-status title-table-status">
         <span @click="sortedArray"><i class="el-icon-arrow-down"></i></span>
@@ -125,38 +125,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+  
 .el-select-dropdown__wrap{
   overflow: hidden;
 }
-.search-field {
-  display: flex;
-  align-items: space-between;
-  /* padding-right: 140px; */
-}
-.button {
-  margin-left: 20px;
-  height: 40px;
-  width: 85px;
-  background-color:#1F98BD;
-  border-color: transparent;
-  color: white;
 
-  & :hover {
-  background-color: hsl(192, 65%, 45%);
-  }
-}
-.button--primary.is-active,
-.button--primary:active,
-.button--primary:focus {
-  background-color: hsl(192, 65%, 45%);
-  border-color: transparent;
-}
-.submitButton {
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: flex-start;
-}
 .office-status-container .block,
 .select-status{
   width: 28%;
@@ -173,6 +147,11 @@ export default {
 }
 .demonstration-status {
   padding-right: 8px;
+  
+  ~ .el-select {
+    position: relative;
+    top: -5px;
+  }
 }
 .office-status-table {
   margin-top: 61px;

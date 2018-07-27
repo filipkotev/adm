@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="">
     <div class="page-title"><h1>Edit Employee Timesheet</h1></div>
-    <el-row :gutter="10">
+    <el-row :gutter="20">
       <el-col :xs="24" :sm="24" :md="11">
         <h5 class="demonstration">Employee</h5>
         <div style="position: relative">

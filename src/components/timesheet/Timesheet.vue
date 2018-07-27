@@ -1,31 +1,33 @@
 <template lang="html">
   <div class="container">
     <!-- Page Header -->
-    <el-row><div class="page-title"><h1>My Timesheet</h1></div></el-row>
+    <el-row>
+      <div class="page-title">
+        <h1>My Timesheet</h1>
+      </div>
+    </el-row>
     
     <!-- Search Field -->
-    <el-row>
-      <el-col>
-        <div class="block selectPeriod">
+    <el-row :gutter="20">
+      <el-col :xs="24" :sm="24" :md="14" :lg="8">
+        
           <h5 class="demonstration">Period</h5>
-            <div class="select-container">
-            <el-date-picker
-              v-model="datePickerValue"
-              type="datetimerange"
-              format="dd/MM/yyyy"
-              :picker-options="pickerOptions"
-              range-separator="To"
-              start-placeholder="Start date"
-              end-placeholder="End date"
-              align="right">
-            </el-date-picker>
-            <div class="submitButton">
-              <el-button class="button" type="primary" @click="loadData">Go</el-button>
-            </div>
-          </div>
-        </div>
+          <el-date-picker
+            v-model="datePickerValue"
+            type="datetimerange"
+            format="dd/MM/yyyy"
+            :picker-options="pickerOptions"
+            range-separator="To"
+            start-placeholder="Start date"
+            end-placeholder="End date"
+            align="right">
+          </el-date-picker>
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="2" class="submitButton">
+          <el-button class="button" type="primary" @click="loadData">Go</el-button>
       </el-col>
     </el-row>
+
     <el-row>
       <el-col>
         <el-table
@@ -106,13 +108,9 @@ export default {
 
 <style lang="scss" scoped>
   .el-date-editor.el-input__inner {
-  width: 33%;
+  width: 100%;
 }
-  
-.submitButton {
-  float: left;
-}
-  
+
 .timesheet_total {
   line-height: 3;
   text-align: right;

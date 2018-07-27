@@ -5,23 +5,17 @@ body {
 p, h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
-.header {
-  height: 150px !important;
-  transition: all 0.5s linear;
-  -moz-transition: all 0.5s linear;
-  -webkit-transition: all 0.5s linear;
-}
-.hidden-header {
-  top: -150px !important;
-}
-.default-header {
-  top: 0 !important;
-}
-.demonstration {
-  color: #8D8D8D !important;
-  font-size: 12px;
-  font-weight: 400 !important;
-}
+
+/* Default Colors */
+$default-button-bg: #1F98BD;
+$hover-bg: hsl(192, 65%, 45%);
+$light-blue: #EAF6FB;
+$blue-text: #249ABF;
+$grey-light: #b2b4b5;
+$grey-dark: #878d99;
+$grey-darker: #1A2C33;
+$alert-red: #C76161;
+
 .mr-1 {
   margin-right: 10px;
 }
@@ -34,7 +28,6 @@ p, h1, h2, h3, h4, h5, h6 {
 .ml-2 {
   margin-left: 20px;
 }
-
 .pl-1 {
   padding-left: 10px;
 }
@@ -48,6 +41,25 @@ p, h1, h2, h3, h4, h5, h6 {
   padding-right: 20px;
 }
 
+.header {
+  height: 150px !important;
+  transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -webkit-transition: all 0.5s linear;
+}
+.hidden-header {
+  top: -150px !important;
+}
+.default-header {
+  top: 0 !important;
+}
+
+.demonstration {
+  color: #8D8D8D !important;
+  font-size: 12px;
+  font-weight: 400 !important;
+}
+
 .el-main {
   background-color: #fff;
   color: #333;
@@ -56,8 +68,46 @@ p, h1, h2, h3, h4, h5, h6 {
   padding: 0;
   margin-top: 200px;
 }
+
+/*** Buttons styles ***/
+
+.submitButton {
+  position: relative;
+  top: 52px;
+}
 .el-button {
   margin-left: 0;
+}
+.button {
+  margin-left: 0;
+  height: 40px;
+  width: 85px;
+  background-color: $default-button-bg;
+  border-color: transparent;
+}
+.button:hover {
+  background-color: $hover-bg !important;
+}
+.button.is-active, .button:active, .button:focus {
+  background-color: $hover-bg;
+  border-color: transparent;
+}
+
+// Secondary Button  
+.secondary-button {
+  width: auto;
+  padding: 0 !important;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center !important;
+  background: #fff;
+  border-color: $default-button-bg;
+  color: $default-button-bg !important;
+    
+  &:hover {
+    border-color: $hover-bg !important;
+    color: $hover-bg !important;
+  }
 }
 .content {
   width: 85%;
@@ -71,11 +121,11 @@ p, h1, h2, h3, h4, h5, h6 {
 .el-main h1 {
   line-height: 30px;
   font-weight: 400;
-  border-bottom: 1px solid #EAF6FB;
+  border-bottom: 1px solid $light-blue;
 }
 .el-main h5 {
   font-weight: 300;
-  color: #878d99;
+  color: $grey-dark;
 }
 body > .el-container {
   margin-bottom: 60px;
@@ -88,7 +138,7 @@ body > .el-container {
   line-height: 320px;
 }
 .internal-information {
-  background-color: #EAF6FB;
+  background-color: $light-blue;
   padding: 15px 15px 15px 20px;
   text-align: left;
   position: fixed;
@@ -103,58 +153,19 @@ body > .el-container {
   top: 0 !important;
 }
 .internal-information .page-name {
-  color: #1A2C33;
+  color: $grey-darker;
 }
 .internal-information span {
   font-family: Roboto;
-  color: #249ABF;
+  color: $blue-text;
   font-weight: 500;
   font-size: 14px;
 }
 [class*=" el-icon-"], [class^=el-icon-] {
   vertical-align: middle;
-  color: #b2b4b5;
-}
-//"Go" button div styles
-.submitButton {
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: flex-start;
+  color: $grey-light;
 }
 
-// "Go" button styles
-.button {
-  display: inline-block;
-  margin-left: 20px;
-  height: 40px;
-  width: 85px;
-  background-color: #1F98BD;
-  border-color: transparent;
-
-  & :hover {
-    background-color: hsl(192, 65%, 45%);
-  }
-}
-.button.is-active, .button:active, .button:focus {
-  background-color: hsl(192, 65%, 45%) !important;
-  border-color: transparent !important;
-}
-// Secondary Button  
-.secondary-button {
-  width: auto;
-  padding: 0 !important;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center !important;
-  background: #fff;
-  border-color: #1F98BD;
-  color: #1F98BD !important;
-    
-  &:hover {
-    border-color: hsl(192, 65%, 45%) !important;
-    color: hsl(192, 65%, 45%) !important;
-  }
-}
 #selectEmployee {
   padding-left: 60px !important;
 }
@@ -171,7 +182,7 @@ body > .el-container {
   width: 100%!important;
 }
 .duration-red td:last-of-type {
-  color: #C76161;
+  color: $alert-red;
 }
 
 /**** Check *****/

@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="">
     <div class="page-title"><h1>Abidance Time Frame and Break</h1></div>
-    <div class="search-field">
-      <div class="block">
+    <el-row :gutter="20">
+      <el-col :xs="24" :sm="24" :md="11">
         <h5 class="demonstration">Period</h5>
         <el-date-picker
           v-model="pickerValue"
@@ -12,8 +12,8 @@
           start-placeholder="Start date"
           end-placeholder="End date">
         </el-date-picker>
-      </div>
-      <div class="select">
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="11">
         <h5 class="demonstration">Department</h5>
         <el-select  v-model="departmentValue" placeholder="Select">
           <el-option
@@ -23,11 +23,11 @@
             :value="item.value">
           </el-option>
         </el-select>
-      </div>  
-      <div class="submitButton">
+      </el-col>  
+      <el-col :xs="24" :sm="24" :md="2" class="submitButton">
         <el-button class="button" type="primary">Go</el-button>
-      </div>
-    </div> <!-- End Search Field -->
+      </el-col>
+    </el-row> <!-- End Search Field -->
     <div class="abidanceContainer">
       <ul>
         <li v-for="person in people">
@@ -157,35 +157,6 @@ export default {
 
 .el-select-dropdown__wrap {
   overflow: hidden;  
-}
-
-.search-field {
-  display: flex;
-  justify-content: space-between;
-} 
-
-.button {
-  margin-left: 20px;
-  height: 40px;
-  width: 85px;
-  background-color: #1F98BD;
-  border-color: transparent;
-}
-
-.button:hover {
-  background-color: hsl(192, 65%, 45%);
-}
-
-.button:active, 
-.button:focus {
-  background-color: hsl(192, 65%, 45%);
-  border-color: transparent;
-}
-
-.submitButton {
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: flex-start;
 }
 
 .abidanceContainer {
