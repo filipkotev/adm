@@ -1,102 +1,217 @@
 <template>
     <div>
         <h1>Add New User</h1>
-        <el-form :model="ruleForm" status-icon :rules="rules" ref="form" class="content-container">
+        <el-form :model="validateForm" ref="validateForm" status-icon class="content-container">
             <h4> Access level and department</h4>
             <el-row :gutter="20">
+               <!-- Department -->
                 <el-col :md="12">
-                    <h5 class="demonstration">Department</h5>
-                    <el-select  v-model="departmentValue" placeholder="Select Department">
-                    <el-option
-                        v-for="item in selectDepartment"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value">
-                    </el-option>
-                    </el-select>
+                  <el-form-item  label="Department" 
+                                 :rules="[
+                                  { required: true, message: 'Please select department', trigger: 'blur' }
+                                ]"
+                  >
+
+                      <el-select  v-model="validateForm.department" placeholder="Select Department">
+                        <el-option
+                            v-for="item in selectDepartment"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                        </el-option>
+                      </el-select>
+
+                  </el-form-item>
                 </el-col>
+                <!-- Access Level -->
                 <el-col :md="12">
-                    <h5 class="demonstration">Access Level</h5>
-                    <el-select  v-model="form.accessLevelValue" placeholder="Select Department">
-                    <el-option
-                        v-for="accessLevel in accessLevels"
-                        :key="accessLevel.value"
-                        :label="accessLevel.label"
-                        :value="accessLevel.value">
-                    </el-option>
-                    </el-select>
+                  <el-form-item label="Access Level" 
+                                :rules="[
+                                  { required: true, message: 'Please select access level', trigger: 'blur'}
+                                ]"
+                  >
+
+                      <el-select  v-model="validateForm.accessLevelValue"
+                                  placeholder="Select Access Level">
+                        <el-option
+                            v-for="accessLevel in accessLevels"
+                            :key="accessLevel.value"
+                            :label="accessLevel.label"
+                            :value="accessLevel.value">
+                        </el-option>
+                      </el-select>
+
+                  </el-form-item>
                 </el-col>
             </el-row>
             <h4> User details:</h4>
             <el-row :gutter="20">
+                <!-- Personal Id -->
                 <el-col :md="12">
-                    <h5 class="demonstration">Personal ID</h5>
-                    <el-input></el-input>
+                    <el-form-item  label="Personal ID"
+                                   :rules="[
+                                      { required: true, message: 'Please select department', trigger: 'blur' }
+                                    ]"
+                    >
+
+                      <el-input type="text" v-model="validateForm.personalID"></el-input>
+
+                    </el-form-item>
                 </el-col>
+                <!-- Login name -->
                 <el-col :md="12">
-                    <h5 class="demonstration">Login name</h5>
-                    <el-input class="verify-input"></el-input>
-                    <el-button class="secondary-button verify-button">Verify</el-button>
-                </el-col>
-            </el-row>
-            <el-row :gutter="20">
-                <el-col :md="12">
-                    <h5 class="demonstration">Select Password</h5>
-                    <el-input type="password"></el-input>
-                </el-col>
-                <el-col :md="12">
-                    <h5 class="demonstration">Verify password</h5>
-                    <el-input type="password" ></el-input>
-                </el-col>
-            </el-row>
-            <el-row :gutter="20">
-                <el-col :md="12">
-                    <h5 class="demonstration">First name</h5>
-                    <el-input></el-input>
-                </el-col>
-                <el-col :md="12">
-                    <h5 class="demonstration">Family name</h5>
-                    <el-input></el-input>
+                    <el-form-item  label="Login name" 
+                                   :rules="[
+                                      { required: true, message: 'Please select department', trigger: 'blur' }
+                                    ]"
+                    >
+                     
+                        <el-input type="text" v-model="validateForm.loginName"></el-input>
+                        <el-button class="secondary-button verify-button">Verify</el-button>
+                      
+                </el-form-item>
                 </el-col>
             </el-row>
             <el-row :gutter="20">
+               <!-- Password -->
                 <el-col :md="12">
-                    <h5 class="demonstration">EGN</h5>
-                    <el-input v-model.number="form.egn"></el-input>
+                    <el-form-item 
+                       label="Password" 
+                       :rules="[
+                          { required: true, message: 'Please type password', trigger: 'blur' },
+                        ]"
+                    >
+                    
+                      <el-input type="password" v-model="validateForm.password"></el-input>
+                    
+                  </el-form-item>
                 </el-col>
+                <!-- Verify password -->
                 <el-col :md="12">
-                    <h5 class="demonstration">Company join date</h5>
-                    <el-date-picker
-                        v-model="form.joinDate"
-                        type="date"
-                        placeholder="Select Date">
-                    </el-date-picker>
+                    <el-form-item 
+                       label="Verify password" 
+                       :rules="[
+                        { required: true, message: 'Please verify password', trigger: 'blur' }
+                      ]"
+                    >
+                    
+                      <el-input type="password"></el-input>
+                  
+                  </el-form-item>
                 </el-col>
             </el-row>
             <el-row :gutter="20">
+                <!-- First name -->
                 <el-col :md="12">
-                    <h5 class="demonstration">Home address</h5>
-                    <el-input></el-input>
+                    <el-form-item 
+                      label="First name" 
+                      :rules="[
+                          { required: true, message: 'Please type first name', trigger: 'blur' }
+                        ]"
+                      >
+
+                      <el-input type="text" v-model="validateForm.firstName"></el-input>
+
+                  </el-form-item>
                 </el-col>
+                <!-- Family name -->
                 <el-col :md="12">
-                    <h5 class="demonstration">Mobile</h5>
-                    <el-input v-model.number="form.mobile"></el-input>
+                    <el-form-item 
+                      label="Family name" 
+                      :rules="[
+                        { required: true, message: 'Please type family name', trigger: 'blur' }
+                      ]"
+                    >
+
+                      <el-input type="text" v-model="validateForm.lastName"></el-input>
+
+                  </el-form-item>  
                 </el-col>
             </el-row>
             <el-row :gutter="20">
+                <!-- EGN -->
                 <el-col :md="12">
-                    <h5 class="demonstration">Phone extension</h5>
-                    <el-input v-model.number="form.phoneExtension"></el-input>
+                    <el-form-item 
+                      label="EGN"
+                      :rules="[
+                        { required: true, message: 'Please type egn', trigger: 'blur' }
+                      ]"
+                    >
+
+                      <el-input v-model.number="validateForm.egn"></el-input>
+
+                  </el-form-item>  
                 </el-col>
-               
+                <!-- Compnay join date -->
+                <el-col :md="12">
+                    <el-form-item 
+                      label="Company join date" 
+                      :rules="[
+                        { required: true, message: 'Please enter company join date', trigger: 'blur' }
+                      ]"
+                    >
+
+                      <el-date-picker
+                          v-model="validateForm.joinDate"
+                          type="date"
+                          placeholder="Select Date">
+                      </el-date-picker>
+
+                  </el-form-item>  
+                </el-col>
+            </el-row>
+            <el-row :gutter="20">
+                <!-- Home address -->
+                <el-col :md="12">
+                    <el-form-item 
+                      label="Home address" 
+                      :rules="[
+                        { required: true, message: 'Please type home address', trigger: 'blur' }
+                      ]"
+                    >
+
+                      <el-input type="text" v-model="validateForm.homeAddress"></el-input>
+
+                    </el-form-item>
+                </el-col>
+                <!-- Mobile number -->
+                <el-col :md="12">
+                    <el-form-item 
+                      label="Mobile number" 
+                      :rules="[
+                        { required: true, message: 'Please type mobile number', trigger: 'blur' }
+                      ]"
+                    >
+
+                      <el-input v-model.number="validateForm.mobile"></el-input>
+
+                    </el-form-item>  
+                </el-col>
+            </el-row>
+            <el-row :gutter="20">
+                <!-- Phone extension -->
+                <el-col :md="12">
+                    <el-form-item 
+                      label="Phone extension" 
+                      :rules="[
+                        { required: true, message: 'Please type phone extension', trigger: 'blur' }
+                      ]"
+                    >
+
+                      <el-input v-model.number="validateForm.phoneExtension"></el-input>
+
+                    </el-form-item>
+                </el-col>
             </el-row>
             <el-row>
-                <div class="buttons-container">
+                <el-form-item>
+                  <div class="buttons-container">
                     <router-link :to="{ path: 'staffmanager' }">
                         <el-button class="secondary-button add-new-user-button">Cancel</el-button>
                     </router-link>
-                    <el-button type="primary" class="submit-button add-new-user-button" @click="addUser">Add User</el-button>
-                </div>    
+                    <el-button type="primary" class="submit-button add-new-user-button" @click="submitForm('validateForm')">Add User</el-button>
+                  </div>
+                </el-form-item>    
             </el-row>    
         </el-form>     
     </div>    
@@ -107,31 +222,32 @@ import { mapState } from 'vuex'
 
 export default {
   data () {
-    var checkNumber = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('Please input the number'))
-      }
-      setTimeout(() => {
-        if (!Number.isInteger(value)) {
-          callback(new Error('Please input digits'))
-        }
-      }, 2000)
-    }
-    var validatePass = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('Please input the password'))
-      } else {
-        if (this.ruleForm2.checkPass !== '') {
-          this.$refs.ruleForm2.validateField('checkPass')
-        }
-        callback()
-      }
-    }
+//    var checkNumber = (rule, value, callback) => {
+//      if (!value) {
+//        return callback(new Error('Please input the number'))
+//      }
+//      setTimeout(() => {
+//        if (!Number.isInteger(value)) {
+//          callback(new Error('Please input digits'))
+//        }
+//      }, 2000)
+//    }
+//    var validatePass = (rule, value, callback) => {
+//      if (value === '') {
+//        callback(new Error('Please input the password'))
+//      } else {
+//        if (this.validateForm.checkPass !== '') {
+//          this.$refs.ruleForm2.validateField('checkPass')
+//        }
+//        callback()
+//      }
+//    }
+
     var validatePass2 = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('Please input the password again'))
-      } else if (value !== this.ruleForm2.pass) {
-        callback(new Error('Two inputs don\'t match!'))
+        callback(new Error('Please type the password again'))
+      } else if (value !== this.validateForm.password) {
+        callback(new Error('Two passwords don\'t match!'))
       } else {
         callback()
       }
@@ -163,23 +279,30 @@ export default {
           label: 'Company executive'
         }
       ],
-      form: {
+      validateForm: {
+        department: '',
+        accessLevelValue: '',
+        pesronalID: '',
+        loginName: '',
+        password: '',
+        firstName: '',
+        lastName: '',
         phoneExtension: '',
         mobile: '',
         egn: '',
         joinDate: '',
-        accessLevelValue: 'teamleader'
+        homeAddress: ''
       },
       rules: {
-        pass: [
-            { validator: validatePass, trigger: 'blur' }
-        ],
+//        pass: [
+//            { validator: validatePass, trigger: 'blur' }
+//        ],
         checkPass: [
             { validator: validatePass2, trigger: 'blur' }
         ],
-        number: [
-            { validator: checkNumber, trigger: 'blur' }
-        ]
+//        number: [
+//            { validator: checkNumber, trigger: 'blur' }
+//        ]
       },
       departmentValue: ''
     }
@@ -192,6 +315,18 @@ export default {
       'selectDepartment',
       'pickerOptions'
     ])
+  },
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert('submit!');
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
   }
 }
 </script>
